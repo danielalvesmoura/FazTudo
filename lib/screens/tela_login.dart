@@ -1,61 +1,82 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/widgets/logo.dart';
 
 class TelaLogin extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      return Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: Colors.blue,
+  final _formKey = GlobalKey<FormState>();
 
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.location_on, size: 150, color: Colors.white),
-                Text(
-                  'Faz',
-                  style: TextStyle(
-                    color: Colors.white,
-                    decoration: TextDecoration.none,
-                    fontSize: 100
-                  )
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      color: Colors.blue,
+      child: Scaffold(
 
-                )
-              ],
-            ),
-
-            SizedBox(height: 40,),
-
-            ElevatedButton(
-              onPressed: (){
-                
-              }, 
-              child: Text('Entrar em uma conta existente'),
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.black,
-                minimumSize: Size(250,50),
+        appBar: AppBar(
+          backgroundColor: Colors.blue,
+          leading: 
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: (){}, 
+                    icon: Icon(
+                      Icons.arrow_back, 
+                      color: Colors.white
+                    )
+                  ),
+                  SizedBox(width: 10,),
+                  Text(
+                    'Login',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                      fontSize: 20
+                    ),
+                  ),
+                ],
               ),
             ),
-
-            SizedBox(height: 20,),
-
-            ElevatedButton(
-              onPressed: (){
-                
-              }, 
-              child: Text('Cadastrar uma nova conta'),
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.black,
-                minimumSize: Size(250,50)
-              ),
-
-            )
-            
+          leadingWidth: 700,
+          actions: [
+            Logo(tamanho: 30)
           ],
         ),
-      );
-    }
+
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+
+              Text(
+                'Entre na sua conta e começe seus negócios!',
+                style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                  fontSize: 30,
+                ),
+                textAlign: TextAlign.center,
+              ),
+
+              SizedBox(height: 40,),
+
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Nome de usuário ou E-mail',
+                        border: OutlineInputBorder()
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        )
+      )
+    );
+  }
 }

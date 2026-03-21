@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/tela_inicial.dart';
+import 'package:flutter_application_1/screens/tela_conta.dart';
 import 'package:flutter_application_1/screens/tela_login.dart';
 
 main() {
@@ -9,9 +10,7 @@ main() {
 class AppTeste extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomePage(),
-    );
+    return MaterialApp(home: HomePage(), debugShowCheckedModeBanner: false);
   }
 }
 
@@ -25,6 +24,6 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return TelaInicial();
+    return TelaLogin();
   }
 }
