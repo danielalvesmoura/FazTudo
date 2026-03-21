@@ -19,6 +19,7 @@ class TelaLogin extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
               child: Row(
                 children: [
+
                   IconButton(
                     onPressed: (){}, 
                     icon: Icon(
@@ -26,15 +27,18 @@ class TelaLogin extends StatelessWidget {
                       color: Colors.white
                     )
                   ),
+
                   SizedBox(width: 10,),
+            
                   Text(
-                    'Login',
+                    'Entrar',
                     style: TextStyle(
                       fontWeight: FontWeight.w900,
                       color: const Color.fromARGB(255, 255, 255, 255),
                       fontSize: 20
                     ),
                   ),
+
                 ],
               ),
             ),
@@ -58,6 +62,18 @@ class TelaLogin extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
 
+              SizedBox(height: 20),
+
+              Text(
+                'Acesse e aproveite toda a experiência do Faz!',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600, 
+                  fontSize: 15,
+                  color: Colors.grey
+                ),
+                textAlign: TextAlign.center,
+              ),
+
               SizedBox(height: 40,),
 
               Form(
@@ -73,6 +89,7 @@ class TelaLogin extends StatelessWidget {
                   ],
                 ),
               ),
+
             ],
           ),
         )

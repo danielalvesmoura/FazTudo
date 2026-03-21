@@ -12,12 +12,14 @@ class TelaConta extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Logo(tamanho: 50),
+          Logo(tamanho: 100),
 
           SizedBox(height: 40),
 
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed('/login');
+            },
             child: Text('Entrar em uma conta existente'),
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.black,
