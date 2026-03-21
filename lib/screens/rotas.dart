@@ -1,5 +1,5 @@
 class Rotas {
-  static String home = '/';
+  static String inicial = '/';
   static String login = '/login';
-  static String inicial = '/inicial';
+  static String home = '/home';
 }

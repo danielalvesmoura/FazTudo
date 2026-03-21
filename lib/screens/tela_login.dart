@@ -44,7 +44,7 @@ class TelaLogin extends StatelessWidget {
             ),
           leadingWidth: 700,
           actions: [
-            Logo(tamanho: 30)
+            Logo(tamanho: 30, mainAxisAlignment: MainAxisAlignment.center,)
           ],
         ),
 
