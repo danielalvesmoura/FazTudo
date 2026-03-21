@@ -3,6 +3,7 @@ import 'package:flutter_application_1/screens/rotas.dart';
 import 'package:flutter_application_1/screens/tela_home.dart';
 import 'package:flutter_application_1/screens/tela_inicial.dart';
 import 'package:flutter_application_1/screens/tela_login.dart';
+import 'package:flutter_application_1/screens/tela_consertos.dart';
 
 main() {
   runApp(AppTeste());
@@ -21,6 +22,7 @@ class AppTeste extends StatelessWidget {
         Rotas.inicial: (context) => TelaInicial(),
         Rotas.login: (context) => TelaLogin(),
         Rotas.home: (context) => TelaHome(),
+        Rotas.consertos: (context) => TelaConsertos(),
       }
     );
   }

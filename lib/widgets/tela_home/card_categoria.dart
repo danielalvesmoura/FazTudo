@@ -4,17 +4,19 @@ class CardCategoria extends StatelessWidget {
   final String url;
   final double tamanhoIcone;
   final String titulo;
+  final VoidCallback onTap;
 
   const CardCategoria({
     required this.url,
     required this.tamanhoIcone,
-    required this.titulo
+    required this.titulo,
+    required this.onTap
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){},
+      onTap: onTap,
       borderRadius: BorderRadius.circular(30),
       child: Container(
         width: 190,

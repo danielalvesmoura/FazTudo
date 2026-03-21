@@ -237,18 +237,12 @@ class _FormLoginState extends State<FormLogin> {
       
                   children: [
                     Text(
-                      'Começar agora',
+                      'Login',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 30,
                         color: Colors.white
                       ),
                     ),
-      
-                    Icon(
-                      Icons.keyboard_arrow_right_rounded, 
-                      size: 40,
-                      color: Colors.white,
-                    )
                   ],
                 ),
               ],

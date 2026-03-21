@@ -159,11 +159,18 @@ class TelaHome extends StatelessWidget {
                     runSpacing: 10,
                     children: [
 
-                      CardCategoria(url: 'icon/ferramenta.png', tamanhoIcone: 4, titulo: 'Conserto'),
-                      CardCategoria(url: 'icon/aspirador.png', tamanhoIcone: 7, titulo: 'Limpeza'),
-                      CardCategoria(url: 'icon/cabeca.png', tamanhoIcone: 4, titulo: 'Beleza'),
-                      CardCategoria(url: 'icon/carro.png', tamanhoIcone: 7, titulo: 'Transporte'),
-                      CardCategoria(url: 'icon/hamburger.png', tamanhoIcone: 7, titulo: 'Alimentação'),
+                      CardCategoria(
+                        url: 'icon/ferramenta.png', 
+                        tamanhoIcone: 4, 
+                        titulo: 'Conserto', 
+                        onTap: (){
+                          Navigator.of(context).pushNamed(Rotas.consertos);
+                        }
+                      ),
+                      CardCategoria(url: 'icon/aspirador.png', tamanhoIcone: 7, titulo: 'Limpeza', onTap: (){}),
+                      CardCategoria(url: 'icon/cabeca.png', tamanhoIcone: 4, titulo: 'Beleza', onTap: (){}),
+                      CardCategoria(url: 'icon/carro.png', tamanhoIcone: 7, titulo: 'Transporte', onTap: (){}),
+                      CardCategoria(url: 'icon/hamburger.png', tamanhoIcone: 7, titulo: 'Alimentação', onTap: (){}),
               
                     ],
                   ),

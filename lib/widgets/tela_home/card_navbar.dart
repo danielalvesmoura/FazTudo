@@ -33,7 +33,7 @@ class CardNavbar extends StatelessWidget {
                 fontSize: 15,
                 height: 1,
                 color: cor,
-                fontWeight: FontWeight(900),
+                fontWeight: FontWeight(700),
                 fontFamily: 'Manrope'
               ),
             ),
