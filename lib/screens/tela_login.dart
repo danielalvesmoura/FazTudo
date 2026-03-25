@@ -50,7 +50,7 @@ class TelaLogin extends StatelessWidget {
                   color: Colors.black,
                   decoration: TextDecoration.none,
                   fontSize: 60,
-                  fontWeight: FontWeight(700)
+                  fontWeight: FontWeight.w700
                 ),
               ),
 
@@ -62,7 +62,7 @@ class TelaLogin extends StatelessWidget {
                   color: const Color.fromARGB(255, 75, 75, 75),
                   decoration: TextDecoration.none,
                   fontSize: 22,
-                  fontWeight: FontWeight(400)
+                  fontWeight: FontWeight.w400
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -96,7 +96,7 @@ class TelaLogin extends StatelessWidget {
                                     color: const Color.fromARGB(255, 0, 0, 0),
                                     decoration: TextDecoration.none,
                                     fontSize: 22,
-                                    fontWeight: FontWeight(400)
+                                    fontWeight: FontWeight.w400
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
@@ -128,7 +128,7 @@ class TelaLogin extends StatelessWidget {
                                     color: const Color.fromARGB(255, 0, 0, 0),
                                     decoration: TextDecoration.none,
                                     fontSize: 22,
-                                    fontWeight: FontWeight(400)
+                                    fontWeight: FontWeight.w400
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
@@ -151,7 +151,7 @@ class TelaLogin extends StatelessWidget {
                   color: const Color.fromARGB(255, 56, 56, 56),
                   decoration: TextDecoration.none,
                   fontSize: 22,
-                  fontWeight: FontWeight(400)
+                  fontWeight: FontWeight.w400
                 ),
                 textAlign: TextAlign.center,
               ),

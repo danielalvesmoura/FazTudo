@@ -16,6 +16,7 @@ class AppTeste extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 0, 140, 255)),
         fontFamily: 'Inter'
       ),
       routes: {

@@ -33,11 +33,12 @@ class CardOferta extends StatelessWidget {
               children: [
                 Text(
                   titulo,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
                     color: Colors.black,
-                    height: 1.6,
-                    fontWeight: FontWeight(700)
+                    height: 1.3,
+                    fontWeight: FontWeight.w700
                   ),
                 ),
             
@@ -47,7 +48,7 @@ class CardOferta extends StatelessWidget {
                     fontSize: 20,
                     color: Colors.black,
                     height: 1.6,
-                    fontWeight: FontWeight(500)
+                    fontWeight: FontWeight.w500
                   ),
                 ),
 
@@ -59,7 +60,7 @@ class CardOferta extends StatelessWidget {
                     fontSize: 17,
                     color: Colors.black,
                     height: 1.6,
-                    fontWeight: FontWeight(500)
+                    fontWeight: FontWeight.w500
                   ),
                 ),
 
@@ -81,7 +82,7 @@ class CardOferta extends StatelessWidget {
                             fontSize: 18,
                             color: Colors.black,
                             height: 1.6,
-                            fontWeight: FontWeight(500)
+                            fontWeight: FontWeight.w500
                           ),
                         ),
                       ],
@@ -106,7 +107,7 @@ class CardOferta extends StatelessWidget {
                                 fontSize: 18,
                                 color: Colors.white,
                                 height: 1.6,
-                                fontWeight: FontWeight(600)
+                                fontWeight: FontWeight.w600
                               ),
                             ),
                           ]

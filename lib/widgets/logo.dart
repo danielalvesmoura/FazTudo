@@ -28,7 +28,7 @@ class Logo extends StatelessWidget {
               color: corTexto,
               decoration: TextDecoration.none,
               fontSize: tamanho * .75,
-              fontWeight: FontWeight(800)
+              fontWeight: FontWeight.w800
             ),
           ),
         ],
