@@ -8,16 +8,15 @@ class TelaInicial extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-
         Container(
           width: double.infinity,
           height: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('img/fundo_tela_inicial.png'),
-              fit: BoxFit.cover
-            )
-          ), 
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
 
         Container(
@@ -29,13 +28,9 @@ class TelaInicial extends StatelessWidget {
             gradient: LinearGradient(
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
-              colors: [
-                Colors.black,
-                Colors.transparent
-              ]
+              colors: [Colors.black, Colors.transparent],
             ),
           ),
-
         ),
 
         Container(
@@ -52,7 +47,7 @@ class TelaInicial extends StatelessWidget {
                 ),
 
                 SizedBox(height: 40),
-            
+
                 Text(
                   'Tudo o que você precisa em um só lugar',
                   style: TextStyle(
@@ -71,49 +66,48 @@ class TelaInicial extends StatelessWidget {
                     decoration: TextDecoration.none,
                     fontSize: 20,
                     fontWeight: FontWeight.w100,
-                    height: 1.9
+                    height: 1.9,
                   ),
                 ),
 
                 SizedBox(height: 60),
-                    
+
                 ElevatedButton(
-                  onPressed: () {},
-                
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(Rotas.teste);
+                  },
+
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.black,
                     backgroundColor: const Color.fromARGB(255, 36, 56, 155),
                     minimumSize: Size(425, 75),
                   ),
-            
+
                   child: Stack(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         mainAxisSize: MainAxisSize.min,
-            
+
                         children: [
                           Text(
                             'Começar agora',
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white
-                            ),
+                            style: TextStyle(fontSize: 20, color: Colors.white),
                           ),
-            
+
                           Icon(
-                            Icons.keyboard_arrow_right_rounded, 
+                            Icons.keyboard_arrow_right_rounded,
                             size: 40,
                             color: Colors.white,
-                          )
+                          ),
                         ],
                       ),
                     ],
-                  ) 
+                  ),
                 ),
-                    
+
                 SizedBox(height: 20),
-                    
+
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pushNamed(Rotas.login);
@@ -124,22 +118,18 @@ class TelaInicial extends StatelessWidget {
                     minimumSize: Size(425, 75),
                     side: BorderSide(
                       color: const Color.fromARGB(59, 255, 255, 255),
-                    )
+                    ),
                   ),
                   child: Text(
                     'Já tenho uma conta',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white
-                    ),
+                    style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
                 ),
-              ],   
-            
+              ],
             ),
           ),
-        )
-      ]
+        ),
+      ],
     );
   }
 }

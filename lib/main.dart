@@ -4,6 +4,7 @@ import 'package:flutter_application_1/screens/tela_home.dart';
 import 'package:flutter_application_1/screens/tela_inicial.dart';
 import 'package:flutter_application_1/screens/tela_login.dart';
 import 'package:flutter_application_1/screens/tela_consertos.dart';
+import 'package:flutter_application_1/screens/tela_teste.dart';
 
 main() {
   runApp(AppTeste());
@@ -20,7 +21,8 @@ class AppTeste extends StatelessWidget {
         fontFamily: 'Inter'
       ),
       routes: {
-        Rotas.inicial: (context) => TelaInicial(),
+        Rotas.inicial: (context) => TelaInicial(), 
+        Rotas.teste: (context) => TelaTeste(),
         Rotas.login: (context) => TelaLogin(),
         Rotas.home: (context) => TelaHome(),
         Rotas.consertos: (context) => TelaConsertos(),
