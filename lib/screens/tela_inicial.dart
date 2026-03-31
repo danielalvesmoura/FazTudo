@@ -6,6 +6,8 @@ import 'package:flutter_application_1/screens/rotas.dart';
 class TelaInicial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double largura = MediaQuery.of(context).size.width;
+
     return Stack(
       children: [
         Container(
@@ -35,42 +37,48 @@ class TelaInicial extends StatelessWidget {
 
         Container(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(40, 80, 40, 0),
+            padding: EdgeInsets.fromLTRB(
+              0.1 * largura, 
+              0.2 * largura, 
+              0.1 * largura, 
+              0
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Logo(
-                  tamanho: 100,
+                  tamanho: 0.2 * largura,
                   mainAxisAlignment: MainAxisAlignment.start,
                   corIcone: Color.fromARGB(255, 0, 140, 255),
                   corTexto: Colors.white,
                 ),
 
-                SizedBox(height: 40),
+                SizedBox(height: 0.1 * largura),
 
                 Text(
                   'Tudo o que você precisa em um só lugar',
                   style: TextStyle(
                     color: Colors.white,
                     decoration: TextDecoration.none,
-                    letterSpacing: 2,
+                    letterSpacing: 0.005 * largura,
+                    fontSize: 0.1 * largura
                   ),
                 ),
 
-                SizedBox(height: 40),
+                SizedBox(height: 0.1 * largura),
 
                 Text(
                   'Conectamos você aos melhores profissionais da sua região para transformar sua casa com confiança e agilidade.',
                   style: TextStyle(
                     color: const Color.fromARGB(255, 182, 182, 182),
                     decoration: TextDecoration.none,
-                    fontSize: 20,
+                    fontSize: 0.04 * largura,
                     fontWeight: FontWeight.w100,
-                    height: 1.9,
+                    height: 1.7,
                   ),
                 ),
 
-                SizedBox(height: 60),
+                SizedBox(height: 0.15 * largura),
 
                 ElevatedButton(
                   onPressed: () {
@@ -80,7 +88,7 @@ class TelaInicial extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.black,
                     backgroundColor: const Color.fromARGB(255, 36, 56, 155),
-                    minimumSize: Size(425, 75),
+                    minimumSize: Size(largura, 0.15 * largura),
                   ),
 
                   child: Stack(
@@ -92,12 +100,12 @@ class TelaInicial extends StatelessWidget {
                         children: [
                           Text(
                             'Começar agora',
-                            style: TextStyle(fontSize: 20, color: Colors.white),
+                            style: TextStyle(fontSize: 0.04 * largura, color: Colors.white),
                           ),
 
                           Icon(
                             Icons.keyboard_arrow_right_rounded,
-                            size: 40,
+                            size: 0.1 * largura,
                             color: Colors.white,
                           ),
                         ],
@@ -106,7 +114,7 @@ class TelaInicial extends StatelessWidget {
                   ),
                 ),
 
-                SizedBox(height: 20),
+                SizedBox(height: 0.04 * largura),
 
                 ElevatedButton(
                   onPressed: () {
@@ -115,14 +123,14 @@ class TelaInicial extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.black,
                     backgroundColor: const Color.fromARGB(92, 129, 129, 129),
-                    minimumSize: Size(425, 75),
+                    minimumSize: Size(largura, 0.15 * largura),
                     side: BorderSide(
                       color: const Color.fromARGB(59, 255, 255, 255),
                     ),
                   ),
                   child: Text(
                     'Já tenho uma conta',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                    style: TextStyle(fontSize: 0.04 * largura, color: Colors.white),
                   ),
                 ),
               ],
