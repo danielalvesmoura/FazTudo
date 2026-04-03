@@ -344,7 +344,7 @@ class Email extends StatelessWidget {
           width: double.infinity, 
           height: 80, 
           texto: 'Criar conta', 
-          onPressed: () {}
+          onPressed: () => Navigator.of(context).pushNamed(Rotas.home)
         )
       ],
     );
