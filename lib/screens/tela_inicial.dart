@@ -22,7 +22,6 @@ class TelaInicial extends StatelessWidget {
 
         Container(
           width: double.infinity,
-
           height: double.infinity,
 
           decoration: BoxDecoration(
@@ -78,7 +77,9 @@ class TelaInicial extends StatelessWidget {
                 SizedBox(height: 60),
                     
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(Rotas.cadastro);
+                  },
                 
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.black,

@@ -5,14 +5,14 @@ class CardNavbar extends StatelessWidget {
   final IconData icon;
   final double size;
   final String titulo;
-  final Color cor;
+  final bool selecionado;
 
   const CardNavbar({
     required this.onTap,
     required this.icon,
     required this.size,
     required this.titulo,
-    required this.cor,
+    required this.selecionado,
   });
 
   @override
@@ -26,13 +26,18 @@ class CardNavbar extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: size, color: cor),
+            Icon(
+              icon, 
+              size: size, 
+              color: selecionado ? Color.fromARGB(255, 36, 56, 155) : Color.fromARGB(255, 146, 150, 172)
+            ),
+
             Text(
               titulo,
               style: TextStyle(
                 fontSize: 15,
                 height: 1,
-                color: cor,
+                color: selecionado ? Color.fromARGB(255, 36, 56, 155) : Color.fromARGB(255, 146, 150, 172),
                 fontWeight: FontWeight(700),
                 fontFamily: 'Manrope'
               ),

@@ -4,6 +4,7 @@ import 'package:flutter_application_1/screens/tela_home.dart';
 import 'package:flutter_application_1/screens/tela_inicial.dart';
 import 'package:flutter_application_1/screens/tela_login.dart';
 import 'package:flutter_application_1/screens/tela_consertos.dart';
+import 'package:flutter_application_1/screens/tela_signup.dart';
 
 main() {
   runApp(AppTeste());
@@ -20,6 +21,7 @@ class AppTeste extends StatelessWidget {
       ),
       routes: {
         Rotas.inicial: (context) => TelaInicial(),
+        Rotas.cadastro: (context) => TelaSignup(),
         Rotas.login: (context) => TelaLogin(),
         Rotas.home: (context) => TelaHome(),
         Rotas.consertos: (context) => TelaConsertos(),
@@ -28,16 +30,16 @@ class AppTeste extends StatelessWidget {
   }
 }
 
-class HomePage extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return HomePageState();
-  }
-}
+// class HomePage extends StatefulWidget {
+//   @override
+//   State<StatefulWidget> createState() {
+//     return HomePageState();
+//   }
+// }
 
-class HomePageState extends State<HomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return TelaLogin();
-  }
-}
+// class HomePageState extends State<HomePage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return TelaLogin();
+//   }
+// }
