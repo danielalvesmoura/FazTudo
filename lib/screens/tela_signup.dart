@@ -1,5 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/widgets/botao.dart';
 import 'package:flutter_application_1/widgets/campo.dart';
+import 'package:flutter_application_1/widgets/campo_senha.dart';
+import 'package:flutter_application_1/widgets/checkbox.dart';
 import 'package:flutter_application_1/widgets/logo.dart';
 import 'package:flutter_application_1/screens/rotas.dart';
 
@@ -69,18 +73,9 @@ class TelaSignupState extends State<TelaSignup> {
                 ),
               ),
 
-              SizedBox(height: 20),
+              SizedBox(height: tela == Tela.escolher ? 20 : 0),
 
-              Text(
-                'Começe sua jornada hoje mesmo.',
-                style: TextStyle(
-                  color: const Color.fromARGB(255, 75, 75, 75),
-                  decoration: TextDecoration.none,
-                  fontSize: 22,
-                  fontWeight: FontWeight(400)
-                ),
-                textAlign: TextAlign.center,
-              ),
+              subtitulo(tela),
 
               SizedBox(height: tela == Tela.escolher ? 80 : 20),
 
@@ -101,6 +96,25 @@ Widget escolha(Tela tela, Function(Tela) trocarTela) {
 
     case Tela.email:
       return Email(aoTrocarTela: trocarTela,);
+  }
+}
+
+Widget subtitulo(Tela tela) {
+  switch (tela) {
+    case Tela.escolher:
+      return Text(
+        'Começe sua jornada hoje mesmo.',
+        style: TextStyle(
+          color: const Color.fromARGB(255, 75, 75, 75),
+          decoration: TextDecoration.none,
+          fontSize: 22,
+          fontWeight: FontWeight(400)
+        ),
+        textAlign: TextAlign.center,
+      );
+    
+    case Tela.email:
+      return SizedBox();
   }
 }
 
@@ -231,10 +245,12 @@ class Email extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextButton(
           onPressed: () => aoTrocarTela(Tela.escolher), 
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Icon(Icons.arrow_back, size: 30, color: Color.fromARGB(255, 36, 56, 155)),
               SizedBox(width: 10,),
@@ -252,12 +268,83 @@ class Email extends StatelessWidget {
           )
         ),
 
-        SizedBox(height: 20,),
+        SizedBox(height: 30,),
 
         Campo(
           label: 'NOME COMPLETO',
           hint: 'Ex: João Silva',
           icon: Icons.person_outline
+        ),
+
+        SizedBox(height: 20,),
+
+        Campo(
+          label: 'E-MAIL',
+          hint: 'seu@email.com',
+          icon: Icons.email_outlined
+        ),
+
+        SizedBox(height: 20,),
+
+        Campo(
+          label: 'TELEFONE',
+          hint: '(44) 99999-9999',
+          icon: Icons.phone_outlined
+        ),
+
+        SizedBox(height: 20,),
+
+        CampoSenha(
+          label: 'SENHA',
+          hint: '••••••••',
+          icon: Icons.lock_outline_rounded
+        ),
+
+        SizedBox(height: 30,),
+
+        Row(
+          children: [
+            CheckBox(),
+            SizedBox(width: 10,),
+            SizedBox(
+              width: 380,
+              child: RichText(
+                text: TextSpan(
+                  style: TextStyle(fontSize: 20,height: 1.5),
+                  children: [
+                    TextSpan(text: "Eu aceito os "),
+                    TextSpan(
+                      text: "Termos de Serviço", 
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 36, 56, 155),
+                        fontWeight: FontWeight(900)
+                      ),
+                      recognizer: TapGestureRecognizer()
+                    ),
+                    TextSpan(text: " e a "),
+                    TextSpan(
+                      text: "Política de Privacidade",
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 36, 56, 155),
+                        fontWeight: FontWeight(900)
+                      ),
+                      recognizer: TapGestureRecognizer()
+                    ),
+                    TextSpan(text: "."),
+                  ]
+                )
+              ),
+            ),
+          ],
+        ),
+
+        SizedBox(height: 40,),
+
+        Botao(
+          width: double.infinity, 
+          height: 80, 
+          texto: 'Criar conta', 
+          onPressed: () {}
         )
       ],
     );
