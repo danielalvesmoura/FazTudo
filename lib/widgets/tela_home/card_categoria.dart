@@ -37,7 +37,7 @@ class CardCategoria extends StatelessWidget {
                 fontSize: 20,
                 color: Color.fromARGB(255, 0, 0, 0),
                 height: 1.2,
-                fontWeight: FontWeight(800),
+                fontWeight: FontWeight.w800,
                 fontFamily: 'Manrope'
               ),
             ),

@@ -41,7 +41,7 @@ class CardSubcategoria extends StatelessWidget {
                   fontSize: 20,
                   color: corTexto,
                   height: 1.6,
-                  fontWeight: FontWeight(500)
+                  fontWeight: FontWeight.w500
                 ),
               ),
             ],

@@ -12,7 +12,7 @@ class TelaConsertos extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false, 
         title: Row(
           children: [
 
@@ -33,7 +33,7 @@ class TelaConsertos extends StatelessWidget {
                   color: Color.fromARGB(255, 36, 56, 155),
                   decoration: TextDecoration.none,
                   fontSize: 30,
-                  fontWeight: FontWeight(900)
+                  fontWeight: FontWeight.w900
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -70,7 +70,7 @@ class TelaConsertos extends StatelessWidget {
                   TextSpan(
                     text: 'Resolva tudo',
                     style: TextStyle(
-                      fontWeight: FontWeight(700),
+                      fontWeight: FontWeight.w700,
                       letterSpacing: 0,
                       height: 1.2,
                       fontSize: 50,
@@ -98,7 +98,7 @@ class TelaConsertos extends StatelessWidget {
                     fontSize: 20,
                     color: const Color.fromARGB(255, 75, 75, 75),
                     height: 1.6,
-                    fontWeight: FontWeight(500)
+                    fontWeight: FontWeight.w500
                   ),
                 ),
               ),
@@ -123,7 +123,7 @@ class TelaConsertos extends StatelessWidget {
               ),
         
               SizedBox(height: 40),
-
+        
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -147,7 +147,7 @@ class TelaConsertos extends StatelessWidget {
                                   fontSize: 20,
                                   color: const Color.fromARGB(255, 255, 255, 255),
                                   height: 1.6,
-                                  fontWeight: FontWeight(500)
+                                  fontWeight: FontWeight.w500
                                 ),
                               ),
                             ],
@@ -155,9 +155,9 @@ class TelaConsertos extends StatelessWidget {
                         ),
                       ),
                     ),
-
+        
                     SizedBox(width: 10),
-
+        
                     CardSubcategoria(
                       icone: Icons.flash_on, 
                       tamanhoIcone: 20, 
@@ -166,9 +166,9 @@ class TelaConsertos extends StatelessWidget {
                       titulo: 'Elétrico', 
                       onTap: (){}
                     ),
-
+        
                     SizedBox(width: 10),
-
+        
                     CardSubcategoria(
                       icone: Icons.water_drop, 
                       tamanhoIcone: 20, 
@@ -177,9 +177,9 @@ class TelaConsertos extends StatelessWidget {
                       titulo: 'Encanamento', 
                       onTap: (){}
                     ),
-
+        
                     SizedBox(width: 10),
-
+        
                     CardSubcategoria(
                       icone: Icons.build, 
                       tamanhoIcone: 20, 
@@ -188,9 +188,9 @@ class TelaConsertos extends StatelessWidget {
                       titulo: 'Mecânico', 
                       onTap: (){}
                     ),
-
+        
                     SizedBox(width: 10),
-
+        
                     CardSubcategoria(
                       icone: Icons.handyman, 
                       tamanhoIcone: 20, 
@@ -199,9 +199,9 @@ class TelaConsertos extends StatelessWidget {
                       titulo: 'Alvenaria', 
                       onTap: (){}
                     ),
-
+        
                     SizedBox(width: 10),
-
+        
                     CardSubcategoria(
                       icone: Icons.computer, 
                       tamanhoIcone: 20, 
@@ -213,37 +213,38 @@ class TelaConsertos extends StatelessWidget {
                   ],
                 ),
               ),
-
+        
               SizedBox(height: 60),
-
+        
               SingleChildScrollView(
-                      child: Column(
-                        children: [
-
-                          CardOferta(
-                            urlImagem: 'img/limpeza.png', 
-                            titulo: 'Limpeza de Casa', 
-                            preco: 'R\$ 60,00 / hora', 
-                            descricao: 'Quer deixar sua casa brilhando sem stress? A gente cuida da faxina, do chão ao teto, rapidinho e caprichado. Preços justos...', 
-                            usuario: 'jose_roberto332'
-                          ),
-
-                          SizedBox(height: 60),
-
-                          CardOferta(
-                            urlImagem: 'img/mecanica.png', 
-                            titulo: 'Troca de Óleo e Pneus', 
-                            preco: 'R\$ 100,00 / hora', 
-                            descricao: 'Seu carro merece cuidado de verdade! 🚗💨Fazemos troca de óleo e pneus rapidinho e sem complicação. Peças de qualidade e serviço...', 
-                            usuario: 'Rafaela-Oficial1'
-                          )
-
-                        ],
-                      ),
+                child: Column(
+                  children: [
+  
+                    CardOferta(
+                      urlImagem: 'img/encanamento.png', 
+                      titulo: 'Revisão e Corserto de Encanamento', 
+                      preco: 'R\$ 100,00 / hora', 
+                      descricao: 'Serviço profissional de revisão e conserto de encanamento, garantindo soluções rápidas e eficientes para vazamentos, entupimentos...', 
+                      usuario: 'mario_332'
+                    ),
+  
+                    SizedBox(height: 60),
+  
+                    CardOferta(
+                      urlImagem: 'img/mecanica.png', 
+                      titulo: 'Troca de Óleo e Pneus', 
+                      preco: 'R\$ 100,00 / hora', 
+                      descricao: 'Seu carro merece cuidado de verdade! 🚗💨Fazemos troca de óleo e pneus rapidinho e sem complicação. Peças de qualidade e serviço...', 
+                      usuario: 'Larissa-Oficial1'
                     )
+  
+                  ],
+                ),
+              )
             ]
           )
-        )
+        ),
+        
       )
     );
   }

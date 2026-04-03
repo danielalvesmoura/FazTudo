@@ -5,6 +5,7 @@ import 'package:flutter_application_1/screens/tela_inicial.dart';
 import 'package:flutter_application_1/screens/tela_login.dart';
 import 'package:flutter_application_1/screens/tela_consertos.dart';
 import 'package:flutter_application_1/screens/tela_signup.dart';
+import 'package:flutter_application_1/screens/tela_teste.dart';
 
 main() {
   runApp(AppTeste());
@@ -17,6 +18,7 @@ class AppTeste extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 0, 140, 255)),
         fontFamily: 'Inter'
       ),
       routes: {
