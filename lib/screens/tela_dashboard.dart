@@ -3,20 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/widgets/tela_home/card_categoria.dart';
 import 'package:flutter_application_1/screens/rotas.dart';
 
-class PaginaDashboard extends StatelessWidget {
-  // final VoidCallback onTapConserto;
-  // final VoidCallback onTapLimpeza;
-  // final VoidCallback onTapBeleza;
-  // final VoidCallback onTapTransporte;
-  // final VoidCallback onTapAlimentacao;
-
-  // const PaginaDashboard({
-  //   required this.onTapConserto,
-  //   required this.onTapLimpeza,
-  //   required this.onTapBeleza,
-  //   required this.onTapTransporte,
-  //   required this.onTapAlimentacao
-  // })
+class AbaDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {

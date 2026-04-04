@@ -11,24 +11,18 @@ class TelaHome extends StatefulWidget {
   TelaHomeState createState() => TelaHomeState();
 }
 
+enum abas {home, config, servicos, perfil}
+
 class TelaHomeState extends State<TelaHome> {
-  // int _selecionadoIndex = 0;
+  abas selecionado = abas.home;
+  int selecionadoIndex = 0;
 
-  // void trocaTela(index) {
-  //   setState(() {
-  //     _selecionadoIndex = index;
-  //   });
-  // }
-
-  // List<Widget> paginas = [
-  //   PaginaDashboard(
-  //     onTapConserto: () => trocaTela(3),
-  //     onTapLimpeza: () {},
-  //     onTapBeleza: () {},
-  //     onTapTransporte: () {},
-  //     onTapAlimentacao: () {},
-  //   ),
-  // ];
+  List<Widget> listaAbas = [
+    AbaDashboard(),
+    AbaConfig(),
+    AbaServicos(),
+    AbaPerfil(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +67,7 @@ class TelaHomeState extends State<TelaHome> {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-          child: PaginaDashboard(),
+          child: insereAba(selecionadoIndex),
         ),
       ),
 
@@ -84,40 +78,95 @@ class TelaHomeState extends State<TelaHome> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CardNavbar(
-              onTap: (){}, 
+              onTap: (){
+                setState(() {
+                  selecionado = abas.home;
+                  selecionadoIndex = 0;
+                });
+              }, 
               icon: Icons.house, 
               size: 35, 
               titulo: 'Home', 
-              selecionado: true,
+              selecionado: selecionado == abas.home ? true : false,
             ),
 
             CardNavbar(
-              onTap: (){}, 
+              onTap: (){
+                setState(() {
+                  selecionado = abas.config;
+                  selecionadoIndex = 1;
+                });
+              }, 
               icon: Icons.settings, 
               size: 35, 
               titulo: 'Config.', 
-              selecionado: false,
+              selecionado: selecionado == abas.config ? true : false,
             ),
 
             CardNavbar(
-              onTap: (){}, 
+              onTap: (){
+                setState(() {
+                  selecionado = abas.servicos;
+                  selecionadoIndex = 2;
+                });
+              }, 
               icon: Icons.email, 
               size: 35, 
               titulo: 'Meus Serviços', 
-              selecionado: false,
+              selecionado: selecionado == abas.servicos ? true : false,
             ),
 
             CardNavbar(
-              onTap: (){}, 
+              onTap: (){
+                setState(() {
+                  selecionado = abas.perfil;
+                  selecionadoIndex = 3;
+                });
+              }, 
               icon: Icons.person, 
               size: 35, 
               titulo: 'Meu Perfil', 
-              selecionado: false,
+              selecionado: selecionado == abas.perfil ? true : false,
             )
           ],
-        ),
+        )
       )
     );
   }
 }
 
+Widget insereAba(abaIndex) {
+  switch (abaIndex) {
+    case 0:
+      return AbaDashboard();
+    case 1:
+      return AbaConfig();
+    case 2:
+      return AbaServicos();
+    case 3:
+      return AbaPerfil();
+    default:
+      return AbaDashboard();
+  }
+}
+
+class AbaConfig extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class AbaServicos extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class AbaPerfil extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
