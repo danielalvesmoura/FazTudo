@@ -34,7 +34,7 @@ class Botao extends StatelessWidget {
               Text(
                 texto,
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 25,
                   color: Colors.white
                 ),
               ),

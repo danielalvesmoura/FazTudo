@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/widgets/botao.dart';
+import 'package:flutter_application_1/widgets/campo.dart';
+import 'package:flutter_application_1/widgets/campo_senha.dart';
 import 'package:flutter_application_1/widgets/logo.dart';
 import 'package:flutter_application_1/screens/rotas.dart';
 
@@ -158,9 +161,28 @@ class TelaLogin extends StatelessWidget {
 
               SizedBox(height: 40),
 
-              FormLogin()
+              Campo(
+                label: 'E-MAIL',
+                hint: 'seu@email.com',
+                icon: Icons.email_outlined
+              ),
 
+              SizedBox(height: 20,),
 
+              CampoSenha(
+                label: 'SENHA',
+                hint: '••••••••',
+                icon: Icons.lock_outline_rounded
+              ),
+
+              SizedBox(height: 60,),
+
+              Botao(
+                width: double.infinity, 
+                height: 80, 
+                texto: 'Entrar', 
+                onPressed: () => Navigator.of(context).pushNamed(Rotas.home)
+              )
             ]         
           ),
         )
@@ -169,88 +191,3 @@ class TelaLogin extends StatelessWidget {
   }
 }
 
-class FormLogin extends StatefulWidget {
-  @override
-  State<FormLogin> createState() => _FormLoginState();
-}
-
-class _FormLoginState extends State<FormLogin> {
-  final _formKey = GlobalKey<FormState>();
-
-  final _emailController = TextEditingController();
-  final _senhaController = TextEditingController();
-
-  void _submit() {
-    // if (_formKey.currentState!.validate() == true) {
-    //   Navigator.of(context).pushNamed(Rotas.home);
-    // }
-
-    Navigator.of(context).pushNamed(Rotas.home);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          TextFormField(
-            controller: _emailController,
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(
-              labelText: 'Email',
-              hintText: 'email@exemplo.com'
-            ),
-
-            validator: (value) {
-              if(value == null) {
-                return 'digite seu email';
-              }
-              return null;
-            },
-          ),
-
-          SizedBox(height: 30),
-
-          TextFormField(
-            controller: _senhaController,
-            decoration: InputDecoration(
-              labelText: 'Senha',
-            ),
-            obscureText: true,
-          ),
-
-          SizedBox(height: 50),
-
-          ElevatedButton(
-            onPressed: _submit,
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.black,
-              backgroundColor: const Color.fromARGB(255, 36, 56, 155),
-              minimumSize: Size(425, 75),
-            ),
-            child: Stack(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-      
-                  children: [
-                    Text(
-                      'Login',
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ) 
-          ),
-        
-        ],
-      ),
-    );
-  }
-}
