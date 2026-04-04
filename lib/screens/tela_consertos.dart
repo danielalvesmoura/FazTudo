@@ -27,7 +27,7 @@ class TelaConsertos extends StatelessWidget {
 
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-              child: Text(
+              child: Text( 
                 'Consertos',
                 style: TextStyle(
                   color: Color.fromARGB(255, 36, 56, 155),
@@ -126,92 +126,7 @@ class TelaConsertos extends StatelessWidget {
         
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    Material(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Color.fromARGB(255, 36, 56, 155),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(30),
-                        onTap: (){},
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 20,
-                            vertical: 5
-                          ),
-                          child: Row(
-                            children: [
-                              Text(
-                                'Todos',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: const Color.fromARGB(255, 255, 255, 255),
-                                  height: 1.6,
-                                  fontWeight: FontWeight.w500
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-        
-                    SizedBox(width: 10),
-        
-                    CardSubcategoria(
-                      icone: Icons.flash_on, 
-                      tamanhoIcone: 20, 
-                      corTexto: const Color.fromARGB(255, 75, 75, 75),
-                      corFundo: const Color.fromARGB(255, 209, 209, 209),
-                      titulo: 'Elétrico', 
-                      onTap: (){}
-                    ),
-        
-                    SizedBox(width: 10),
-        
-                    CardSubcategoria(
-                      icone: Icons.water_drop, 
-                      tamanhoIcone: 20, 
-                      corTexto: const Color.fromARGB(255, 75, 75, 75),
-                      corFundo: const Color.fromARGB(255, 209, 209, 209),
-                      titulo: 'Encanamento', 
-                      onTap: (){}
-                    ),
-        
-                    SizedBox(width: 10),
-        
-                    CardSubcategoria(
-                      icone: Icons.build, 
-                      tamanhoIcone: 20, 
-                      corTexto: const Color.fromARGB(255, 75, 75, 75),
-                      corFundo: const Color.fromARGB(255, 209, 209, 209),
-                      titulo: 'Mecânico', 
-                      onTap: (){}
-                    ),
-        
-                    SizedBox(width: 10),
-        
-                    CardSubcategoria(
-                      icone: Icons.handyman, 
-                      tamanhoIcone: 20, 
-                      corTexto: const Color.fromARGB(255, 75, 75, 75),
-                      corFundo: const Color.fromARGB(255, 209, 209, 209),
-                      titulo: 'Alvenaria', 
-                      onTap: (){}
-                    ),
-        
-                    SizedBox(width: 10),
-        
-                    CardSubcategoria(
-                      icone: Icons.computer, 
-                      tamanhoIcone: 20, 
-                      corTexto: const Color.fromARGB(255, 75, 75, 75),
-                      corFundo: const Color.fromARGB(255, 209, 209, 209),
-                      titulo: 'Eletrônico', 
-                      onTap: (){}
-                    ),
-                  ],
-                ),
+                child: Subcategorias()
               ),
         
               SizedBox(height: 60),
@@ -246,6 +161,109 @@ class TelaConsertos extends StatelessWidget {
         ),
         
       )
+    );
+  }
+}
+
+class Subcategorias extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return SubcategoriasState();
+  }
+}
+
+enum SubcategoriasEnum { todos, eletrico, encanamento, mecanico, alvenaria, eletronico}
+
+class SubcategoriasState extends State<Subcategorias> {
+  SubcategoriasEnum selecionado = SubcategoriasEnum.todos;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+
+        CardSubcategoria(
+          icone: null, 
+          tamanhoIcone: 20, 
+          titulo: 'Todos', 
+          onTap: (){
+            setState(() {
+              selecionado = SubcategoriasEnum.todos;
+            });
+          },
+          selecionado: selecionado == SubcategoriasEnum.todos ? true : false,
+        ),
+
+        SizedBox(width: 10),
+
+        CardSubcategoria(
+          icone: Icons.flash_on, 
+          tamanhoIcone: 20, 
+          titulo: 'Elétrico', 
+          onTap: (){
+            setState(() {
+              selecionado = SubcategoriasEnum.eletrico;
+            });
+          },
+          selecionado: selecionado == SubcategoriasEnum.eletrico ? true : false,
+        ),
+
+        SizedBox(width: 10),
+
+        CardSubcategoria(
+          icone: Icons.water_drop, 
+          tamanhoIcone: 20, 
+          titulo: 'Encanamento', 
+          onTap: (){
+            setState(() {
+              selecionado = SubcategoriasEnum.encanamento;
+            });
+          },
+          selecionado: selecionado == SubcategoriasEnum.encanamento ? true : false,
+        ),
+
+        SizedBox(width: 10),
+
+        CardSubcategoria(
+          icone: Icons.build, 
+          tamanhoIcone: 20, 
+          titulo: 'Mecânico', 
+          onTap: (){
+            setState(() {
+              selecionado = SubcategoriasEnum.mecanico;
+            });
+          },
+          selecionado: selecionado == SubcategoriasEnum.mecanico ? true : false,
+        ),
+
+        SizedBox(width: 10),
+
+        CardSubcategoria(
+          icone: Icons.handyman, 
+          tamanhoIcone: 20, 
+          titulo: 'Alvenaria', 
+          onTap: (){
+            setState(() {
+              selecionado = SubcategoriasEnum.alvenaria;
+            });
+          },
+          selecionado: selecionado == SubcategoriasEnum.alvenaria ? true : false,
+        ),
+
+        SizedBox(width: 10),
+
+        CardSubcategoria(
+          icone: Icons.computer, 
+          tamanhoIcone: 20, 
+          titulo: 'Eletrônico', 
+          onTap: (){
+            setState(() {
+              selecionado = SubcategoriasEnum.eletronico;
+            });
+          },
+          selecionado: selecionado == SubcategoriasEnum.eletronico ? true : false,
+        ),
+      ],
     );
   }
 }

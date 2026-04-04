@@ -2,27 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CardSubcategoria extends StatelessWidget {
-  final IconData icone;
+  final IconData? icone;
   final double tamanhoIcone;
-  final Color corTexto;
-  final Color corFundo;
   final String titulo;
   final VoidCallback onTap;
+  final bool selecionado;
 
   const CardSubcategoria({
-    required this.icone,
+    this.icone,
     required this.tamanhoIcone,
-    required this.corTexto,
-    required this.corFundo,
     required this.titulo,
-    required this.onTap
+    required this.onTap,
+    required this.selecionado,
   });
 
   @override
   Widget build(BuildContext context) {
     return Material(
       borderRadius: BorderRadius.circular(30),
-      color: corFundo,
+      color: selecionado ? Color.fromARGB(255, 36, 56, 155) : const Color.fromARGB(255, 209, 209, 209),
       child: InkWell(
         borderRadius: BorderRadius.circular(30),
         onTap: onTap,
@@ -33,13 +31,15 @@ class CardSubcategoria extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Icon(icone, size: tamanhoIcone, color: corTexto),
-              SizedBox(width: 10),
+              colocaIcone(icone != null ? true : false, icone, tamanhoIcone, selecionado),
+
+              SizedBox(width: icone != null ? 10 : 0),
+
               Text(
                 titulo,
                 style: TextStyle(
                   fontSize: 20,
-                  color: corTexto,
+                  color: selecionado ? Colors.white : const Color.fromARGB(255, 75, 75, 75),
                   height: 1.6,
                   fontWeight: FontWeight.w500
                 ),
@@ -50,4 +50,17 @@ class CardSubcategoria extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget colocaIcone(temIcone, icone, tamanhoIcone, selecionado) {
+  if(temIcone) {
+    return Icon(
+      icone,
+      size: tamanhoIcone,
+      color: selecionado ? Colors.white : const Color.fromARGB(255, 75, 75, 75),
+    );
+  } else {
+    return SizedBox(height: 0, width: 0,);
+  }
+
 }
