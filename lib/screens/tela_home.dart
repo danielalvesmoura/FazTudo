@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/tela_dashboard.dart';
+import 'package:flutter_application_1/screens/tela_meus_servicos.dart';
 import 'package:flutter_application_1/widgets/botao.dart';
 import 'package:flutter_application_1/widgets/logo.dart';
 import 'package:flutter_application_1/widgets/tela_home/card_categoria.dart';
@@ -16,13 +17,6 @@ enum abas {home, config, servicos, perfil}
 class TelaHomeState extends State<TelaHome> {
   abas selecionado = abas.home;
   int selecionadoIndex = 0;
-
-  List<Widget> listaAbas = [
-    AbaDashboard(),
-    AbaConfig(),
-    AbaServicos(),
-    AbaPerfil(),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +39,13 @@ class TelaHomeState extends State<TelaHome> {
             width: 100, 
             height: 50, 
             texto: 'Log-out', 
+            fontSize: 20,
             onPressed: () {
               Navigator.pop(context);
-            }
+            },
+            corTexto: Colors.white,
+            corFundo: const Color.fromARGB(255, 36, 56, 155),
+              borda: false
           ),
 
           SizedBox(width: 10,),
@@ -64,13 +62,8 @@ class TelaHomeState extends State<TelaHome> {
         ],
       ),
 
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-          child: insereAba(selecionadoIndex),
-        ),
-      ),
-
+      body: insereAba(selecionadoIndex),
+      
       bottomNavigationBar: Container(
         height: 100,
         width: double.infinity,
@@ -142,7 +135,7 @@ Widget insereAba(abaIndex) {
     case 1:
       return AbaConfig();
     case 2:
-      return AbaServicos();
+      return TelaMeusServicos();
     case 3:
       return AbaPerfil();
     default:

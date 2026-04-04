@@ -344,7 +344,11 @@ class Email extends StatelessWidget {
           width: double.infinity, 
           height: 80, 
           texto: 'Criar conta', 
-          onPressed: () => Navigator.of(context).pushNamed(Rotas.home)
+          fontSize: 20,
+          onPressed: () => Navigator.of(context).pushNamed(Rotas.home),
+          corTexto: Colors.white,
+          corFundo: const Color.fromARGB(255, 36, 56, 155),
+          borda: false
         )
       ],
     );

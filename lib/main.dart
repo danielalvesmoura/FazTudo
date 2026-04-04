@@ -15,7 +15,7 @@ class AppTeste extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false, 
       theme: ThemeData(
         primarySwatch: Colors.blue,
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 0, 140, 255)),
@@ -32,16 +32,3 @@ class AppTeste extends StatelessWidget {
   }
 }
 
-// class HomePage extends StatefulWidget {
-//   @override
-//   State<StatefulWidget> createState() {
-//     return HomePageState();
-//   }
-// }
-
-// class HomePageState extends State<HomePage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return TelaLogin();
-//   }
-// }

@@ -4,13 +4,21 @@ class Botao extends StatelessWidget {
   final double width;
   final double height;
   final String texto;
+  final Color corTexto;
+  final Color corFundo;
+  final bool borda;
+  final double fontSize;
   final VoidCallback onPressed;
   
   const Botao({
     required this.width,
     required this.height,
     required this.texto,
-    required this.onPressed
+    required this.corTexto,
+    required this.corFundo,
+    required this.borda,
+    required this.onPressed,
+    required this.fontSize,
   });
 
   @override
@@ -20,8 +28,9 @@ class Botao extends StatelessWidget {
     
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.black,
-        backgroundColor: const Color.fromARGB(255, 36, 56, 155),
+        backgroundColor: corFundo,
         minimumSize: Size(width, height),
+        side: borda ? BorderSide(color: const Color.fromARGB(255, 150, 150, 150)) : BorderSide.none
       ),
 
       child: Stack(
@@ -34,8 +43,8 @@ class Botao extends StatelessWidget {
               Text(
                 texto,
                 style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.white
+                  fontSize: fontSize,
+                  color: corTexto
                 ),
               ),
             ],
