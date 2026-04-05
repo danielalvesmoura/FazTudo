@@ -3,7 +3,7 @@ import 'package:flutter_application_1/screens/tela_dashboard.dart';
 import 'package:flutter_application_1/screens/tela_meus_servicos.dart';
 import 'package:flutter_application_1/widgets/botao.dart';
 import 'package:flutter_application_1/widgets/logo.dart';
-import 'package:flutter_application_1/widgets/tela_home/card_categoria.dart';
+import 'package:flutter_application_1/widgets/card_categoria.dart';
 import 'package:flutter_application_1/widgets/tela_home/card_navbar.dart';
 import 'package:flutter_application_1/screens/rotas.dart';
 

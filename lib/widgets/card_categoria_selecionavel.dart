@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 
-class CardCategoria extends StatelessWidget {
+class CardCategoriaSelecionavel extends StatelessWidget {
   final String url;
   final double tamanhoIcone;
   final String titulo;
   final VoidCallback onTap;
+  final bool selecionado;
 
-  const CardCategoria({
+
+  const CardCategoriaSelecionavel({
     required this.url,
     required this.tamanhoIcone,
     required this.titulo,
-    required this.onTap
+    required this.onTap,
+    required this.selecionado,
   });
 
   @override
@@ -21,6 +24,13 @@ class CardCategoria extends StatelessWidget {
       child: Container(
         width: 190,
         height: 190,
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: selecionado ? Color.fromARGB(255, 36, 56, 155) : Colors.white,
+            width: 4
+          ),
+          borderRadius: BorderRadius.circular(20)
+        ),
         
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/rotas.dart';
 import 'package:flutter_application_1/widgets/botao.dart';
+import 'package:flutter_application_1/widgets/botao_flutuante.dart';
 import 'package:flutter_application_1/widgets/tela_meus_servicos/card_aba_servico.dart';
 
 class TelaMeusServicos extends StatelessWidget {
@@ -146,32 +148,13 @@ class AbasServicosState extends State<AbasServicos> {
               ),
             ),
 
-            Positioned(
+            BotaoFlutuante(
+              onPressed: () => Navigator.of(context).pushNamed(Rotas.novoServico), 
+              icon: Icons.add, 
+              texto: 'Novo Serviço',
               bottom: 0,
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 90,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-                  child: FloatingActionButton(
-                    backgroundColor: Color.fromARGB(255, 36, 56, 155),
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(60)
-                    ),
-                    onPressed: () {},
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.add, size: 30),
-                        SizedBox(width: 10),
-                        Text('Novo Serviço', style: TextStyle(fontSize: 25))
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
+              enabled: true,
+            )
           ],
         ),
 
