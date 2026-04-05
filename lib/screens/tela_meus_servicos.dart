@@ -103,46 +103,78 @@ class AbasServicosState extends State<AbasServicos> {
           ),
         ),
 
-        Container(
-          color: const Color.fromARGB(255, 219, 219, 219),
-          width: double.infinity,
-          height: 680,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(height: 30),
+        Stack(
+          children: [
+            Container(
+              // color: const Color.fromARGB(255, 219, 219, 219),
+              width: double.infinity,
+              height: 680,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    // SizedBox(height: 30),
 
-                CardServico(
-                  url: 'img/encanamento.png',
-                  horario: 'Hoje às 19:40',
-                  titulo: 'Revisão e Corserto de Encanamento',
-                  subtitulo: 'R\$ 100,00 / hora'
+                    CardServico(
+                      url: 'img/encanamento.png',
+                      horario: 'Hoje às 19:40',
+                      titulo: 'Revisão e Corserto de Encanamento',
+                      subtitulo: 'R\$ 100,00 / hora'
+                    ),
+
+                    SizedBox(height: 30),
+
+                    CardServico(
+                      url: 'img/mecanica.png',
+                      horario: '23/03/2026',
+                      titulo: 'Troca de Óleo e Pneus',
+                      subtitulo: 'R\$ 100,00 / hora'
+                    ),
+
+                    SizedBox(height: 30),
+
+                    CardServico(
+                      url: 'img/limpeza.png',
+                      horario: '02/02/2026',
+                      titulo: 'Limpeza de Casa',
+                      subtitulo: 'R\$ 70,00 / hora'
+                    ),
+
+                    SizedBox(height: 100),
+              
+                  ],
                 ),
-
-                SizedBox(height: 30),
-
-                CardServico(
-                  url: 'img/mecanica.png',
-                  horario: '23/03/2026',
-                  titulo: 'Troca de Óleo e Pneus',
-                  subtitulo: 'R\$ 100,00 / hora'
-                ),
-
-                SizedBox(height: 30),
-
-                CardServico(
-                  url: 'img/limpeza.png',
-                  horario: '02/02/2026',
-                  titulo: 'Limpeza de Casa',
-                  subtitulo: 'R\$ 70,00 / hora'
-                ),
-
-                SizedBox(height: 30),
-          
-              ],
+              ),
             ),
-          ),
-        )
+
+            Positioned(
+              bottom: 0,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 90,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                  child: FloatingActionButton(
+                    backgroundColor: Color.fromARGB(255, 36, 56, 155),
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(60)
+                    ),
+                    onPressed: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.add, size: 30),
+                        SizedBox(width: 10),
+                        Text('Novo Serviço', style: TextStyle(fontSize: 25))
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+
       ],
     );
   }
