@@ -69,7 +69,7 @@ class TelaSignupState extends State<TelaSignup> {
                   color: Colors.black,
                   decoration: TextDecoration.none,
                   fontSize: 60,
-                  fontWeight: FontWeight(700)
+                  fontWeight: FontWeight.w700
                 ),
               ),
 
@@ -108,7 +108,7 @@ Widget subtitulo(Tela tela) {
           color: const Color.fromARGB(255, 75, 75, 75),
           decoration: TextDecoration.none,
           fontSize: 22,
-          fontWeight: FontWeight(400)
+          fontWeight: FontWeight.w400
         ),
         textAlign: TextAlign.center,
       );
@@ -134,7 +134,7 @@ class Escolhas extends StatelessWidget {
             color: Color.fromARGB(255, 36, 56, 155),
             decoration: TextDecoration.none,
             fontSize: 22,
-            fontWeight: FontWeight(800)
+            fontWeight: FontWeight.w800
           ),
           textAlign: TextAlign.center,
         ),
@@ -260,7 +260,7 @@ class Email extends StatelessWidget {
                   color: Color.fromARGB(255, 36, 56, 155),
                   decoration: TextDecoration.none,
                   fontSize: 22,
-                  fontWeight: FontWeight(500)
+                  fontWeight: FontWeight.w500
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -317,7 +317,7 @@ class Email extends StatelessWidget {
                       text: "Termos de Serviço", 
                       style: TextStyle(
                         color: Color.fromARGB(255, 36, 56, 155),
-                        fontWeight: FontWeight(900)
+                        fontWeight: FontWeight.w900
                       ),
                       recognizer: TapGestureRecognizer()
                     ),
@@ -326,7 +326,7 @@ class Email extends StatelessWidget {
                       text: "Política de Privacidade",
                       style: TextStyle(
                         color: Color.fromARGB(255, 36, 56, 155),
-                        fontWeight: FontWeight(900)
+                        fontWeight: FontWeight.w900
                       ),
                       recognizer: TapGestureRecognizer()
                     ),

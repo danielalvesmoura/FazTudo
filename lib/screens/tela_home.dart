@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/tela_dashboard.dart';
 import 'package:flutter_application_1/screens/tela_meus_servicos.dart';
+import 'package:flutter_application_1/screens/tela_teste.dart';
 import 'package:flutter_application_1/widgets/botao.dart';
 import 'package:flutter_application_1/widgets/logo.dart';
 import 'package:flutter_application_1/widgets/card_categoria.dart';
@@ -160,6 +161,6 @@ class AbaServicos extends StatelessWidget {
 class AbaPerfil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return TelaTeste();
   }
 }

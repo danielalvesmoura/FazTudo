@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/rotas.dart';
-import 'package:flutter_application_1/screens/tela_cadastro_servico.dart';
+import 'package:flutter_application_1/screens/cadastro_servico/tela_cadastro_servico.dart';
 import 'package:flutter_application_1/screens/tela_home.dart';
 import 'package:flutter_application_1/screens/tela_inicial.dart';
 import 'package:flutter_application_1/screens/tela_login.dart';

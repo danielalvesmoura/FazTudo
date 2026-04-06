@@ -21,7 +21,7 @@ class AbaDashboard extends StatelessWidget {
                 TextSpan(
                   text: 'Encontre o ',
                   style: TextStyle(
-                    fontWeight: FontWeight(700),
+                    fontWeight: FontWeight.w700,
                     letterSpacing: 0,
                     height: 1.2,
                     fontSize: 50,
@@ -49,7 +49,7 @@ class AbaDashboard extends StatelessWidget {
                   fontSize: 20,
                   color: const Color.fromARGB(255, 75, 75, 75),
                   height: 1.6,
-                  fontWeight: FontWeight(500)
+                  fontWeight: FontWeight.w500
                 ),
               ),
             ),
@@ -86,7 +86,7 @@ class AbaDashboard extends StatelessWidget {
                       fontSize: 35,
                       color: const Color.fromARGB(255, 0, 0, 0),
                       height: 1.2,
-                      fontWeight: FontWeight(800),
+                      fontWeight: FontWeight.w800,
                       fontFamily: 'Manrope'
                     ),
                   ),
@@ -102,7 +102,7 @@ class AbaDashboard extends StatelessWidget {
                         fontSize: 20,
                         height: 1,
                         color: Color.fromARGB(255, 36, 56, 155),
-                        fontWeight: FontWeight(700),
+                        fontWeight: FontWeight.w700,
                         fontFamily: 'Manrope'
                       ),
                     ),

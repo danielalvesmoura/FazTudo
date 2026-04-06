@@ -24,7 +24,7 @@ class CardAbaServico extends StatelessWidget {
               titulo, 
               style: TextStyle(
                 color: Color.fromARGB(255, 36, 56, 155),
-                fontWeight: FontWeight(700),
+                fontWeight: FontWeight.w700,
                 fontSize:25
               ),
             ),

@@ -26,7 +26,7 @@ class CardCategoriaSelecionavel extends StatelessWidget {
         height: 190,
         decoration: BoxDecoration(
           border: Border.all(
-            color: selecionado ? Color.fromARGB(255, 36, 56, 155) : Colors.white,
+            color: selecionado ? Color.fromARGB(255, 36, 56, 155) : Colors.transparent,
             width: 4
           ),
           borderRadius: BorderRadius.circular(20)

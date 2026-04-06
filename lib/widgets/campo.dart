@@ -22,7 +22,7 @@ class Campo extends StatelessWidget {
             color: Color.fromARGB(255, 65, 65, 65),
             decoration: TextDecoration.none,
             fontSize: 17,
-            fontWeight: FontWeight(700)
+            fontWeight: FontWeight.w700
           ),
         ),
         SizedBox(height: 10,),

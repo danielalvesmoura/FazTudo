@@ -38,7 +38,7 @@ class CardNavbar extends StatelessWidget {
                 fontSize: 15,
                 height: 1,
                 color: selecionado ? Color.fromARGB(255, 36, 56, 155) : Color.fromARGB(255, 146, 150, 172),
-                fontWeight: FontWeight(700),
+                fontWeight: FontWeight.w700,
                 fontFamily: 'Manrope'
               ),
             ),
