@@ -17,17 +17,17 @@ class TelaCadastroFoto extends StatefulWidget {
 }
 
 class TelaCadastroFotoState extends State<TelaCadastroFoto> {
-  categorias selecionado = categorias.nenhuma;
-
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Column(
               children: [
+                SizedBox(height: 20),
+
                 Text(
                   'Perfeito! Agora adicione algumas fotos do seu anúncio',
                   style: TextStyle(fontSize: 35, fontWeight: FontWeight.w700),
@@ -57,7 +57,7 @@ class TelaCadastroFotoState extends State<TelaCadastroFoto> {
                         ),
                         SizedBox(width: 10),
                         SizedBox(
-                          width: MediaQuery.of(context).size.width - 125,
+                          width: MediaQuery.of(context).size.width - 150,
                           child: Text(
                             'Fotos com boa qualidade ajudam a vender mais rápido.',
                             style: TextStyle(
@@ -145,7 +145,7 @@ class TelaCadastroFotoState extends State<TelaCadastroFoto> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      CardSlotParaFoto(url: "",),
+                      CardSlotParaFoto(url: "img/mecanica.png",),
                       SizedBox(width: 20),
                       CardSlotParaFoto(url: ""),
                       SizedBox(width: 20),
@@ -154,7 +154,42 @@ class TelaCadastroFotoState extends State<TelaCadastroFoto> {
                   ),
                 ),
 
-                SizedBox(height: 500),
+                // SizedBox(height: 50),
+
+                // Container(
+                //   width: MediaQuery.of(context).size.width,
+                //   height: 200,
+                //   decoration: BoxDecoration(
+                //     color: Color.fromRGBO(107, 255, 223, 1),
+                //     borderRadius: BorderRadius.circular(30)
+                //   ),
+                //   child: Padding(
+                //     padding: const EdgeInsets.all(20.0),
+                //     child: Column(
+                //       children: [
+                //         Row(
+                //           children: [
+                //             Icon(Icons.star_rounded, color: Color.fromRGBO(0, 113, 102, 1),),
+                //             SizedBox(width: 20),
+                //             SizedBox(
+                //               width: 360,
+                //               child: Text(
+                //                 'O impacto visual é seu cartão de visitas digital.',
+                //                 style: TextStyle(
+                //                   fontSize: 20,
+                //                   fontWeight: FontWeight.w700,
+                //                   color: Color.fromRGBO(0, 113, 102, 1)
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         )
+                //       ],
+                //     ),
+                //   ),
+                // ),
+
+                SizedBox(height: 150),
               ],
             ),
           ),
@@ -167,7 +202,7 @@ class TelaCadastroFotoState extends State<TelaCadastroFoto> {
           icon: Icons.arrow_forward,
           texto: "Continuar",
           bottom: 20,
-          enabled: selecionado != categorias.nenhuma ? true : false,
+          enabled: true,
         ),
       ],
     );

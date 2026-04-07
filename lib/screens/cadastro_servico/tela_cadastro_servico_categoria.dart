@@ -21,9 +21,11 @@ class TelaCadastroCategoriaState extends State<TelaCadastroCategoria> {
     return Stack(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 40),
           child: Column(
             children: [
+              SizedBox(height: 20),
+              
               Text(
                 'Escolha uma categoria',
                 style: TextStyle(fontSize: 35, fontWeight: FontWeight.w700),

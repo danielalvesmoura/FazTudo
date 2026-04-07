@@ -8,6 +8,19 @@ class CardSlotParaFoto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return SizedBox(
+      height: 100, 
+      width: 100, 
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: defineConteudo(url)
+      ),
+    );
+  }
+}
+
+Widget defineConteudo(String url) {
+  if (url == "") {
     return DottedBorder(
       borderType: BorderType.RRect,
       dashPattern: [10, 4],
@@ -28,5 +41,7 @@ class CardSlotParaFoto extends StatelessWidget {
         ),
       ),
     );
+  } else {
+    return Image.asset(url, fit: BoxFit.cover);
   }
 }

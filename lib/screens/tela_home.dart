@@ -23,6 +23,8 @@ class TelaHomeState extends State<TelaHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(249, 249, 255, 1),
+        surfaceTintColor: Colors.transparent,
         scrolledUnderElevation: 0,
         automaticallyImplyLeading: false,
         title: Row(

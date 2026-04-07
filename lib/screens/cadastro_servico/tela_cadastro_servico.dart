@@ -26,6 +26,9 @@ class TelaCadastroServicoState extends State<TelaCadastroServico> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(249, 249, 255, 1),
+        surfaceTintColor: Colors.transparent,
+        scrolledUnderElevation: 0,
         leading: IconButton(
           onPressed: () {
             passo != 1 ? trocarTela(passo - 1) : Navigator.pop(context);
