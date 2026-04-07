@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/cadastro_servico/tela_cadastro_servico_categoria.dart';
+import 'package:flutter_application_1/screens/cadastro_servico/tela_cadastro_servico_detalhes.dart';
 import 'package:flutter_application_1/screens/cadastro_servico/tela_cadastro_servico_foto.dart';
 import 'package:flutter_application_1/screens/rotas.dart';
 import 'package:flutter_application_1/widgets/botao_flutuante.dart';
@@ -58,6 +59,9 @@ Widget decideTela(passo, Function(int) trocarTela) {
 
     case 2:
       return TelaCadastroFoto(trocarTela: trocarTela);
+
+    case 3:
+      return TelaCadastroServicoDetalhes(trocarTela: trocarTela);
 
     default:
       return TelaCadastroCategoria(trocarTela: trocarTela,);

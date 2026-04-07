@@ -197,7 +197,7 @@ class TelaCadastroFotoState extends State<TelaCadastroFoto> {
 
         BotaoFlutuante(
           onPressed: () {
-            widget.trocarTela(2);
+            widget.trocarTela(3);
           },
           icon: Icons.arrow_forward,
           texto: "Continuar",
