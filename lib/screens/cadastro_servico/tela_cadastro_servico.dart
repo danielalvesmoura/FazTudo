@@ -4,7 +4,7 @@ import 'package:flutter_application_1/screens/cadastro_servico/tela_cadastro_ser
 import 'package:flutter_application_1/screens/rotas.dart';
 import 'package:flutter_application_1/widgets/botao_flutuante.dart';
 import 'package:flutter_application_1/widgets/card_categoria.dart';
-import 'package:flutter_application_1/widgets/card_categoria_selecionavel.dart';
+import 'package:flutter_application_1/widgets/cadastro_servico/card_categoria_selecionavel.dart';
 
 class TelaCadastroServico extends StatefulWidget {
   @override

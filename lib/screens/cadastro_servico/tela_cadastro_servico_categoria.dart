@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/widgets/botao_flutuante.dart';
-import 'package:flutter_application_1/widgets/card_categoria_selecionavel.dart';
+import 'package:flutter_application_1/widgets/cadastro_servico/card_categoria_selecionavel.dart';
 
 enum categorias { nenhuma, consertos, limpeza, beleza, transporte, alimentacao }
 
