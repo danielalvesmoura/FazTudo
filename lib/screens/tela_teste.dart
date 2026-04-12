@@ -1,4 +1,8 @@
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class TelaTeste extends StatefulWidget {
   @override
@@ -6,77 +10,51 @@ class TelaTeste extends StatefulWidget {
 }
 
 class TelaTesteState extends State<TelaTeste> {
-  final emailController = TextEditingController();
+  ImagePicker picker = ImagePicker();
+  XFile? imagem;  
 
-  String emailMensagem = '';
+  Future<void> pegarImagem() async {
+    XFile? arquivo = await picker.pickImage(source: ImageSource.gallery);
 
-  void valida() {
-    setState(() {
-      if(!RegExp(r'^[^@]+@[^@]+\.[^@]+$').hasMatch(emailController.text)) {
-        emailMensagem = 'Email inválido';
-      } else {
-        emailMensagem = '';
-      }
-    });
+    if(arquivo != null) {
+      setState(() {
+        imagem = arquivo;
+      });
+    }
   }
+
+  final formatter = CurrencyTextInputFormatter.currency(
+    locale: 'pt_BR',
+    symbol: 'R\$'
+  );
+
+  final formatter2 = MaskTextInputFormatter(
+    mask: '###.###.###-##',
+    filter: {'#': RegExp(r'[0-9]')}
+  );
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Center(
-          child: Text(
-            'Cadastro',
-            style: TextStyle(
-              fontSize: 50
-            )
-          ),
-        ),
-
-        SizedBox(height: 40,),
-
-        TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            hintText: 'exemplo@email.com'
-          ),
-          controller: emailController
-
-        ),
-        SizedBox(height: 10,),
-        Text(
-          emailMensagem,
-          style: TextStyle(
-            fontSize: 20,
-            color: Colors.red
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          retornaImagem(imagem),
+          ElevatedButton(onPressed: pegarImagem, child: Text('selecionar imagem')),
+          TextField(
+            inputFormatters: [formatter2],
           )
-        ),
-
-        SizedBox(height: 40,),
-
-        InkWell(
-          onTap: valida,
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.fromBorderSide(BorderSide()),
-              borderRadius: BorderRadius.circular(20)
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Criar conta',
-                style: TextStyle(
-                  fontSize: 30,
-                )
-              ),
-            ),
-          ),
-        )
-        
-      ],
+        ],
+      ),
     );
   }
 }
 
+Widget retornaImagem(imagem) {
+  if(imagem != null) {
+    return Image.network(imagem!.path);
+  } else {
+    return SizedBox();
+  }
+}

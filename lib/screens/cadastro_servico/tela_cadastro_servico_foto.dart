@@ -37,6 +37,7 @@ class TelaCadastroFotoState extends State<TelaCadastroFoto> {
     }
   }
 
+
   void removeImagem(imagem) {
     setState(() {
       imagens.remove(imagem);
@@ -234,7 +235,7 @@ Widget mostraImagem(imagens, imagemAberta, removeImagem, fecharImagem) {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end, 
                 children: [
                   FloatingActionButton(
                     shape: CircleBorder(),
