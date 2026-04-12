@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Campo extends StatelessWidget {
   final String label;
   final String hint;
-  final IconData icon;
+  final IconData? icon;
+  final int minLines;
+  final int maxLines;
+  final List<TextInputFormatter>? formatters;
 
   Campo({
     required this.label,
     required this.hint,
     required this.icon,
+    required this.minLines,
+    required this.maxLines,
+    this.formatters
   });
 
   @override
@@ -27,6 +34,9 @@ class Campo extends StatelessWidget {
         ),
         SizedBox(height: 10,),
         TextField(
+          inputFormatters: formatters,
+          minLines: minLines,
+          maxLines: maxLines,
           decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.grey)
@@ -44,7 +54,7 @@ class Campo extends StatelessWidget {
               ),
             ),
 
-            prefixIcon: Icon(icon, color: const Color.fromARGB(255, 120, 130, 139))
+            prefixIcon: icon == null ? null : Icon(icon, color: const Color.fromARGB(255, 120, 130, 139))
 
           ),
         )

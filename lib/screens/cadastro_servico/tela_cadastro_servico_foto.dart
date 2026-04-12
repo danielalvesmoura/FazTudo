@@ -192,21 +192,8 @@ class TelaCadastroFotoState extends State<TelaCadastroFoto> {
                     },
                   ),
                 ),
-          
-                // SingleChildScrollView(
-                //   scrollDirection: Axis.horizontal,
-                //   child: Row(
-                //     children: [
-                //       CardSlotParaFoto(url: "img/mecanica.png",onTap: (){},),
-                //       SizedBox(width: 20),
-                //       CardSlotParaFoto(url: "",onTap: (){}),
-                //       SizedBox(width: 20),
-                //       CardSlotParaFoto(url: "",onTap: (){}),
-                //     ],
-                //   ),
-                // ),
 
-                SizedBox(height: 150),
+                SizedBox(height: imagens.isEmpty ? 0 : 100),
               ],
             ),
           ),
@@ -219,7 +206,7 @@ class TelaCadastroFotoState extends State<TelaCadastroFoto> {
           icon: Icons.arrow_forward,
           texto: "Continuar",
           bottom: 20,
-          enabled: true,
+          enabled: imagens.isEmpty ? false : true,
         ),
 
         mostraImagem(imagens, imagemAberta, removeImagem, fecharImagem)

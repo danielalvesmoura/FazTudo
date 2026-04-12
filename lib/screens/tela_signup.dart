@@ -273,7 +273,9 @@ class Email extends StatelessWidget {
         Campo(
           label: 'NOME COMPLETO',
           hint: 'Ex: João Silva',
-          icon: Icons.person_outline
+          icon: Icons.person_outline,
+          minLines: 1,
+          maxLines: 1,
         ),
 
         SizedBox(height: 20,),
@@ -281,7 +283,9 @@ class Email extends StatelessWidget {
         Campo(
           label: 'E-MAIL',
           hint: 'seu@email.com',
-          icon: Icons.email_outlined
+          icon: Icons.email_outlined,
+          minLines: 1,
+          maxLines: 1,
         ),
 
         SizedBox(height: 20,),
@@ -289,7 +293,9 @@ class Email extends StatelessWidget {
         Campo(
           label: 'TELEFONE',
           hint: '(44) 99999-9999',
-          icon: Icons.phone_outlined
+          icon: Icons.phone_outlined,
+          minLines: 1,
+          maxLines: 1,
         ),
 
         SizedBox(height: 20,),

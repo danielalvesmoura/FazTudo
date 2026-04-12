@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/servico.dart';
 import 'package:flutter_application_1/widgets/botao.dart';
 import 'package:flutter_application_1/widgets/logo.dart';
+import 'package:flutter_application_1/widgets/subcategorias/subcategorias_conserto.dart';
 import 'package:flutter_application_1/widgets/tela_consertos/card_subcategoria.dart';
 import 'package:flutter_application_1/widgets/tela_consertos/card_oferta.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -146,7 +147,7 @@ class TelaConsertos extends StatelessWidget {
         
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: Subcategorias()
+                child: SubcategoriasConserto()
               ),
         
               SizedBox(height: 60),
@@ -181,105 +182,3 @@ class TelaConsertos extends StatelessWidget {
   }
 }
 
-class Subcategorias extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return SubcategoriasState();
-  }
-}
-
-enum SubcategoriasEnum { todos, eletrico, encanamento, mecanico, alvenaria, eletronico}
-
-class SubcategoriasState extends State<Subcategorias> {
-  SubcategoriasEnum selecionado = SubcategoriasEnum.todos;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-
-        CardSubcategoria(
-          icone: null, 
-          tamanhoIcone: 20, 
-          titulo: 'Todos', 
-          onTap: (){
-            setState(() {
-              selecionado = SubcategoriasEnum.todos;
-            });
-          },
-          selecionado: selecionado == SubcategoriasEnum.todos ? true : false,
-        ),
-
-        SizedBox(width: 10),
-
-        CardSubcategoria(
-          icone: Icons.flash_on, 
-          tamanhoIcone: 20, 
-          titulo: 'Elétrico', 
-          onTap: (){
-            setState(() {
-              selecionado = SubcategoriasEnum.eletrico;
-            });
-          },
-          selecionado: selecionado == SubcategoriasEnum.eletrico ? true : false,
-        ),
-
-        SizedBox(width: 10),
-
-        CardSubcategoria(
-          icone: Icons.water_drop, 
-          tamanhoIcone: 20, 
-          titulo: 'Encanamento', 
-          onTap: (){
-            setState(() {
-              selecionado = SubcategoriasEnum.encanamento;
-            });
-          },
-          selecionado: selecionado == SubcategoriasEnum.encanamento ? true : false,
-        ),
-
-        SizedBox(width: 10),
-
-        CardSubcategoria(
-          icone: Icons.build, 
-          tamanhoIcone: 20, 
-          titulo: 'Mecânico', 
-          onTap: (){
-            setState(() {
-              selecionado = SubcategoriasEnum.mecanico;
-            });
-          },
-          selecionado: selecionado == SubcategoriasEnum.mecanico ? true : false,
-        ),
-
-        SizedBox(width: 10),
-
-        CardSubcategoria(
-          icone: Icons.handyman, 
-          tamanhoIcone: 20, 
-          titulo: 'Alvenaria', 
-          onTap: (){
-            setState(() {
-              selecionado = SubcategoriasEnum.alvenaria;
-            });
-          },
-          selecionado: selecionado == SubcategoriasEnum.alvenaria ? true : false,
-        ),
-
-        SizedBox(width: 10),
-
-        CardSubcategoria(
-          icone: Icons.computer, 
-          tamanhoIcone: 20, 
-          titulo: 'Eletrônico', 
-          onTap: (){
-            setState(() {
-              selecionado = SubcategoriasEnum.eletronico;
-            });
-          },
-          selecionado: selecionado == SubcategoriasEnum.eletronico ? true : false,
-        ),
-      ],
-    );
-  }
-}

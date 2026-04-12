@@ -164,7 +164,9 @@ class TelaLogin extends StatelessWidget {
               Campo(
                 label: 'E-MAIL',
                 hint: 'seu@email.com',
-                icon: Icons.email_outlined
+                icon: Icons.email_outlined,
+                minLines: 1,
+                maxLines: 1,
               ),
 
               SizedBox(height: 20,),
