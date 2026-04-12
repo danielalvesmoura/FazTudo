@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/widgets/botao_flutuante.dart';
-import 'package:flutter_application_1/widgets/cadastro_servico/card_categoria_selecionavel.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter_application_1/widgets/cadastro_servico/card_slot_para_foto.dart';
+
 import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 enum categorias { nenhuma, consertos, limpeza, beleza, transporte, alimentacao }
 
@@ -17,6 +18,23 @@ class TelaCadastroFoto extends StatefulWidget {
 }
 
 class TelaCadastroFotoState extends State<TelaCadastroFoto> {
+
+  final ImagePicker picker = ImagePicker();
+  File? imagem;
+  Future<void> pegarImagem() async {
+    final XFile? arquivo = await picker.pickImage(
+      source: ImageSource.gallery,
+    );
+
+    if (arquivo != null) {
+      setState(() {
+        imagem = File(arquivo.path);
+      });
+    }
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -77,7 +95,7 @@ class TelaCadastroFotoState extends State<TelaCadastroFoto> {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: GestureDetector( 
-                    onTap: () {},
+                    onTap: pegarImagem,
                     child: DottedBorder(
                       dashPattern: [10,4],
                       color: Colors.grey,
@@ -153,41 +171,6 @@ class TelaCadastroFotoState extends State<TelaCadastroFoto> {
                     ],
                   ),
                 ),
-
-                // SizedBox(height: 50),
-
-                // Container(
-                //   width: MediaQuery.of(context).size.width,
-                //   height: 200,
-                //   decoration: BoxDecoration(
-                //     color: Color.fromRGBO(107, 255, 223, 1),
-                //     borderRadius: BorderRadius.circular(30)
-                //   ),
-                //   child: Padding(
-                //     padding: const EdgeInsets.all(20.0),
-                //     child: Column(
-                //       children: [
-                //         Row(
-                //           children: [
-                //             Icon(Icons.star_rounded, color: Color.fromRGBO(0, 113, 102, 1),),
-                //             SizedBox(width: 20),
-                //             SizedBox(
-                //               width: 360,
-                //               child: Text(
-                //                 'O impacto visual é seu cartão de visitas digital.',
-                //                 style: TextStyle(
-                //                   fontSize: 20,
-                //                   fontWeight: FontWeight.w700,
-                //                   color: Color.fromRGBO(0, 113, 102, 1)
-                //                 ),
-                //               ),
-                //             )
-                //           ],
-                //         )
-                //       ],
-                //     ),
-                //   ),
-                // ),
 
                 SizedBox(height: 150),
               ],

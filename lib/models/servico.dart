@@ -1,19 +1,15 @@
 class Servico {
-  final String id;
-  final String titulo;
-  final String descricao;
-  final double preco;
-  final String prestadorId;
-  final String categoriaId;
-  final String imagemUrl;
+  String url;
+  String titulo;
+  double preco;
+  String descricao;
+  String pessoa;
 
   Servico({
-    required this.id,
+    required this.url,
     required this.titulo,
-    required this.descricao,
     required this.preco,
-    required this.prestadorId,
-    required this.categoriaId,
-    required this.imagemUrl,
+    required this.descricao,
+    required this.pessoa
   });
 }

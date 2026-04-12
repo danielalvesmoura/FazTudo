@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/servico.dart';
 import 'package:flutter_application_1/widgets/botao.dart';
 import 'package:flutter_application_1/widgets/logo.dart';
 import 'package:flutter_application_1/widgets/tela_consertos/card_subcategoria.dart';
@@ -6,7 +7,26 @@ import 'package:flutter_application_1/widgets/tela_consertos/card_oferta.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
+
 class TelaConsertos extends StatelessWidget {
+  final consertos = [
+    Servico(
+      url: 'img/encanamento.png',
+      titulo: 'Revisão e Conserto de Encanamento',
+      preco: 100.00,
+      descricao: 'Serviço profissional de revisão e conserto de encanamento, garantindo soluções rápidas e eficientes para vazamentos, entupimentos...',
+      pessoa: 'mario_332'
+    ),
+
+    Servico(
+      url: 'img/mecanica.png',
+      titulo: 'Troca de Óleo e Pneus',
+      preco: 100.00,
+      descricao: 'Seu carro merece cuidado de verdade! 🚗💨Fazemos troca de óleo e pneus rapidinho e sem complicação. Peças de qualidade e serviço...',
+      pessoa: 'Larissa-Oficial1'
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,32 +150,28 @@ class TelaConsertos extends StatelessWidget {
               ),
         
               SizedBox(height: 60),
-        
-              SingleChildScrollView(
-                child: Column(
-                  children: [
-  
-                    CardOferta(
-                      urlImagem: 'img/encanamento.png', 
-                      titulo: 'Revisão e Corserto de Encanamento', 
-                      preco: 'R\$ 100,00 / hora', 
-                      descricao: 'Serviço profissional de revisão e conserto de encanamento, garantindo soluções rápidas e eficientes para vazamentos, entupimentos...', 
-                      usuario: 'mario_332'
-                    ),
-  
-                    SizedBox(height: 60),
-  
-                    CardOferta(
-                      urlImagem: 'img/mecanica.png', 
-                      titulo: 'Troca de Óleo e Pneus', 
-                      preco: 'R\$ 100,00 / hora', 
-                      descricao: 'Seu carro merece cuidado de verdade! 🚗💨Fazemos troca de óleo e pneus rapidinho e sem complicação. Peças de qualidade e serviço...', 
-                      usuario: 'Larissa-Oficial1'
-                    )
-  
-                  ],
+
+              SizedBox(
+                height: 650,
+                child: ListView.builder(
+                  itemCount: consertos.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        CardOferta(
+                          urlImagem: consertos[index].url, 
+                          titulo: consertos[index].titulo, 
+                          preco: 'R\$ ${consertos[index].preco},00 / hora', 
+                          descricao: consertos[index].descricao, 
+                          usuario: consertos[index].pessoa
+                        ),
+                        SizedBox(height: 60)
+                      ],
+                    );
+                  },
                 ),
-              )
+              ),
             ]
           )
         ),

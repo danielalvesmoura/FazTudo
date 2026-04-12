@@ -6,79 +6,77 @@ class TelaTeste extends StatefulWidget {
 }
 
 class TelaTesteState extends State<TelaTeste> {
-  int telaAtual = 1;
+  final emailController = TextEditingController();
 
-  void trocaTela() {
+  String emailMensagem = '';
+
+  void valida() {
     setState(() {
-      telaAtual == 1 ? telaAtual = 2 : telaAtual = 1;
+      if(!RegExp(r'^[^@]+@[^@]+\.[^@]+$').hasMatch(emailController.text)) {
+        emailMensagem = 'Email inválido';
+      } else {
+        emailMensagem = '';
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Titulo', style: TextStyle(fontSize: 50)),
-            SizedBox(height: 50),
-            defineTela(telaAtual, trocaTela)
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-Widget defineTela(int telaAtual, Function() trocaTela) {
-  if (telaAtual == 1) {
-    return Tela1(trocaTela: trocaTela);
-  } else {
-    return Tela2(trocaTela: trocaTela);
-  }
-}
-
-class Tela1 extends StatelessWidget {
-  Function() trocaTela;
-
-  Tela1({required this.trocaTela});
-
-  @override
-  Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text('Tela 1', style: TextStyle(fontSize: 50)),
-        IconButton(
-          onPressed: () {
-            trocaTela();
-          },
-          icon: Icon(Icons.arrow_forward, color: Colors.black, size: 50),
+        Center(
+          child: Text(
+            'Cadastro',
+            style: TextStyle(
+              fontSize: 50
+            )
+          ),
         ),
+
+        SizedBox(height: 40,),
+
+        TextField(
+          decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: 'exemplo@email.com'
+          ),
+          controller: emailController
+
+        ),
+        SizedBox(height: 10,),
+        Text(
+          emailMensagem,
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.red
+          )
+        ),
+
+        SizedBox(height: 40,),
+
+        InkWell(
+          onTap: valida,
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.fromBorderSide(BorderSide()),
+              borderRadius: BorderRadius.circular(20)
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Criar conta',
+                style: TextStyle(
+                  fontSize: 30,
+                )
+              ),
+            ),
+          ),
+        )
+        
       ],
     );
   }
 }
 
-class Tela2 extends StatelessWidget {
-  Function() trocaTela;
-
-  Tela2({required this.trocaTela});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text('Tela 2', style: TextStyle(fontSize: 50)),
-        IconButton(
-          onPressed: () {
-            trocaTela();
-          },
-          icon: Icon(Icons.arrow_back, color: Colors.black, size: 50),
-        ),
-      ],
-    );
-  }
-}

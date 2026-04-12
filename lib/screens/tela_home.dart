@@ -136,7 +136,7 @@ Widget insereAba(abaIndex) {
     case 0:
       return AbaDashboard();
     case 1:
-      return AbaConfig();
+      return TelaTeste();
     case 2:
       return TelaMeusServicos();
     case 3:
