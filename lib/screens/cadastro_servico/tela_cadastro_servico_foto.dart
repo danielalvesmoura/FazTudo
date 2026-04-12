@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/widgets/botao.dart';
 import 'package:flutter_application_1/widgets/botao_flutuante.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter_application_1/widgets/cadastro_servico/card_slot_para_foto.dart';
@@ -19,6 +20,9 @@ class TelaCadastroFoto extends StatefulWidget {
 
 class TelaCadastroFotoState extends State<TelaCadastroFoto> {
 
+  List<XFile> imagens = [];
+  int imagemAberta = -1;
+
   final ImagePicker picker = ImagePicker();
   File? imagem;
   Future<void> pegarImagem() async {
@@ -28,12 +32,23 @@ class TelaCadastroFotoState extends State<TelaCadastroFoto> {
 
     if (arquivo != null) {
       setState(() {
-        imagem = File(arquivo.path);
+        imagens.add(arquivo);
       });
     }
   }
 
+  void removeImagem(imagem) {
+    setState(() {
+      imagens.remove(imagem);
+      imagemAberta = -1;
+    });
+  }
 
+  void fecharImagem() {
+    setState(() {
+      imagemAberta = -1;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -157,20 +172,39 @@ class TelaCadastroFotoState extends State<TelaCadastroFoto> {
                   ),
                 ),
           
-                SizedBox(height: 40),
-          
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      CardSlotParaFoto(url: "img/mecanica.png",),
-                      SizedBox(width: 20),
-                      CardSlotParaFoto(url: ""),
-                      SizedBox(width: 20),
-                      CardSlotParaFoto(url: ""),
-                    ],
+                SizedBox(
+                  height: 200,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: imagens.length,
+                    itemBuilder: (context, index) {
+                      return Row(
+                        children: [
+                          CardSlotParaFoto(url: imagens[index].path, onTap: (){
+                            setState(() {
+                              imagemAberta = index;
+                            });
+                          }),
+                          SizedBox(width: 20),
+                        ],
+                      );
+                    },
                   ),
                 ),
+          
+                // SingleChildScrollView(
+                //   scrollDirection: Axis.horizontal,
+                //   child: Row(
+                //     children: [
+                //       CardSlotParaFoto(url: "img/mecanica.png",onTap: (){},),
+                //       SizedBox(width: 20),
+                //       CardSlotParaFoto(url: "",onTap: (){}),
+                //       SizedBox(width: 20),
+                //       CardSlotParaFoto(url: "",onTap: (){}),
+                //     ],
+                //   ),
+                // ),
 
                 SizedBox(height: 150),
               ],
@@ -187,8 +221,74 @@ class TelaCadastroFotoState extends State<TelaCadastroFoto> {
           bottom: 20,
           enabled: true,
         ),
+
+        mostraImagem(imagens, imagemAberta, removeImagem, fecharImagem)
       ],
     );
+  }
+}
+
+Widget mostraImagem(imagens, imagemAberta, removeImagem, fecharImagem) {
+  if(imagemAberta != -1) {
+    return Stack(
+      children: [
+        GestureDetector(
+          onTap: fecharImagem,
+          child: Container(
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(188, 0, 0, 0)
+            ),
+          ),
+        ),
+
+        Center(child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  FloatingActionButton(
+                    shape: CircleBorder(),
+                    onPressed: fecharImagem,
+                    backgroundColor: Color.fromARGB(255, 36, 56, 155),
+                    child: Icon(Icons.close, color: Colors.white, size: 40,),
+                  ),
+                ],
+              ),
+            ),
+
+            SizedBox(height: 20,),
+
+            SizedBox(
+              width: 400,
+              height: 500,
+              child: Image.network(imagens[imagemAberta].path)
+            ),
+
+            SizedBox(height: 40,),
+
+            Botao(
+              width: 250, 
+              height: 80, 
+              texto: 'Remover imagem', 
+              corTexto: Colors.white, 
+              corFundo: Color.fromARGB(255, 36, 56, 155), 
+              borda: false, 
+              onPressed: (){
+                removeImagem(imagens[imagemAberta]);
+              }, 
+              fontSize: 20
+            )
+          ],
+        ))
+      ],
+    );
+    
+     
+  } else {
+    return SizedBox();
   }
 }
 
