@@ -1,23 +1,32 @@
-import 'package:isar/isar.dart';
-
-part 'usuario.g.dart';
-
-@collection
 class Usuario {
-  Id id = Isar.autoIncrement;
-
+  int? id;
   final String nome;
   final String email;
   final String telefone;
-  final String fotoUrl;
-  final double avaliacao;
 
   Usuario({
-    required this.id,
+    this.id,
     required this.nome,
     required this.email,
     required this.telefone,
-    required this.fotoUrl,
-    required this.avaliacao,
   });
+
+  factory Usuario.fromMap(Map<String, dynamic> map) {
+    return Usuario(
+      id: map["id"],
+      nome: map["nome"],
+      email: map["email"],
+      telefone: map["telefone"]
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      "id": id,
+      "nome": nome,
+      "email": email,
+      "telefone": telefone
+    };
+  }
+
 }

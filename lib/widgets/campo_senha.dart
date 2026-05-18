@@ -4,11 +4,15 @@ class CampoSenha extends StatefulWidget {
   final String label;
   final String hint;
   final IconData icon;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
 
   CampoSenha({
     required this.label,
     required this.hint,
     required this.icon,
+    this.controller,
+    this.validator
   });
 
   @override
@@ -19,6 +23,8 @@ class CampoSenhaState extends State<CampoSenha> {
   late String label;
   late String hint;
   late IconData icon;
+  late TextEditingController? controller;
+  late String? Function(String?)? validator;
 
   @override
   void initState() {
@@ -26,6 +32,8 @@ class CampoSenhaState extends State<CampoSenha> {
     label = widget.label;
     hint = widget.hint;
     icon = widget.icon;
+    controller = widget.controller;
+    validator = widget.validator;
   }
 
   bool mostrarSenha = false;
@@ -45,8 +53,10 @@ class CampoSenhaState extends State<CampoSenha> {
           ),
         ),
         SizedBox(height: 10,),
-        TextField(
+        TextFormField(
           obscureText: !mostrarSenha,
+          controller: controller,
+          validator: validator,
           decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.grey)

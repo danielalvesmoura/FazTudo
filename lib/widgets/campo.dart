@@ -8,6 +8,8 @@ class Campo extends StatelessWidget {
   final int minLines;
   final int maxLines;
   final List<TextInputFormatter>? formatters;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
 
   Campo({
     required this.label,
@@ -15,7 +17,9 @@ class Campo extends StatelessWidget {
     required this.icon,
     required this.minLines,
     required this.maxLines,
-    this.formatters
+    this.formatters,
+    this.controller,
+    this.validator
   });
 
   @override
@@ -29,12 +33,14 @@ class Campo extends StatelessWidget {
             color: Color.fromARGB(255, 65, 65, 65),
             decoration: TextDecoration.none,
             fontSize: 17,
-            fontWeight: FontWeight.w700
+            fontWeight: FontWeight.w700 
           ),
         ),
         SizedBox(height: 10,),
-        TextField(
+        TextFormField(
           inputFormatters: formatters,
+          controller: controller,
+          validator: validator,
           minLines: minLines,
           maxLines: maxLines,
           decoration: InputDecoration(
