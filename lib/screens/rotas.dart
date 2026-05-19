@@ -6,4 +6,5 @@ class Rotas {
   static String home = '/home';
   static String novoServico = '/novoServico';
   static String consertos = '/consertos';
+  static String trocarSenha = '/trocarSenha';
 }

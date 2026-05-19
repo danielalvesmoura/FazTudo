@@ -1,5 +1,6 @@
 import 'package:flutter_application_1/dao/usuario_dao.dart';
 import 'package:flutter_application_1/models/usuario.dart';
+import 'package:flutter_application_1/sessao.dart';
 
 class UsuarioService {
   UsuarioDAO usuarioDAO = UsuarioDAO();
@@ -14,6 +15,8 @@ class UsuarioService {
     if(usuarioEncontrado == null) return false;
 
     if(usuarioEncontrado.senha == senha) {
+      Sessao sessao = Sessao();
+      sessao.usuarioLogado = usuarioEncontrado;
       return true;
     } else {
       return false;

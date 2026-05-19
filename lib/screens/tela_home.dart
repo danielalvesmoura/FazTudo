@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/tela_config.dart';
 import 'package:flutter_application_1/screens/tela_dashboard.dart';
 import 'package:flutter_application_1/screens/tela_meus_servicos.dart';
 import 'package:flutter_application_1/screens/tela_teste.dart';
@@ -137,7 +138,7 @@ Widget insereAba(abaIndex) {
     case 0:
       return AbaDashboard();
     case 1:
-      return TelaTeste();
+      return TelaConfig();
     case 2:
       return TelaMeusServicos();
     case 3:
