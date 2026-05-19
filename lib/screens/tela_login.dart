@@ -1,11 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/service/usuario_service.dart';
 import 'package:flutter_application_1/widgets/botao.dart';
 import 'package:flutter_application_1/widgets/campo.dart';
 import 'package:flutter_application_1/widgets/campo_senha.dart';
 import 'package:flutter_application_1/widgets/logo.dart';
 import 'package:flutter_application_1/screens/rotas.dart';
 
-class TelaLogin extends StatelessWidget {
+class TelaLogin extends StatefulWidget {
+  @override
+  TelaLoginState createState() => TelaLoginState();
+}
+
+
+class TelaLoginState extends State<TelaLogin> {
+
+  UsuarioService usuarioService = UsuarioService();
+
+  TextEditingController campoEmail = TextEditingController();
+  TextEditingController campoSenha = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    campoEmail.dispose();
+    campoSenha.dispose();
+  }
+
+  final _formKey = GlobalKey<FormState>();
+
+  String mensagemErro = "";
 
   @override
   Widget build(BuildContext context) {
@@ -148,47 +171,99 @@ class TelaLogin extends StatelessWidget {
 
               SizedBox(height: 40),
 
-              Text(
-                'ou use seu e-mail',
-                style: TextStyle(
-                  color: const Color.fromARGB(255, 56, 56, 56),
-                  decoration: TextDecoration.none,
-                  fontSize: 22,
-                  fontWeight: FontWeight.w400
-                ),
-                textAlign: TextAlign.center,
-              ),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    Text(
+                      'ou use seu e-mail',
+                      style: TextStyle(
+                        color: const Color.fromARGB(255, 56, 56, 56),
+                        decoration: TextDecoration.none,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w400
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
 
-              SizedBox(height: 40),
+                    SizedBox(height: 40),
 
-              Campo(
-                label: 'E-MAIL',
-                hint: 'seu@email.com',
-                icon: Icons.email_outlined,
-                minLines: 1,
-                maxLines: 1,
-              ),
+                    Campo(
+                      label: 'E-MAIL',
+                      hint: 'seu@email.com',
+                      icon: Icons.email_outlined,
+                      minLines: 1,
+                      maxLines: 1,
+                      controller: campoEmail,
+                      validator: (value) {
+                        if(value == null || value.trim().isEmpty) {
+                          return "Digite o email";
+                        }
+                
+                        return null;
+                      },
+                    ),
 
-              SizedBox(height: 20,),
+                    SizedBox(height: 20,),
 
-              CampoSenha(
-                label: 'SENHA',
-                hint: '••••••••',
-                icon: Icons.lock_outline_rounded
-              ),
+                    CampoSenha(
+                      label: 'SENHA',
+                      hint: '••••••••',
+                      icon: Icons.lock_outline_rounded,
+                      controller: campoSenha,
+                      validator: (value) {
+                        if(value == null || value.trim().isEmpty) {
+                          return "Digite a senha";
+                        }
+                
+                        return null;
+                      },
+                    ),
 
-              SizedBox(height: 60,),
+                    SizedBox(height: 20,),
 
-              Botao(
-                width: double.infinity, 
-                height: 80, 
-                texto: 'Entrar', 
-                fontSize: 30,
-                onPressed: () => Navigator.of(context).pushNamed(Rotas.home),
-                corTexto: Colors.white,
-                corFundo: const Color.fromARGB(255, 36, 56, 155),
-                borda: false
+                    Text(
+                      mensagemErro,
+                      style: TextStyle(
+                        color: Colors.red,
+                        decoration: TextDecoration.none,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w400
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+
+                    SizedBox(height: 20,),
+
+                    Botao(
+                      width: double.infinity, 
+                      height: 80, 
+                      texto: 'Entrar', 
+                      fontSize: 30,
+                      onPressed: () async {
+                        if(_formKey.currentState!.validate()) {
+                          if(await usuarioService.validaLogin(campoEmail.text, campoSenha.text)) {
+                            Navigator.of(context).pushNamed(Rotas.home);
+                          } else {
+                            setState(() {
+                              mensagemErro = "Email ou senha incorretos";
+                            });
+                          }
+                        } else {
+                          setState(() {
+                            mensagemErro = "";
+                          });
+                        }
+                      },
+                      corTexto: Colors.white,
+                      corFundo: const Color.fromARGB(255, 36, 56, 155),
+                      borda: false
+                    )
+                  ],
+                )
               )
+
+              
             ]         
           ),
         )

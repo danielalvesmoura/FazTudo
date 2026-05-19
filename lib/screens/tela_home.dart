@@ -45,6 +45,7 @@ class TelaHomeState extends State<TelaHome> {
             fontSize: 20,
             onPressed: () {
               Navigator.pop(context);
+              Navigator.pop(context);
             },
             corTexto: Colors.white,
             corFundo: const Color.fromARGB(255, 36, 56, 155),

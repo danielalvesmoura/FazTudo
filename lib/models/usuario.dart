@@ -2,12 +2,14 @@ class Usuario {
   int? id;
   final String nome;
   final String email;
+  final String senha;
   final String telefone;
 
   Usuario({
     this.id,
     required this.nome,
     required this.email,
+    required this.senha,
     required this.telefone,
   });
 
@@ -16,6 +18,7 @@ class Usuario {
       id: map["id"],
       nome: map["nome"],
       email: map["email"],
+      senha: map["senha"],
       telefone: map["telefone"]
     );
   }
