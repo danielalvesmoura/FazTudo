@@ -26,4 +26,17 @@ class UsuarioDAO {
 
     return Usuario.fromMap(usuario.first);
   }
+
+  Future<void> updateSenha(int id, String senha) async {
+    final db = await Conexao.instancia.banco;
+
+    await db.update("usuarios", 
+      {
+        "senha": senha
+      },
+      where: "id = ?",
+      whereArgs: [id]
+    );
+
+  }
 }

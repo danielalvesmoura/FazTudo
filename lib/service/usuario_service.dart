@@ -22,4 +22,8 @@ class UsuarioService {
       return false;
     }
   }
+
+  Future<void> trocaSenha(int id, String senha) async {
+    usuarioDAO.updateSenha(id, senha);
+  }
 }
