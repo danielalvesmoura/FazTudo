@@ -1,36 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/rotas.dart';
 import 'package:flutter_application_1/service/sessao_service.dart';
 import 'package:flutter_application_1/service/usuario_service.dart';
 import 'package:flutter_application_1/sessao.dart';
 import 'package:flutter_application_1/widgets/botao.dart';
-import 'package:flutter_application_1/widgets/botao_flutuante.dart';
 import 'package:flutter_application_1/widgets/botao_voltar.dart';
+import 'package:flutter_application_1/widgets/campo.dart';
 import 'package:flutter_application_1/widgets/campo_senha.dart';
 
-class TelaTrocarSenha extends StatefulWidget {
+class TelaExcluirConta extends StatefulWidget {
   @override
-  TelaTrocarSenhaState createState() => TelaTrocarSenhaState();
+  TelaExcluirContaState createState() => TelaExcluirContaState();
 }
 
-class TelaTrocarSenhaState extends State<TelaTrocarSenha> {
-  TextEditingController campoSenhaAtual = TextEditingController();
-  TextEditingController campoNovaSenha = TextEditingController();
-  TextEditingController campoConfirmarSenha = TextEditingController();
+class TelaExcluirContaState extends State<TelaExcluirConta> {
+  TextEditingController campoEmail = TextEditingController();
+  TextEditingController campoSenha = TextEditingController();
 
   @override
   void dispose() {
     super.dispose();
-    campoSenhaAtual.dispose();
-    campoNovaSenha.dispose();
-    campoConfirmarSenha.dispose();
+    campoEmail.dispose();
+    campoSenha.dispose();
   }
 
   final _formKey = GlobalKey<FormState>();
 
   Sessao sessao = Sessao();
   SessaoService sessaoService = SessaoService();
+
   UsuarioService usuarioService = UsuarioService();
 
+  String mensagemErro = "";
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class TelaTrocarSenhaState extends State<TelaTrocarSenha> {
                 BotaoVoltar(),
                 
                 Text(
-                  "Trocar senha",
+                  "Trocar Nome",
                   style: TextStyle(
                     color: Color.fromARGB(255, 36, 56, 155),
                     decoration: TextDecoration.none,
@@ -61,7 +62,7 @@ class TelaTrocarSenhaState extends State<TelaTrocarSenha> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Nova senha",
+                    "Excluir conta",
                     style: TextStyle(
                       color: Color.fromARGB(255, 0, 0, 0),
                       decoration: TextDecoration.none,
@@ -73,7 +74,7 @@ class TelaTrocarSenhaState extends State<TelaTrocarSenha> {
                   SizedBox(height: 30,),
         
                   Text(
-                    "Insira sua nova senha abaixo para concluir a alteração.",
+                    "Insira o e-mail e senha da conta abaixo para confirmar sua identidade antes de excluir a conta.",
                     style: TextStyle(
                       color: Color.fromARGB(255, 73, 73, 73),
                       decoration: TextDecoration.none,
@@ -90,60 +91,34 @@ class TelaTrocarSenhaState extends State<TelaTrocarSenha> {
                       key: _formKey,
                       child: Column(
                         children: [
-                          CampoSenha(
-                            label: 'SENHA ATUAL',
-                            hint: '••••••••',
-                            icon: Icons.lock_outline_rounded,
-                            controller: campoSenhaAtual,
+                          Campo(
+                            label: 'E-MAIL',
+                            hint: 'seu@email.com',
+                            icon: Icons.email_outlined,
+                            minLines: 1,
+                            maxLines: 1,
+                            controller: campoEmail,
                             validator: (value) {
                               if(value == null || value.trim().isEmpty) {
-                                return "Digite a senha";
+                                return "Digite o email";
                               }
-
-                              if(sessao.usuarioLogado!.senha != campoSenhaAtual.text) {
-                                return "Senha incorreta";
-                              }
-                                  
+                      
                               return null;
                             },
                           ),
-                      
-                          SizedBox(height: 40,),
-                      
+
+                          SizedBox(height: 20,),
+
                           CampoSenha(
-                            label: 'NOVA SENHA',
+                            label: 'SENHA',
                             hint: '••••••••',
                             icon: Icons.lock_outline_rounded,
-                            controller: campoNovaSenha,
+                            controller: campoSenha,
                             validator: (value) {
                               if(value == null || value.trim().isEmpty) {
                                 return "Digite a senha";
                               }
-
-                              if(campoConfirmarSenha.text != campoNovaSenha.text) {
-                                return "As senhas não batem";
-                              }
-                                  
-                              return null;
-                            },
-                          ),
                       
-                          SizedBox(height: 40,),
-                      
-                          CampoSenha(
-                            label: 'CONFIRMAR NOVA SENHA',
-                            hint: '••••••••',
-                            icon: Icons.lock_outline_rounded,
-                            controller: campoConfirmarSenha,
-                            validator: (value) {
-                              if(value == null || value.trim().isEmpty) {
-                                return "Digite a senha";
-                              }
-
-                              if(campoConfirmarSenha.text != campoNovaSenha.text) {
-                                return "As senhas não batem";
-                              }
-                                  
                               return null;
                             },
                           ),
@@ -161,7 +136,20 @@ class TelaTrocarSenhaState extends State<TelaTrocarSenha> {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
-              SizedBox(height: MediaQuery.of(context).size.height - 100,),
+              SizedBox(height: MediaQuery.of(context).size.height - 150,),
+
+              Text(
+                mensagemErro,
+                style: TextStyle(
+                  color: Colors.red,
+                  decoration: TextDecoration.none,
+                  fontSize: 22,
+                  fontWeight: FontWeight.w400
+                ),
+                textAlign: TextAlign.center,
+              ),
+
+              SizedBox(height: 20,),
           
               Positioned(
                 child: Botao(
@@ -171,9 +159,22 @@ class TelaTrocarSenhaState extends State<TelaTrocarSenha> {
                   fontSize: 30,
                   onPressed: () async {
                     if(_formKey.currentState!.validate()) {
-                      usuarioService.trocaSenha(sessao.usuarioLogado!.id!, campoNovaSenha.text);
-                      sessaoService.atualizarUsuarioLogado();
-                      Navigator.of(context).pop();
+                      if(campoEmail.text == sessao.usuarioLogado!.email && campoSenha.text == sessao.usuarioLogado!.senha) {
+                        usuarioService.deletar(sessao.usuarioLogado!.id!);
+                        sessaoService.atualizarUsuarioLogado();
+                        
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pop();
+                      } else {
+                        setState(() {
+                          mensagemErro = "Email ou senha incorretos";
+                        });
+                      }
+                    } else {
+                      setState(() {
+                        mensagemErro = "";
+                      });
                     }
                   },
                   corTexto: Colors.white,

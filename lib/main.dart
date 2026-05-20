@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/gerenciamento_conta/tela_enviar_codigo.dart';
+import 'package:flutter_application_1/screens/gerenciamento_conta/tela_excluir_conta.dart';
+import 'package:flutter_application_1/screens/gerenciamento_conta/tela_trocar_email.dart';
 import 'package:flutter_application_1/screens/gerenciamento_conta/tela_trocar_senha.dart';
+import 'package:flutter_application_1/screens/gerenciamento_conta/tela_trocar_nome.dart';
 import 'package:flutter_application_1/screens/rotas.dart';
 import 'package:flutter_application_1/screens/cadastro_servico/tela_cadastro_servico.dart';
 import 'package:flutter_application_1/screens/tela_home.dart';
@@ -7,7 +11,6 @@ import 'package:flutter_application_1/screens/tela_inicial.dart';
 import 'package:flutter_application_1/screens/tela_login.dart';
 import 'package:flutter_application_1/screens/tela_consertos.dart';
 import 'package:flutter_application_1/screens/tela_signup.dart';
-import 'package:flutter_application_1/screens/tela_teste.dart';
 
 main() {
   runApp(AppTeste());
@@ -31,6 +34,10 @@ class AppTeste extends StatelessWidget {
         Rotas.novoServico: (context) => TelaCadastroServico(),
         Rotas.consertos: (context) => TelaConsertos(),
         Rotas.trocarSenha: (context) => TelaTrocarSenha(),
+        Rotas.enviarCodigo: (context) => TelaEnviarCodigo(),
+        Rotas.trocarEmail: (context) => TelaTrocarEmail(),
+        Rotas.trocarNome: (context) => TelaTrocarNome(),
+        Rotas.excluirConta: (context) => TelaExcluirConta(),
       }
     );
   }

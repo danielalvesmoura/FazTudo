@@ -26,4 +26,16 @@ class UsuarioService {
   Future<void> trocaSenha(int id, String senha) async {
     usuarioDAO.updateSenha(id, senha);
   }
+
+  Future<void> trocaEmail(int id, String email) async {
+    usuarioDAO.updateEmail(id, email);
+  }
+
+  Future<void> trocaNome(int id, String nome) async {
+    usuarioDAO.updateNome(id, nome);
+  }
+
+  Future<void> deletar(int id) async {
+    usuarioDAO.delete(id);
+  }
 }

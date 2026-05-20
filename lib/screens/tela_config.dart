@@ -5,7 +5,12 @@ import 'package:flutter_application_1/widgets/tela_config/opcao.dart';
 import 'package:flutter_application_1/widgets/tela_config/separador.dart';
 import 'package:flutter_application_1/widgets/tela_config/titulo_opcoes.dart';
 
-class TelaConfig extends StatelessWidget {
+class TelaConfig extends StatefulWidget {
+  @override
+  TelaConfigState createState() => TelaConfigState();
+}
+
+class TelaConfigState extends State<TelaConfig> {
   Sessao sessao = Sessao();
 
   @override
@@ -52,32 +57,7 @@ class TelaConfig extends StatelessWidget {
 
           Separador(),
 
-          TituloOpcoes(texto: "CONTA"),
-
-          Opcao(
-            texto: "Trocar senha",
-            onTap: () => Navigator.of(context).pushNamed(Rotas.trocarSenha),
-          ),
-
-          Opcao(
-            texto: "Trocar email",
-            onTap: () => {},
-          ),
-
-
-          Opcao(
-            texto: "Sair",
-            onTap: () => {},
-          ),
-
-          Separador(),
-
           TituloOpcoes(texto: "PAGAMENTOS"),
-
-          Opcao(
-            texto: "Carteira",
-            onTap: () => {},
-          ),
 
           Opcao(
             texto: "Carrinho",
@@ -111,6 +91,43 @@ class TelaConfig extends StatelessWidget {
           Opcao(
             texto: "Minhas compras",
             onTap: () => {},
+          ),
+
+          Separador(),
+
+          TituloOpcoes(texto: "CONTA"),
+
+          Opcao(
+            texto: "Trocar nome de usuário",
+            onTap: () async {
+              await Navigator.of(context).pushNamed(Rotas.trocarNome);
+              setState(() {});
+            }
+            
+            ,
+          ),
+
+          Opcao(
+            texto: "Trocar senha",
+            onTap: () => Navigator.of(context).pushNamed(Rotas.trocarSenha),
+          ),
+
+          Opcao(
+            texto: "Trocar email",
+            onTap: () => Navigator.of(context).pushNamed(Rotas.enviarCodigo),
+          ),
+
+          Opcao(
+            texto: "Excluir conta",
+            onTap: () => Navigator.of(context).pushNamed(Rotas.excluirConta),
+          ),
+
+          Opcao(
+            texto: "Sair",
+            onTap: () {
+              Navigator.of(context).pop(context);
+              Navigator.of(context).pop(context);
+            },
           ),
 
         ],

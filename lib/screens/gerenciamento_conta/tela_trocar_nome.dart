@@ -3,26 +3,23 @@ import 'package:flutter_application_1/service/sessao_service.dart';
 import 'package:flutter_application_1/service/usuario_service.dart';
 import 'package:flutter_application_1/sessao.dart';
 import 'package:flutter_application_1/widgets/botao.dart';
-import 'package:flutter_application_1/widgets/botao_flutuante.dart';
 import 'package:flutter_application_1/widgets/botao_voltar.dart';
-import 'package:flutter_application_1/widgets/campo_senha.dart';
+import 'package:flutter_application_1/widgets/campo.dart';
 
-class TelaTrocarSenha extends StatefulWidget {
+class TelaTrocarNome extends StatefulWidget {
   @override
-  TelaTrocarSenhaState createState() => TelaTrocarSenhaState();
+  TelaTrocarNomeState createState() => TelaTrocarNomeState();
 }
 
-class TelaTrocarSenhaState extends State<TelaTrocarSenha> {
-  TextEditingController campoSenhaAtual = TextEditingController();
-  TextEditingController campoNovaSenha = TextEditingController();
-  TextEditingController campoConfirmarSenha = TextEditingController();
+class TelaTrocarNomeState extends State<TelaTrocarNome> {
+  TextEditingController campoNovoNome = TextEditingController();
+  TextEditingController campoConfirmarNome = TextEditingController();
 
   @override
   void dispose() {
     super.dispose();
-    campoSenhaAtual.dispose();
-    campoNovaSenha.dispose();
-    campoConfirmarSenha.dispose();
+    campoNovoNome.dispose();
+    campoConfirmarNome.dispose();
   }
 
   final _formKey = GlobalKey<FormState>();
@@ -30,7 +27,6 @@ class TelaTrocarSenhaState extends State<TelaTrocarSenha> {
   Sessao sessao = Sessao();
   SessaoService sessaoService = SessaoService();
   UsuarioService usuarioService = UsuarioService();
-
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +39,7 @@ class TelaTrocarSenhaState extends State<TelaTrocarSenha> {
                 BotaoVoltar(),
                 
                 Text(
-                  "Trocar senha",
+                  "Trocar Nome",
                   style: TextStyle(
                     color: Color.fromARGB(255, 36, 56, 155),
                     decoration: TextDecoration.none,
@@ -61,7 +57,7 @@ class TelaTrocarSenhaState extends State<TelaTrocarSenha> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Nova senha",
+                    "Novo Nome Completo",
                     style: TextStyle(
                       color: Color.fromARGB(255, 0, 0, 0),
                       decoration: TextDecoration.none,
@@ -73,7 +69,7 @@ class TelaTrocarSenhaState extends State<TelaTrocarSenha> {
                   SizedBox(height: 30,),
         
                   Text(
-                    "Insira sua nova senha abaixo para concluir a alteração.",
+                    "Insira o novo nome abaixo para concluir a alteração.",
                     style: TextStyle(
                       color: Color.fromARGB(255, 73, 73, 73),
                       decoration: TextDecoration.none,
@@ -90,60 +86,36 @@ class TelaTrocarSenhaState extends State<TelaTrocarSenha> {
                       key: _formKey,
                       child: Column(
                         children: [
-                          CampoSenha(
-                            label: 'SENHA ATUAL',
-                            hint: '••••••••',
-                            icon: Icons.lock_outline_rounded,
-                            controller: campoSenhaAtual,
+                          Campo(
+                            label: 'NOVO NOME COMPLETO',
+                            hint: 'Ex: João Silva',
+                            icon: Icons.person_outline,
+                            minLines: 1,
+                            maxLines: 1,
+                            controller: campoNovoNome,
                             validator: (value) {
                               if(value == null || value.trim().isEmpty) {
-                                return "Digite a senha";
+                                return "Digite o nome completo";
                               }
-
-                              if(sessao.usuarioLogado!.senha != campoSenhaAtual.text) {
-                                return "Senha incorreta";
-                              }
-                                  
+                      
                               return null;
                             },
                           ),
-                      
-                          SizedBox(height: 40,),
-                      
-                          CampoSenha(
-                            label: 'NOVA SENHA',
-                            hint: '••••••••',
-                            icon: Icons.lock_outline_rounded,
-                            controller: campoNovaSenha,
+
+                          SizedBox(height: 30,),
+
+                          Campo(
+                            label: 'CONFIRMAR NOME COMPLETO',
+                            hint: 'Ex: João Silva',
+                            icon: Icons.person_outline,
+                            minLines: 1,
+                            maxLines: 1,
+                            controller: campoConfirmarNome,
                             validator: (value) {
                               if(value == null || value.trim().isEmpty) {
-                                return "Digite a senha";
+                                return "Digite o nome completo";
                               }
-
-                              if(campoConfirmarSenha.text != campoNovaSenha.text) {
-                                return "As senhas não batem";
-                              }
-                                  
-                              return null;
-                            },
-                          ),
                       
-                          SizedBox(height: 40,),
-                      
-                          CampoSenha(
-                            label: 'CONFIRMAR NOVA SENHA',
-                            hint: '••••••••',
-                            icon: Icons.lock_outline_rounded,
-                            controller: campoConfirmarSenha,
-                            validator: (value) {
-                              if(value == null || value.trim().isEmpty) {
-                                return "Digite a senha";
-                              }
-
-                              if(campoConfirmarSenha.text != campoNovaSenha.text) {
-                                return "As senhas não batem";
-                              }
-                                  
                               return null;
                             },
                           ),
@@ -167,13 +139,13 @@ class TelaTrocarSenhaState extends State<TelaTrocarSenha> {
                 child: Botao(
                   width: double.infinity, 
                   height: 80, 
-                  texto: 'Entrar', 
+                  texto: 'Salvar', 
                   fontSize: 30,
                   onPressed: () async {
                     if(_formKey.currentState!.validate()) {
-                      usuarioService.trocaSenha(sessao.usuarioLogado!.id!, campoNovaSenha.text);
+                      usuarioService.trocaNome(sessao.usuarioLogado!.id!, campoNovoNome.text);
                       sessaoService.atualizarUsuarioLogado();
-                      Navigator.of(context).pop();
+                      Navigator.of(context).pop(true);
                     }
                   },
                   corTexto: Colors.white,
