@@ -7,8 +7,14 @@ class SessaoService {
 
   Sessao sessao = Sessao();
 
-  Future<void> atualizarUsuarioLogado() async {
+  Future<void> atualizarUsuarioLogadoPorId() async {
     Usuario? novoUsuario = await usuarioDAO.encontraPorId(sessao.usuarioLogado!.id!);
+
+    if(novoUsuario != null) sessao.usuarioLogado = novoUsuario;
+  }
+
+  Future<void> atualizarUsuarioLogadoPorEmail(String email) async {
+    Usuario? novoUsuario = await usuarioDAO.encontraPorEmail(email);
 
     if(novoUsuario != null) sessao.usuarioLogado = novoUsuario;
   }

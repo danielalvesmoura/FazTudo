@@ -19,6 +19,20 @@ class ServicoDAO {
     return lista;
   }
 
+  Future<List<Servico>> getServicosPorUsuario(int usuario_id) async {
+    final db = await Conexao.instancia.banco;
+
+    List<Map<String,dynamic>> servicos = await db.query("servicos",
+      where: "usuario_id = ?",
+      whereArgs: [usuario_id]
+    );
+
+    List<Servico> lista = servicos.map((map) => Servico.fromMap(map)).toList();
+
+    if(lista.isEmpty) return [];
+    return lista;
+  }
+
   Future<void> update(Servico servico) async {
     final db = await Conexao.instancia.banco;
 

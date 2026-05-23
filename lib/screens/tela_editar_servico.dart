@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/servico.dart';
+import 'package:flutter_application_1/service/servico_service.dart';
 import 'package:flutter_application_1/widgets/botao_flutuante.dart';
 import 'package:flutter_application_1/widgets/botao_voltar.dart';
 import 'package:flutter_application_1/widgets/campo.dart';
 import 'package:flutter_application_1/widgets/subcategorias/subcategorias_conserto_cadastro.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 
 enum categorias { nenhuma, consertos, limpeza, beleza, transporte, alimentacao }
 
@@ -26,6 +28,12 @@ class TelaEditarServicoState extends State<TelaEditarServico> {
   TextEditingController campoTitulo = TextEditingController();
   TextEditingController campoCep = TextEditingController();
   TextEditingController campoDescricao = TextEditingController();
+  TextEditingController campoPreco = TextEditingController();
+
+  final formatter = CurrencyTextInputFormatter.currency(
+    locale: 'pt_BR',
+    symbol: 'R\$',
+  );
 
   @override
   void dispose() {
@@ -33,15 +41,19 @@ class TelaEditarServicoState extends State<TelaEditarServico> {
     campoTitulo.dispose();
     campoCep.dispose();
     campoDescricao.dispose();
+    campoPreco.dispose();
   }
 
   @override
   void initState() {
     super.initState();
     campoTitulo.text = widget.servico.titulo;
-    campoCep.text = widget.servico.cep;
+    campoCep.text = cepFormatter.maskText(widget.servico.cep);
     campoDescricao.text = widget.servico.descricao;
+    campoPreco.text = formatter.formatDouble(widget.servico.preco);
   }
+
+  ServicoService servicoService = ServicoService();
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +101,7 @@ class TelaEditarServicoState extends State<TelaEditarServico> {
                       child: Padding(
                         padding: EdgeInsetsGeometry.symmetric(horizontal: 30),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [  
                         
                             SizedBox(height: 30),
@@ -126,25 +139,56 @@ class TelaEditarServicoState extends State<TelaEditarServico> {
                             ),
                                         
                             SizedBox(height: 30),
-                                        
-                            Row(
-                              children: [
-                                Text(
-                                  'Subcategoria',
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 65, 65, 65),
-                                    decoration: TextDecoration.none,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w700
+
+                            Text(
+                              'PREÇO',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 65, 65, 65),
+                                decoration: TextDecoration.none,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w700
+                              ),
+                            ),
+
+                            Material(
+                              child: TextField(
+                                style: TextStyle(
+                                  fontSize: 30
+                                ),
+                                controller: campoPreco,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: 'R\$ 0,00',
+                                  hintStyle: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 30
                                   ),
                                 ),
-                              ],
+                                inputFormatters: [formatter],
+                                onChanged: (value) => setState(() {}),
+                              ),
                             ),
-                            SizedBox(height: 20,),
-                            SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: SubcategoriasConsertoCadastro(),
-                            ),
+
+                            SizedBox(height: 30),
+                                        
+                            // Row(
+                            //   children: [
+                            //     Text(
+                            //       'Subcategoria',
+                            //       style: TextStyle(
+                            //         color: Color.fromARGB(255, 65, 65, 65),
+                            //         decoration: TextDecoration.none,
+                            //         fontSize: 17,
+                            //         fontWeight: FontWeight.w700
+                            //       ),
+                            //     ),
+                            //   ],
+                            // ),
+                            // SizedBox(height: 20,),
+                            // SingleChildScrollView(
+                            //   scrollDirection: Axis.horizontal,
+                            //   child: SubcategoriasConsertoCadastro(),
+                            // ),
                           ],
                         ),
                       ),
@@ -159,7 +203,14 @@ class TelaEditarServicoState extends State<TelaEditarServico> {
 
         BotaoFlutuante(
           onPressed: () {
-           
+            widget.servico.titulo = campoTitulo.text;
+            widget.servico.descricao = campoDescricao.text;
+            widget.servico.preco = formatter.getUnformattedValue().toDouble();
+            widget.servico.cep = cepFormatter.getUnmaskedText();
+
+            servicoService.update(widget.servico);
+
+            Navigator.of(context).pop();
           },
           icon: Icons.arrow_forward, 
           texto: "Salvar",

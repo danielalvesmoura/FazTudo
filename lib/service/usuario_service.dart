@@ -23,19 +23,27 @@ class UsuarioService {
     }
   }
 
-  Future<void> trocaSenha(int id, String senha) async {
+  Future<Usuario> encontraPorId(int id) async {
+    return await usuarioDAO.encontraPorId(id);
+  }
+
+  Future<String> retornaNome(int id) async {
+    return await usuarioDAO.retornaNome(id);
+  }
+
+  trocaSenha(int id, String senha) {
     usuarioDAO.updateSenha(id, senha);
   }
 
-  Future<void> trocaEmail(int id, String email) async {
+  trocaEmail(int id, String email) {
     usuarioDAO.updateEmail(id, email);
   }
 
-  Future<void> trocaNome(int id, String nome) async {
+  trocaNome(int id, String nome) {
     usuarioDAO.updateNome(id, nome);
   }
 
-  Future<void> deletar(int id) async {
+  deletar(int id) {
     usuarioDAO.delete(id);
   }
 }

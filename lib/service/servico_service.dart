@@ -15,6 +15,13 @@ class ServicoService {
     return servicos;
   }
 
+  Future<List<Servico>> listaPorUsuario(int usuario_id) async {
+    List<Servico> servicos = await servicoDAO.getServicosPorUsuario(usuario_id);
+
+    if(servicos.isEmpty) return [];
+    return servicos;
+  }
+
   void update(Servico servico) {
     servicoDAO.update(servico);
   }

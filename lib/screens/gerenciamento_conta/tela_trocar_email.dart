@@ -149,7 +149,7 @@ class TelaTrocarEmailState extends State<TelaTrocarEmail> {
                   onPressed: () async {
                     if(_formKey.currentState!.validate()) {
                       usuarioService.trocaEmail(sessao.usuarioLogado!.id!, campoNovoEmail.text);
-                      sessaoService.atualizarUsuarioLogado();
+                      sessaoService.atualizarUsuarioLogadoPorId();
                       Navigator.of(context).pop();
                       Navigator.of(context).pop();
                     }

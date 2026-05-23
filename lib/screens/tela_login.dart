@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/service/servico_service.dart';
+import 'package:flutter_application_1/service/sessao_service.dart';
 import 'package:flutter_application_1/service/usuario_service.dart';
 import 'package:flutter_application_1/widgets/botao.dart';
 import 'package:flutter_application_1/widgets/campo.dart';
@@ -29,6 +31,8 @@ class TelaLoginState extends State<TelaLogin> {
   final _formKey = GlobalKey<FormState>();
 
   String mensagemErro = "";
+
+  SessaoService sessaoService = SessaoService();
 
   @override
   Widget build(BuildContext context) {
@@ -243,6 +247,7 @@ class TelaLoginState extends State<TelaLogin> {
                       onPressed: () async {
                         if(_formKey.currentState!.validate()) {
                           if(await usuarioService.validaLogin(campoEmail.text, campoSenha.text)) {
+                            sessaoService.atualizarUsuarioLogadoPorEmail(campoEmail.text);
                             Navigator.of(context).pushNamed(Rotas.home);
                           } else {
                             setState(() {

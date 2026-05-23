@@ -172,7 +172,7 @@ class TelaTrocarSenhaState extends State<TelaTrocarSenha> {
                   onPressed: () async {
                     if(_formKey.currentState!.validate()) {
                       usuarioService.trocaSenha(sessao.usuarioLogado!.id!, campoNovaSenha.text);
-                      sessaoService.atualizarUsuarioLogado();
+                      sessaoService.atualizarUsuarioLogadoPorId();
                       Navigator.of(context).pop();
                     }
                   },

@@ -27,7 +27,7 @@ class UsuarioDAO {
     return Usuario.fromMap(usuario.first);
   }
 
-  Future<Usuario?> encontraPorId(int id) async {
+  Future<Usuario> encontraPorId(int id) async {
     final db = await Conexao.instancia.banco;
 
     List<Map<String,dynamic>> usuario = await db.query(
@@ -36,9 +36,19 @@ class UsuarioDAO {
       whereArgs: [id]
     );
 
-    if(usuario.isEmpty) return null;
-
     return Usuario.fromMap(usuario.first);
+  }
+
+  Future<String> retornaNome(int id) async {
+    final db = await Conexao.instancia.banco;
+
+    List<Map<String,dynamic>> usuario = await db.query(
+      "usuarios",
+      where: "id = ?",
+      whereArgs: [id]
+    );
+
+    return Usuario.fromMap(usuario.first).nome;
   }
 
   Future<void> updateSenha(int id, String senha) async {

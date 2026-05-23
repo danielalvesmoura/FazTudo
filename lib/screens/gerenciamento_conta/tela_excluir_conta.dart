@@ -161,7 +161,7 @@ class TelaExcluirContaState extends State<TelaExcluirConta> {
                     if(_formKey.currentState!.validate()) {
                       if(campoEmail.text == sessao.usuarioLogado!.email && campoSenha.text == sessao.usuarioLogado!.senha) {
                         usuarioService.deletar(sessao.usuarioLogado!.id!);
-                        sessaoService.atualizarUsuarioLogado();
+                        sessaoService.atualizarUsuarioLogadoPorId();
                         
                         Navigator.of(context).pop();
                         Navigator.of(context).pop();

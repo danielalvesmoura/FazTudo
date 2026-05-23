@@ -4,6 +4,7 @@ import 'package:flutter_application_1/screens/cadastro_servico/tela_cadastro_ser
 import 'package:flutter_application_1/screens/rotas.dart';
 import 'package:flutter_application_1/screens/tela_editar_servico.dart';
 import 'package:flutter_application_1/service/servico_service.dart';
+import 'package:flutter_application_1/sessao.dart';
 import 'package:flutter_application_1/widgets/botao.dart';
 import 'package:flutter_application_1/widgets/botao_flutuante.dart';
 import 'package:flutter_application_1/widgets/tela_meus_servicos/card_aba_servico.dart';
@@ -36,8 +37,10 @@ class AbasServicosState extends State<AbasServicos> {
 
   ServicoService servicoService = ServicoService();
 
+  Sessao sessao = Sessao();
+
   Future<void> preencheLista() async {
-    List<Servico> resultado = await servicoService.listaTodos();
+    List<Servico> resultado = await servicoService.listaPorUsuario(sessao.usuarioLogado!.id!);
 
     servicos = resultado;
 
@@ -214,6 +217,7 @@ class CardServico extends StatelessWidget {
     required this.subtitulo
   });
 
+  ServicoService servicoService = ServicoService();
 
   @override
   Widget build(BuildContext context) {
@@ -247,8 +251,17 @@ class CardServico extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(horario, style: TextStyle(color: const Color.fromARGB(255, 117, 117, 117))),
-                          IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))
+                          Text("", style: TextStyle(color: const Color.fromARGB(255, 117, 117, 117))),
+                          IconButton(
+                            onPressed: () {
+                              servicoService.deletar(servico.id!);
+                              atualizaLista();
+                            }, 
+                            icon: Icon(
+                              Icons.delete_outlined, 
+                              color: Colors.red
+                            )
+                          )
                         ],
                       ),
       

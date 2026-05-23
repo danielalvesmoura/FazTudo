@@ -144,7 +144,7 @@ class TelaTrocarNomeState extends State<TelaTrocarNome> {
                   onPressed: () async {
                     if(_formKey.currentState!.validate()) {
                       usuarioService.trocaNome(sessao.usuarioLogado!.id!, campoNovoNome.text);
-                      sessaoService.atualizarUsuarioLogado();
+                      sessaoService.atualizarUsuarioLogadoPorId();
                       Navigator.of(context).pop(true);
                     }
                   },

@@ -131,7 +131,7 @@ class TelaCadastroServicoDetalhesState extends State<TelaCadastroServicoDetalhes
         BotaoFlutuante(
           onPressed: () {
             widget.setTitulo(campoTitulo.text);
-            widget.setCep(campoCep.text);
+            widget.setCep(cepFormatter.getUnmaskedText());
             widget.setDescricao(campoDescricao.text);
 
             widget.trocarTela(4);

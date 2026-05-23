@@ -3,8 +3,10 @@ import 'package:flutter_application_1/dao/servico_dao.dart';
 import 'package:flutter_application_1/dao/subcategoria_dao.dart';
 import 'package:flutter_application_1/models/servico.dart';
 import 'package:flutter_application_1/models/subcategoria.dart';
+import 'package:flutter_application_1/models/usuario.dart';
 import 'package:flutter_application_1/screens/subcategoria/tela_lista_subcategorias.dart';
 import 'package:flutter_application_1/service/servico_service.dart';
+import 'package:flutter_application_1/service/usuario_service.dart';
 import 'package:flutter_application_1/sessao.dart';
 import 'package:flutter_application_1/widgets/subcategorias/subcategorias_conserto.dart';
 import 'package:flutter_application_1/widgets/tela_consertos/card_oferta.dart';
@@ -43,6 +45,7 @@ class TelaConsertosState extends State<TelaConsertos> {
 
   SubcategoriaDAO subcategoriaDao = SubcategoriaDAO();
   ServicoService servicoService = ServicoService();
+  UsuarioService usuarioService = UsuarioService();
 
   Future<void> preencheLista() async {
     List<Subcategoria> resultadoSubcategorias = await subcategoriaDao.getSubcategorias();
@@ -52,6 +55,12 @@ class TelaConsertosState extends State<TelaConsertos> {
     consertos = resultadoServicos;
 
     setState(() {});
+  }
+
+  Future<String> retornaUsuarioId(Servico servico) async {
+    Usuario usuario = await usuarioService.encontraPorId(servico.usuario_id);
+
+    return usuario.nome;
   }
 
   @override
@@ -156,7 +165,7 @@ class TelaConsertosState extends State<TelaConsertos> {
                 ),
               ),
         
-              SizedBox(height: 20),
+              SizedBox(height: 30),
         
               TextField(
                 decoration: InputDecoration(
@@ -226,8 +235,8 @@ class TelaConsertosState extends State<TelaConsertos> {
                               urlImagem: servico.url,
                               titulo: servico.titulo,
                               preco: 'R\$ ${servico.preco} / hora', 
-                              descricao: servico.descricao, 
-                              usuario: "nome usuario"
+                              descricao: servico.descricao,
+                              usuario: "Anônimo",
                             ),
                             SizedBox(height: 60)
                           ],
