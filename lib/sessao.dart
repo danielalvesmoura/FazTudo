@@ -1,4 +1,3 @@
-import 'package:flutter_application_1/dao/usuario_dao.dart';
 import 'package:flutter_application_1/models/usuario.dart';
 
 class Sessao {
@@ -11,7 +10,6 @@ class Sessao {
   Sessao._construtor();
 
   Usuario? usuarioLogado;
-
   
 
   

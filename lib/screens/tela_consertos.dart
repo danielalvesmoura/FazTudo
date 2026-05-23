@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/servico.dart';
-import 'package:flutter_application_1/widgets/botao.dart';
-import 'package:flutter_application_1/widgets/logo.dart';
+import 'package:flutter_application_1/screens/subcategoria/tela_lista_subcategorias.dart';
+import 'package:flutter_application_1/sessao.dart';
 import 'package:flutter_application_1/widgets/subcategorias/subcategorias_conserto.dart';
-import 'package:flutter_application_1/widgets/tela_consertos/card_subcategoria.dart';
 import 'package:flutter_application_1/widgets/tela_consertos/card_oferta.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-
 
 class TelaConsertos extends StatelessWidget {
+  Sessao sessao = Sessao();
+
   final consertos = [
     Servico(
       url: 'img/encanamento.png',
@@ -144,11 +142,41 @@ class TelaConsertos extends StatelessWidget {
               ),
         
               SizedBox(height: 40),
-        
+
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: SubcategoriasConserto()
               ),
+
+              SizedBox(height: 10),
+
+              if(sessao.usuarioLogado!.nome == "admin")
+                TextButton(
+                  onPressed: () async {
+                    if(
+                      await Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => TelaListaSubcategorias()
+                    ))
+                    ) setState()
+                    
+                  }, 
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.edit, color: Color.fromARGB(255, 36, 56, 155), size: 20),
+
+                      SizedBox(width: 10),
+
+                      Text(
+                        "Editar",
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 36, 56, 155),
+                          fontSize: 20
+                        ),
+                      ),
+                    ],
+                  )
+                ),
         
               SizedBox(height: 60),
 

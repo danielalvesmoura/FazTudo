@@ -38,6 +38,13 @@ class Conexao {
           )
         """);
 
+        await db.execute("""
+          CREATE TABLE subcategorias(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nome TEXT NOT NULL,
+          )
+        """);
+
         await db.rawInsert("INSERT INTO usuarios (nome,email,telefone,senha) VALUES (?,?,?,?)",
         ['admin','admin@faztudo.com','00000000000','admin']);
       },
