@@ -1,0 +1,42 @@
+import 'package:flutter_application_1/database/conexao.dart';
+import 'package:flutter_application_1/models/servico.dart';
+
+class ServicoDAO {
+  Future<void> insert(Servico servico) async {
+    final db = await Conexao.instancia.banco;
+
+    await db.insert("servicos",servico.toMap());
+  }
+
+  Future<List<Servico>> getServicos() async {
+    final db = await Conexao.instancia.banco;
+
+    List<Map<String,dynamic>> servicos = await db.query("servicos");
+
+    List<Servico> lista = servicos.map((map) => Servico.fromMap(map)).toList();
+
+    if(lista.isEmpty) return [];
+    return lista;
+  }
+
+  Future<void> update(Servico servico) async {
+    final db = await Conexao.instancia.banco;
+
+    await db.update("servicos", 
+      servico.toMap(),
+      where: "id = ?",
+      whereArgs: [servico.id]
+    );
+
+  }
+
+  Future<void> delete(int id) async {
+    final db = await Conexao.instancia.banco;
+
+    await db.delete("servicos", 
+      where: "id = ?",
+      whereArgs: [id]
+    );
+
+  }
+}

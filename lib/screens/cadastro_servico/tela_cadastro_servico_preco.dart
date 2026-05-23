@@ -1,5 +1,6 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/service/servico_service.dart';
 import 'package:flutter_application_1/widgets/botao_flutuante.dart';
 import 'package:flutter_application_1/widgets/card_selecionavel.dart';
 
@@ -7,8 +8,14 @@ enum categorias { nenhuma, consertos, limpeza, beleza, transporte, alimentacao }
 
 class TelaCadastroServicoPreco extends StatefulWidget {
   final Function(int) trocarTela;
+  final Function(double) setPreco;
+  final Function() finalizar;
 
-  TelaCadastroServicoPreco({required this.trocarTela});
+  TelaCadastroServicoPreco({
+    required this.trocarTela,
+    required this.setPreco,
+    required this.finalizar
+  });
 
   @override
   State<TelaCadastroServicoPreco> createState() => TelaCadastroServicoPrecoState();
@@ -28,6 +35,23 @@ class TelaCadastroServicoPrecoState extends State<TelaCadastroServicoPreco> {
     locale: 'pt_BR',
     symbol: 'R\$',
   );
+
+  @override
+  void dispose() {
+    super.dispose();
+    precoController.dispose();
+  }
+
+  String limparTexto(String valor) {
+    if (valor.length <= 3) return '';
+
+    return valor
+        .substring(3)      // remove os 3 primeiros caracteres
+        .replaceAll('.', '') // remove pontos
+        .replaceAll(',', '.'); // troca vírgula por ponto
+  }
+
+  ServicoService servicoService = ServicoService();
 
   @override
   Widget build(BuildContext context) {
@@ -230,10 +254,11 @@ class TelaCadastroServicoPrecoState extends State<TelaCadastroServicoPreco> {
             children: [
               BotaoFlutuante(
                 onPressed: () {
-                  widget.trocarTela(5);
+                  widget.setPreco(double.parse(limparTexto(precoController.text)));
+                  widget.finalizar();
                 },
-                icon: Icons.arrow_forward, 
-                texto: "Continuar",
+                icon: Icons.check, 
+                texto: "Finalizar",
                 bottom: 20,
                 enabled: precoController.text.isEmpty ? false : true,
               ),

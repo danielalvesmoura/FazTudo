@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/dao/servico_dao.dart';
 import 'package:flutter_application_1/dao/subcategoria_dao.dart';
 import 'package:flutter_application_1/models/servico.dart';
 import 'package:flutter_application_1/models/subcategoria.dart';
 import 'package:flutter_application_1/screens/subcategoria/tela_lista_subcategorias.dart';
+import 'package:flutter_application_1/service/servico_service.dart';
 import 'package:flutter_application_1/sessao.dart';
 import 'package:flutter_application_1/widgets/subcategorias/subcategorias_conserto.dart';
 import 'package:flutter_application_1/widgets/tela_consertos/card_oferta.dart';
@@ -15,32 +17,39 @@ class TelaConsertos extends StatefulWidget {
 class TelaConsertosState extends State<TelaConsertos> {
   Sessao sessao = Sessao();
 
-  final consertos = [
+  List<Servico> consertos = [
     Servico(
+      id: 0,
       url: 'img/encanamento.png',
       titulo: 'Revisão e Conserto de Encanamento',
       preco: 100.00,
       descricao: 'Serviço profissional de revisão e conserto de encanamento, garantindo soluções rápidas e eficientes para vazamentos, entupimentos...',
-      pessoa: 'mario_332'
+      cep: '23459-000',
+      usuario_id: 1
     ),
 
     Servico(
+      id: 1,
       url: 'img/mecanica.png',
       titulo: 'Troca de Óleo e Pneus',
       preco: 100.00,
       descricao: 'Seu carro merece cuidado de verdade! 🚗💨Fazemos troca de óleo e pneus rapidinho e sem complicação. Peças de qualidade e serviço...',
-      pessoa: 'Larissa-Oficial1'
+      cep: '23459-000',
+      usuario_id: 1
     ),
   ];
 
   List<Subcategoria> subcategorias = [];
 
   SubcategoriaDAO subcategoriaDao = SubcategoriaDAO();
+  ServicoService servicoService = ServicoService();
 
   Future<void> preencheLista() async {
-    List<Subcategoria> resultado = await subcategoriaDao.getSubcategorias();
+    List<Subcategoria> resultadoSubcategorias = await subcategoriaDao.getSubcategorias();
+    List<Servico> resultadoServicos = await servicoService.listaTodos();
 
-    subcategorias = resultado;
+    subcategorias = resultadoSubcategorias;
+    consertos = resultadoServicos;
 
     setState(() {});
   }
@@ -207,25 +216,27 @@ class TelaConsertosState extends State<TelaConsertos> {
 
               SizedBox(
                 height: 650,
-                child: ListView.builder(
-                  itemCount: consertos.length,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        CardOferta(
-                          urlImagem: consertos[index].url, 
-                          titulo: consertos[index].titulo, 
-                          preco: 'R\$ ${consertos[index].preco},00 / hora', 
-                          descricao: consertos[index].descricao, 
-                          usuario: consertos[index].pessoa
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      for(Servico servico in consertos)
+                        Column(
+                          children: [
+                            CardOferta(
+                              urlImagem: servico.url,
+                              titulo: servico.titulo,
+                              preco: 'R\$ ${servico.preco} / hora', 
+                              descricao: servico.descricao, 
+                              usuario: "nome usuario"
+                            ),
+                            SizedBox(height: 60)
+                          ],
                         ),
-                        SizedBox(height: 60)
-                      ],
-                    );
-                  },
+                    ],
+                  )
                 ),
-              ),
+              )
+              
             ]
           )
         ),

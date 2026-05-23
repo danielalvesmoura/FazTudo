@@ -46,8 +46,31 @@ class Conexao {
           )
         """);
 
+        await db.execute("""
+          CREATE TABLE servicos(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            url TEXT NOT NULL,
+            titulo TEXT NOT NULL,
+            preco REAL NOT NULL,
+            descricao TEXT NOT NULL,
+            cep TEXT NOT NULL,
+            usuario_id INTEGER NOT NULL,
+            FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+          )
+        """);
+
         await db.rawInsert("INSERT INTO usuarios (nome,email,telefone,senha) VALUES (?,?,?,?)",
         ['admin','admin@faztudo.com','00000000000','admin']);
+
+        await db.rawInsert("INSERT INTO servicos (url,titulo,preco,descricao,cep,usuario_id) VALUES (?,?,?,?,?,?)",
+        [
+          'img/encanamento.png',
+          'Revisão e Corserto de Encanamento',
+          100.00,
+          'Serviço profissional de revisão e conserto de encanamento, garantindo soluções rápidas e eficientes para vazamentos, entupimentos...',
+          "00000-000",
+          1
+        ]);
 
         final subcategorias = [
           {"nome": "Todos"},

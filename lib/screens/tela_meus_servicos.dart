@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/servico.dart';
+import 'package:flutter_application_1/screens/cadastro_servico/tela_cadastro_servico.dart';
 import 'package:flutter_application_1/screens/rotas.dart';
+import 'package:flutter_application_1/screens/tela_editar_servico.dart';
+import 'package:flutter_application_1/service/servico_service.dart';
 import 'package:flutter_application_1/widgets/botao.dart';
 import 'package:flutter_application_1/widgets/botao_flutuante.dart';
 import 'package:flutter_application_1/widgets/tela_meus_servicos/card_aba_servico.dart';
@@ -27,6 +31,28 @@ enum AbasServicosEnum { publicados, aguardandoPublicacao, acimaDoLimite, expirad
 
 class AbasServicosState extends State<AbasServicos> {
   AbasServicosEnum selecionado = AbasServicosEnum.publicados;
+
+  List<Servico> servicos = [];
+
+  ServicoService servicoService = ServicoService();
+
+  Future<void> preencheLista() async {
+    List<Servico> resultado = await servicoService.listaTodos();
+
+    servicos = resultado;
+
+    setState(() {});
+  }
+
+  void atualizaTela() {
+    preencheLista();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    preencheLista();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,32 +140,35 @@ class AbasServicosState extends State<AbasServicos> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
+
+                    for(Servico servico in servicos)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 30),
+                        child: CardServico(
+                          atualizaLista: atualizaTela,
+                          servico: servico,
+                          url: servico.url,
+                          horario: 'Hoje às 19:40',
+                          titulo: servico.titulo,
+                          subtitulo: 'R\$ ${servico.preco} / hora'
+                        ),
+                      ),
+
+                    // CardServico(
+                    //   url: 'img/mecanica.png',
+                    //   horario: '23/03/2026',
+                    //   titulo: 'Troca de Óleo e Pneus',
+                    //   subtitulo: 'R\$ 100,00 / hora'
+                    // ),
+
                     // SizedBox(height: 30),
 
-                    CardServico(
-                      url: 'img/encanamento.png',
-                      horario: 'Hoje às 19:40',
-                      titulo: 'Revisão e Corserto de Encanamento',
-                      subtitulo: 'R\$ 100,00 / hora'
-                    ),
-
-                    SizedBox(height: 30),
-
-                    CardServico(
-                      url: 'img/mecanica.png',
-                      horario: '23/03/2026',
-                      titulo: 'Troca de Óleo e Pneus',
-                      subtitulo: 'R\$ 100,00 / hora'
-                    ),
-
-                    SizedBox(height: 30),
-
-                    CardServico(
-                      url: 'img/limpeza.png',
-                      horario: '02/02/2026',
-                      titulo: 'Limpeza de Casa',
-                      subtitulo: 'R\$ 70,00 / hora'
-                    ),
+                    // CardServico(
+                    //   url: 'img/limpeza.png',
+                    //   horario: '02/02/2026',
+                    //   titulo: 'Limpeza de Casa',
+                    //   subtitulo: 'R\$ 70,00 / hora'
+                    // ),
 
                     SizedBox(height: 100),
               
@@ -149,7 +178,12 @@ class AbasServicosState extends State<AbasServicos> {
             ),
 
             BotaoFlutuante(
-              onPressed: () => Navigator.of(context).pushNamed(Rotas.novoServico), 
+              onPressed: () async {
+                await Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => TelaCadastroServico()));
+                
+                preencheLista();
+              }, 
               icon: Icons.add, 
               texto: 'Novo Serviço',
               bottom: 0,
@@ -164,12 +198,16 @@ class AbasServicosState extends State<AbasServicos> {
 }
 
 class CardServico extends StatelessWidget {
+  final Function() atualizaLista;
+  final Servico servico;
   final String url;
   final String horario;
   final String titulo;
   final String subtitulo;
 
   CardServico({
+    required this.atualizaLista,
+    required this.servico,
     required this.url,
     required this.horario,
     required this.titulo,
@@ -237,9 +275,15 @@ class CardServico extends StatelessWidget {
                 Botao(
                   height: 70,
                   width: 200,
-                  onPressed: () {},
+                  onPressed: () async {
+                    await Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => TelaEditarServico(servico: servico,))
+                    );
+
+                    atualizaLista();
+                  },
                   fontSize: 20,
-                  texto: 'Ver Detalhes',
+                  texto: 'Editar',
                   corTexto: const Color.fromARGB(255, 0, 0, 0),
                   corFundo: const Color.fromARGB(255, 255, 255, 255),
                   borda: true

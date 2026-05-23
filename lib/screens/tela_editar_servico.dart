@@ -1,29 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/widgets/botao_flutuante.dart';
+import 'package:flutter_application_1/widgets/botao_voltar.dart';
 import 'package:flutter_application_1/widgets/campo.dart';
 import 'package:flutter_application_1/widgets/subcategorias/subcategorias_conserto_cadastro.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 enum categorias { nenhuma, consertos, limpeza, beleza, transporte, alimentacao }
 
-class TelaCadastroServicoDetalhes extends StatefulWidget {
-  final Function(int) trocarTela;
-  final Function(String) setTitulo;
-  final Function(String) setCep;
-  final Function(String) setDescricao;
+class TelaEditarServico extends StatefulWidget {
+  final servico;
 
-  TelaCadastroServicoDetalhes({
-    required this.trocarTela,
-    required this.setTitulo,
-    required this.setCep,
-    required this.setDescricao,
-  });
+  TelaEditarServico({required this.servico});
 
   @override
-  State<TelaCadastroServicoDetalhes> createState() => TelaCadastroServicoDetalhesState();
+  TelaEditarServicoState createState() => TelaEditarServicoState();
 }
 
-class TelaCadastroServicoDetalhesState extends State<TelaCadastroServicoDetalhes> {
+class TelaEditarServicoState extends State<TelaEditarServico> {
   final cepFormatter = MaskTextInputFormatter(
     mask: '#####-###',
     filter: {"#": RegExp(r'[0-9]')},
@@ -47,14 +40,19 @@ class TelaCadastroServicoDetalhesState extends State<TelaCadastroServicoDetalhes
       children: [
         SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 50),
             child: Column(
               children: [
                 SizedBox(height: 20),
 
                 Text(
                   'Conte-nos os detalhes',
-                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.w700),
+                  style: TextStyle(
+                    fontSize: 40, 
+                    fontWeight: FontWeight.w700,
+                    decoration: TextDecoration.none,
+                    color: Colors.black
+                  ),
                 ),
           
                 SizedBox(height: 20),
@@ -63,7 +61,9 @@ class TelaCadastroServicoDetalhesState extends State<TelaCadastroServicoDetalhes
                   'Descreva bem o que você oferece e onde atende.',
                   style: TextStyle(
                     fontSize: 20, 
-                    fontWeight: FontWeight.w500
+                    fontWeight: FontWeight.w500,
+                    decoration: TextDecoration.none,
+                    color: const Color.fromARGB(255, 59, 59, 59)
                   ),
                 ),
           
@@ -130,16 +130,29 @@ class TelaCadastroServicoDetalhesState extends State<TelaCadastroServicoDetalhes
 
         BotaoFlutuante(
           onPressed: () {
-            widget.setTitulo(campoTitulo.text);
-            widget.setCep(campoCep.text);
-            widget.setDescricao(campoDescricao.text);
-
-            widget.trocarTela(4);
+           
           },
           icon: Icons.arrow_forward, 
-          texto: "Continuar",
+          texto: "Salvar",
           bottom: 20,
           enabled: true,
+        ),
+
+        Row(
+          children: [
+            BotaoVoltar(),
+            
+            Text(
+              "Editar Serviço",
+              style: TextStyle(
+                color: Color.fromARGB(255, 36, 56, 155),
+                decoration: TextDecoration.none,
+                fontSize: 25,
+                fontWeight: FontWeight.w600
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
       ],
     );
