@@ -33,7 +33,7 @@ class FormSubcategoriaState extends State<FormSubcategoria> {
 
   TextEditingController campoNome = TextEditingController();
 
-  @override
+  @override 
   void dispose() {
     super.dispose();
     campoNome.dispose();
@@ -48,7 +48,7 @@ class FormSubcategoriaState extends State<FormSubcategoria> {
           onPressed: () {
             Navigator.of(context).pop(false);
           }, 
-          icon: Icon(Icons.arrow_back, size: 40,color: Colors.black,)
+          icon: Icon(Icons.arrow_back, size: 40,color: Color.fromARGB(255, 36, 56, 155),)
         ),
         
         Padding(
@@ -57,7 +57,7 @@ class FormSubcategoriaState extends State<FormSubcategoria> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                adicionando ? "Novo Estado" : "id: " + subcategoria!.id.toString(),
+                adicionando ? "Nova Subcategoria" : "id: " + subcategoria!.id.toString(),
                 style: TextStyle(
                   color: Colors.black,
                   decoration: TextDecoration.none,
@@ -95,7 +95,7 @@ class FormSubcategoriaState extends State<FormSubcategoria> {
                   Navigator.of(context).pop(true);
                 }, 
                 style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.black),
+                  backgroundColor: WidgetStatePropertyAll(Color.fromARGB(255, 36, 56, 155)),
                   minimumSize: WidgetStatePropertyAll(Size(500,50))
                 ),
                 child: Text(

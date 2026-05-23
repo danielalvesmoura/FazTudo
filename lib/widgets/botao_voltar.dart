@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 
 class BotaoVoltar extends StatelessWidget {
 
+  final bool? retorna;
+
+  BotaoVoltar({this.retorna});
+
   @override
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {
-        Navigator.pop(context);
+        Navigator.of(context).pop(retorna);
       }, 
       icon: Icon(
         Icons.arrow_back, 

@@ -39,21 +39,21 @@ class TelaHomeState extends State<TelaHome> {
           ],
         ),
         actions: [
-          Botao(
-            width: 100, 
-            height: 50, 
-            texto: 'Log-out', 
-            fontSize: 20,
-            onPressed: () {
-              Navigator.pop(context);
-              Navigator.pop(context);
-            },
-            corTexto: Colors.white,
-            corFundo: const Color.fromARGB(255, 36, 56, 155),
-              borda: false
-          ),
+          // Botao(
+          //   width: 100, 
+          //   height: 50, 
+          //   texto: 'Log-out', 
+          //   fontSize: 20,
+          //   onPressed: () {
+          //     Navigator.pop(context);
+          //     Navigator.pop(context);
+          //   },
+          //   corTexto: Colors.white,
+          //   corFundo: const Color.fromARGB(255, 36, 56, 155),
+          //     borda: false
+          // ),
 
-          SizedBox(width: 10,),
+          // SizedBox(width: 10,),
 
           IconButton(
             icon: Icon(Icons.notifications, color: Color.fromARGB(255, 36, 56, 155), size: 35),

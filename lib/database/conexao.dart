@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_application_1/models/subcategoria.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
 import 'package:path/path.dart';
@@ -41,12 +42,28 @@ class Conexao {
         await db.execute("""
           CREATE TABLE subcategorias(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nome TEXT NOT NULL,
+            nome TEXT NOT NULL
           )
         """);
 
         await db.rawInsert("INSERT INTO usuarios (nome,email,telefone,senha) VALUES (?,?,?,?)",
         ['admin','admin@faztudo.com','00000000000','admin']);
+
+        final subcategorias = [
+          {"nome": "Todos"},
+          {"nome": "Elétrico"},
+          {"nome": "Encanamento"},
+          {"nome": "Mecânico"},
+          {"nome": "Alvenaria"},
+          {"nome": "Eletrônico"},
+        ];
+        
+        for(final subcategoria in subcategorias) {
+          await db.insert("subcategorias", 
+            subcategoria
+          );
+        }
+
       },
     );
   }

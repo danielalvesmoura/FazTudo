@@ -53,7 +53,7 @@ class SubcategoriaDAO {
   Future<void> update(int id, String nome) async {
     final db = await Conexao.instancia.banco;
 
-    await db.update("usuarios", 
+    await db.update("subcategorias", 
       {
         "nome": nome
       },
@@ -68,7 +68,7 @@ class SubcategoriaDAO {
   Future<void> delete(int id) async {
     final db = await Conexao.instancia.banco;
 
-    await db.delete("usuarios", 
+    await db.delete("subcategorias", 
       where: "id = ?",
       whereArgs: [id]
     );

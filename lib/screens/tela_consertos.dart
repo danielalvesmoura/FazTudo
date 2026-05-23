@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/dao/subcategoria_dao.dart';
 import 'package:flutter_application_1/models/servico.dart';
+import 'package:flutter_application_1/models/subcategoria.dart';
 import 'package:flutter_application_1/screens/subcategoria/tela_lista_subcategorias.dart';
 import 'package:flutter_application_1/sessao.dart';
 import 'package:flutter_application_1/widgets/subcategorias/subcategorias_conserto.dart';
 import 'package:flutter_application_1/widgets/tela_consertos/card_oferta.dart';
 
-class TelaConsertos extends StatelessWidget {
+class TelaConsertos extends StatefulWidget {
+  @override
+  TelaConsertosState createState() => TelaConsertosState();
+}
+
+class TelaConsertosState extends State<TelaConsertos> {
   Sessao sessao = Sessao();
 
   final consertos = [
@@ -25,6 +32,24 @@ class TelaConsertos extends StatelessWidget {
       pessoa: 'Larissa-Oficial1'
     ),
   ];
+
+  List<Subcategoria> subcategorias = [];
+
+  SubcategoriaDAO subcategoriaDao = SubcategoriaDAO();
+
+  Future<void> preencheLista() async {
+    List<Subcategoria> resultado = await subcategoriaDao.getSubcategorias();
+
+    subcategorias = resultado;
+
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    preencheLista();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -145,7 +170,7 @@ class TelaConsertos extends StatelessWidget {
 
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: SubcategoriasConserto()
+                child: SubcategoriasConserto(subcategorias: subcategorias,)
               ),
 
               SizedBox(height: 10),
@@ -153,12 +178,12 @@ class TelaConsertos extends StatelessWidget {
               if(sessao.usuarioLogado!.nome == "admin")
                 TextButton(
                   onPressed: () async {
-                    if(
-                      await Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) => TelaListaSubcategorias()
-                    ))
-                    ) setState()
-                    
+                    final reconstroi = await Navigator.of(context).push<bool>(
+                      MaterialPageRoute(
+                        builder: (_) => TelaListaSubcategorias()
+                      ));
+
+                    if(reconstroi == true) preencheLista();
                   }, 
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -178,7 +203,7 @@ class TelaConsertos extends StatelessWidget {
                   )
                 ),
         
-              SizedBox(height: 60),
+              SizedBox(height: 40),
 
               SizedBox(
                 height: 650,
