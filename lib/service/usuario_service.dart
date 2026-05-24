@@ -27,6 +27,11 @@ class UsuarioService {
     return await usuarioDAO.encontraPorId(id);
   }
 
+  Future<bool> emailExistente(String email) async {
+    if(await usuarioDAO.encontraPorEmail(email) != null) return true;
+    return false;
+  }
+
   Future<String> retornaNome(int id) async {
     return await usuarioDAO.retornaNome(id);
   }

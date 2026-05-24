@@ -288,6 +288,8 @@ class EmailState extends State<Email> {
 
   SessaoService sessaoService = SessaoService();
 
+  String mensagemErroEmail = "";
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -351,9 +353,20 @@ class EmailState extends State<Email> {
               if(!regex.validarEmail(value)) {
                 return "Email inválido";
               }
-      
+
               return null;
             },
+          ),
+
+          Text(
+            mensagemErroEmail,
+            style: TextStyle(
+              color: Color.fromARGB(255, 255, 0, 0),
+              decoration: TextDecoration.none,
+              fontSize: 18,
+              fontWeight: FontWeight.w500
+            ),
+            textAlign: TextAlign.center,
           ),
       
           SizedBox(height: 20,),
@@ -454,9 +467,20 @@ class EmailState extends State<Email> {
             height: 80, 
             texto: 'Criar conta', 
             fontSize: 20,
-            onPressed: () {
+            onPressed: () async {
               bool valido = _formKey.currentState!.validate();
               if(valido) {
+                if(await usuarioService.emailExistente(campoEmail.text) == true) {
+                  setState(() {
+                    mensagemErroEmail = "Este email já está cadastrado";
+                  });
+                  return;
+                } else {
+                  setState(() {
+                    mensagemErroEmail = "";
+                  });
+                }
+
                 Sessao sessao = Sessao();
                 usuarioService.cadastrar(campoNome.text, campoEmail.text, campoTelefone.text, campoSenha.text);
                 sessaoService.atualizarUsuarioLogadoPorEmail(campoEmail.text);
