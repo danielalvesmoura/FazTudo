@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/service/regex.dart';
 import 'package:flutter_application_1/service/usuario_service.dart';
 import 'package:flutter_application_1/widgets/botao.dart';
 import 'package:flutter_application_1/widgets/campo.dart';
@@ -281,6 +282,8 @@ class EmailState extends State<Email> {
 
   UsuarioService usuarioService = UsuarioService();
 
+  Regex regex = Regex();
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -340,6 +343,10 @@ class EmailState extends State<Email> {
               if(value == null || value.trim().isEmpty) {
                 return "Digite o email";
               }
+
+              if(!regex.validarEmail(value)) {
+                return "Email inválido";
+              }
       
               return null;
             },
@@ -359,6 +366,10 @@ class EmailState extends State<Email> {
               if(value == null || value.trim().isEmpty) {
                 return "Digite o telefone";
               }
+
+              if(!regex.validarTelefone(value)) {
+                return "Telefone inválido";
+              }
       
               return null;
             },
@@ -375,12 +386,26 @@ class EmailState extends State<Email> {
               if(value == null || value.trim().isEmpty) {
                 return "Digite a senha";
               }
+
+              if(!regex.validarSenha(value)) {
+                return "Senha inválida";
+              }
       
               return null;
             },
           ),
+
+          Text(
+            'A senha deve conter pelo menos 8 caracteres, 1 número, 1 caractere especial e 1 letra maiúscula.',
+            style: TextStyle(
+              color: const Color.fromARGB(255, 43, 43, 43),
+              decoration: TextDecoration.none,
+              fontSize: 15,
+              fontWeight: FontWeight.w500
+            ),
+          ),
       
-          SizedBox(height: 30,),
+          SizedBox(height: 10,),
       
           Row(
             children: [

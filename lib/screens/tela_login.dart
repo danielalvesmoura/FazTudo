@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/service/regex.dart';
 import 'package:flutter_application_1/service/servico_service.dart';
 import 'package:flutter_application_1/service/sessao_service.dart';
 import 'package:flutter_application_1/service/usuario_service.dart';
@@ -33,6 +34,8 @@ class TelaLoginState extends State<TelaLogin> {
   String mensagemErro = "";
 
   SessaoService sessaoService = SessaoService();
+
+  Regex regex = Regex();
 
   @override
   Widget build(BuildContext context) {
@@ -191,7 +194,7 @@ class TelaLoginState extends State<TelaLogin> {
                     ),
 
                     SizedBox(height: 40),
-
+ 
                     Campo(
                       label: 'E-MAIL',
                       hint: 'seu@email.com',
@@ -202,6 +205,10 @@ class TelaLoginState extends State<TelaLogin> {
                       validator: (value) {
                         if(value == null || value.trim().isEmpty) {
                           return "Digite o email";
+                        }
+
+                        if(!regex.validarEmail(value)) {
+                          return "Email inválido";
                         }
                 
                         return null;
