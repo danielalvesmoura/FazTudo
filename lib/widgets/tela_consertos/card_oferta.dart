@@ -7,6 +7,7 @@ class CardOferta extends StatelessWidget {
   final String preco;
   final String descricao;
   final String usuario;
+  final double? avaliacao;
 
   const CardOferta({
     super.key, 
@@ -15,7 +16,8 @@ class CardOferta extends StatelessWidget {
     required this.titulo, 
     required this.preco, 
     required this.descricao, 
-    required this.usuario
+    required this.usuario,
+    required this.avaliacao
   });
 
   @override
@@ -77,7 +79,7 @@ class CardOferta extends StatelessWidget {
                                 Icon(Icons.star, size: 30, color: Colors.amber[600],),
                                 SizedBox(width: 5),
                                 Text(
-                                  '3.6',
+                                  avaliacao.toString(),
                                   style: TextStyle(
                                     fontSize: 18,
                                     color: const Color.fromARGB(255, 0, 0, 0),

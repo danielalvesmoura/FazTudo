@@ -365,7 +365,9 @@ class TelaAvaliacoesState extends State<TelaAvaliacoes> {
                                       ),
                                       SizedBox(height: 40,),
                                     ],
-                                  )
+                                  ),
+
+                                SizedBox(height: 100,),
                               ],
                             ),
                           ),

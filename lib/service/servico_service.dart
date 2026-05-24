@@ -8,8 +8,8 @@ class ServicoService {
     servicoDAO.insert(servico);
   }
 
-  Future<List<Servico>> listaTodos() async {
-    List<Servico> servicos = await servicoDAO.getServicos();
+  Future<List<Map<String,dynamic>>> listaTodos() async {
+    List<Map<String,dynamic>> servicos = await servicoDAO.getServicos();
 
     if(servicos.isEmpty) return [];
     return servicos;

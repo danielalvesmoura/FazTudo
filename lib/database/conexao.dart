@@ -87,6 +87,33 @@ class Conexao {
         await db.rawInsert("INSERT INTO avaliacoes (nota,descricao,data,servico_id,usuario_id) VALUES (?,?,?,?,?)",
         [2.2,'Muito ruim',DateTime.now().toIso8601String(),1,1]);
 
+        await db.rawInsert("INSERT INTO avaliacoes (nota,descricao,data,servico_id,usuario_id) VALUES (?,?,?,?,?)",
+        [2.2,'Muito ruim',DateTime.now().toIso8601String(),1,1]);
+
+        await db.rawInsert("INSERT INTO avaliacoes (nota,descricao,data,servico_id,usuario_id) VALUES (?,?,?,?,?)",
+        [2.2,'Muito ruim',DateTime.now().toIso8601String(),1,1]);
+
+        await db.rawInsert("INSERT INTO avaliacoes (nota,descricao,data,servico_id,usuario_id) VALUES (?,?,?,?,?)",
+        [2.2,'Muito ruim',DateTime.now().toIso8601String(),1,1]);
+
+        await db.rawInsert("INSERT INTO avaliacoes (nota,descricao,data,servico_id,usuario_id) VALUES (?,?,?,?,?)",
+        [2.2,'Muito ruim',DateTime.now().toIso8601String(),1,1]);
+
+        await db.rawInsert("INSERT INTO avaliacoes (nota,descricao,data,servico_id,usuario_id) VALUES (?,?,?,?,?)",
+        [2.2,'Muito ruim',DateTime.now().toIso8601String(),1,1]);
+
+        await db.rawInsert("INSERT INTO avaliacoes (nota,descricao,data,servico_id,usuario_id) VALUES (?,?,?,?,?)",
+        [2.2,'Muito ruim',DateTime.now().toIso8601String(),1,1]);
+
+        await db.rawInsert("INSERT INTO avaliacoes (nota,descricao,data,servico_id,usuario_id) VALUES (?,?,?,?,?)",
+        [2.2,'Muito ruim',DateTime.now().toIso8601String(),1,1]);
+
+        await db.rawInsert("INSERT INTO avaliacoes (nota,descricao,data,servico_id,usuario_id) VALUES (?,?,?,?,?)",
+        [2.2,'Muito ruim',DateTime.now().toIso8601String(),1,1]);
+
+        await db.rawInsert("INSERT INTO avaliacoes (nota,descricao,data,servico_id,usuario_id) VALUES (?,?,?,?,?)",
+        [2.2,'Muito ruim',DateTime.now().toIso8601String(),1,1]);
+
         final subcategorias = [
           {"nome": "Todos"},
           {"nome": "Elétrico"},

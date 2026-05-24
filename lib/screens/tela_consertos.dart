@@ -20,27 +20,7 @@ class TelaConsertos extends StatefulWidget {
 class TelaConsertosState extends State<TelaConsertos> {
   Sessao sessao = Sessao();
 
-  List<Servico> consertos = [
-    Servico(
-      id: 0,
-      url: 'img/encanamento.png',
-      titulo: 'Revisão e Conserto de Encanamento',
-      preco: 100.00,
-      descricao: 'Serviço profissional de revisão e conserto de encanamento, garantindo soluções rápidas e eficientes para vazamentos, entupimentos...',
-      cep: '23459-000',
-      usuario_id: 1
-    ),
-
-    Servico(
-      id: 1,
-      url: 'img/mecanica.png',
-      titulo: 'Troca de Óleo e Pneus',
-      preco: 100.00,
-      descricao: 'Seu carro merece cuidado de verdade! 🚗💨Fazemos troca de óleo e pneus rapidinho e sem complicação. Peças de qualidade e serviço...',
-      cep: '23459-000',
-      usuario_id: 1
-    ),
-  ];
+  List<Map<String,dynamic>> consertos = [];
 
   List<Subcategoria> subcategorias = [];
 
@@ -50,7 +30,7 @@ class TelaConsertosState extends State<TelaConsertos> {
 
   Future<void> preencheLista() async {
     List<Subcategoria> resultadoSubcategorias = await subcategoriaDao.getSubcategorias();
-    List<Servico> resultadoServicos = await servicoService.listaTodos();
+    List<Map<String,dynamic>> resultadoServicos = await servicoService.listaTodos();
 
     subcategorias = resultadoSubcategorias;
     consertos = resultadoServicos;
@@ -229,19 +209,24 @@ class TelaConsertosState extends State<TelaConsertos> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      for(Servico servico in consertos)
+                      for(Map<String,dynamic> servico in consertos)
                         Column(
                           children: [
                             CardOferta(
-                              urlImagem: servico.url,
-                              titulo: servico.titulo,
-                              preco: 'R\$ ${servico.preco} / hora', 
-                              descricao: servico.descricao,
-                              usuario: "Anônimo",
-                              botaoAvaliacao: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(builder: (_) => TelaAvaliacoes(servico: servico,))
+                              urlImagem: servico["url"],
+                              titulo: servico["titulo"],
+                              preco: 'R\$ ${servico["preco"]} / hora', 
+                              descricao: servico["descricao"],
+                              usuario: servico["nome"],
+                              avaliacao: servico["avaliacao"] ?? 0,
+                              botaoAvaliacao: () async {
+                                await Navigator.of(context).push(
+                                  MaterialPageRoute(builder: (_) => TelaAvaliacoes(
+                                    servico: Servico.fromMap(servico),
+                                  ))
                                 );
+
+                                preencheLista();
                               },
                             ),
                             SizedBox(height: 60)

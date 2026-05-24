@@ -8,15 +8,28 @@ class ServicoDAO {
     await db.insert("servicos",servico.toMap());
   }
 
-  Future<List<Servico>> getServicos() async {
+  Future<List<Map<String,dynamic>>> getServicos() async {
     final db = await Conexao.instancia.banco;
 
-    List<Map<String,dynamic>> servicos = await db.query("servicos");
+    List<Map<String,dynamic>> servicos = await db.rawQuery("""
+      SELECT
+        s.*,
+        usuarios.nome,
 
-    List<Servico> lista = servicos.map((map) => Servico.fromMap(map)).toList();
+        (
+          SELECT AVG(a.nota)
+          FROM avaliacoes a
+          WHERE a.servico_id = s.id
+        ) AS avaliacao
 
-    if(lista.isEmpty) return [];
-    return lista;
+      FROM servicos s
+      INNER JOIN usuarios
+        ON s.usuario_id = usuarios.id
+    """);
+
+
+    if(servicos.isEmpty) return [];
+    return servicos;
   }
 
   Future<List<Servico>> getServicosPorUsuario(int usuario_id) async {
