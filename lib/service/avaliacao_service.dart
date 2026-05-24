@@ -13,8 +13,7 @@ class AvaliacaoService {
     return await avaliacaoDAO.getAvaliacoes(servico_id);
   }
 
-  update(int id, double nota, String descricao, int servico_id, int usuario_id, DateTime data) {
-    Avaliacao avaliacao = Avaliacao(usuario_id: usuario_id, nota: nota, descricao: descricao, servico_id: servico_id, data: data.toIso8601String());
+  update(int id, Avaliacao avaliacao) {
     avaliacaoDAO.update(id, avaliacao);
   }
 
