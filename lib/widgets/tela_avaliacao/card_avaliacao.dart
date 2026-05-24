@@ -94,6 +94,7 @@ class CardAvaliacao extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
         ),
+        
       ],
     );
   }

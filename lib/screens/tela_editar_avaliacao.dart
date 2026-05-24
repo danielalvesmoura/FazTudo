@@ -127,7 +127,7 @@ class TelaEditarAvaliacaoState extends State<TelaEditarAvaliacao> {
                             hint: 'Ex: Ótimo serviço!',
                             icon: Icons.star_border_outlined,
                             minLines: 1,
-                            maxLines: 5,
+                            maxLines: 17,
                             controller: campoDescricao,
                             validator: (value) {
                               if(value == null || value.trim().isEmpty) {

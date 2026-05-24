@@ -137,7 +137,7 @@ class TelaAvaliacoesState extends State<TelaAvaliacoes> {
                                                 fontWeight: FontWeight.w900,
                                               ),
                                             ),
-                                            SizedBox(height: 10,),
+                                            SizedBox(height: 20,),
                                             Text(
                                               widget.servico.titulo,
                                               textAlign: TextAlign.center,
@@ -149,7 +149,7 @@ class TelaAvaliacoesState extends State<TelaAvaliacoes> {
                                               ),
                                             ),
                               
-                                            SizedBox(height: 30,),
+                                            SizedBox(height: 20,),
                               
                                             Separador(),
                                                 
