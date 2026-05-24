@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/service/regex.dart';
-import 'package:flutter_application_1/service/servico_service.dart';
 import 'package:flutter_application_1/service/sessao_service.dart';
 import 'package:flutter_application_1/service/usuario_service.dart';
 import 'package:flutter_application_1/widgets/botao.dart';

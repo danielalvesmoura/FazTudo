@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CardOferta extends StatelessWidget {
+  final VoidCallback botaoAvaliacao;
   final String urlImagem;
   final String titulo;
   final String preco;
@@ -9,6 +10,7 @@ class CardOferta extends StatelessWidget {
 
   const CardOferta({
     super.key, 
+    required this.botaoAvaliacao,
     required this.urlImagem, 
     required this.titulo, 
     required this.preco, 
@@ -31,6 +33,8 @@ class CardOferta extends StatelessWidget {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
+                
+
                 Text(
                   titulo,
                   textAlign: TextAlign.center,
@@ -42,18 +46,57 @@ class CardOferta extends StatelessWidget {
                   ),
                 ),
             
-                Text(
-                  preco,
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
-                    height: 1.6,
-                    fontWeight: FontWeight.w500
-                  ),
+                Stack(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          preco,
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            height: 1.6,
+                            fontWeight: FontWeight.w500
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        InkWell(
+                          onTap: botaoAvaliacao,
+                          borderRadius: BorderRadius.circular(20),
+                          child: Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.star, size: 30, color: Colors.amber[600],),
+                                SizedBox(width: 5),
+                                Text(
+                                  '3.6',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: const Color.fromARGB(255, 0, 0, 0),
+                                    height: 1.6,
+                                    fontWeight: FontWeight.w600
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                        
+                      ],
+                    ),
+                  ],
                 ),
-
+                
                 SizedBox(height: 10),
-
+            
                 Text(
                   descricao,
                   style: TextStyle(
@@ -63,19 +106,19 @@ class CardOferta extends StatelessWidget {
                     fontWeight: FontWeight.w500
                   ),
                 ),
-
+            
                 SizedBox(height: 20),
-
+            
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
-
+            
                         Icon(Icons.person_pin),
-
+            
                         SizedBox(width: 10),
-
+            
                         Text(
                           usuario,
                           style: TextStyle(
@@ -87,7 +130,7 @@ class CardOferta extends StatelessWidget {
                         ),
                       ],
                     ),
-
+            
                     ElevatedButton(
                       onPressed: (){}, 
                       style: ElevatedButton.styleFrom(
@@ -119,6 +162,9 @@ class CardOferta extends StatelessWidget {
             
               ],
             ),
+
+                
+              
           )    
         ]
       ),

@@ -10,7 +10,4 @@ class Sessao {
   Sessao._construtor();
 
   Usuario? usuarioLogado;
-  
-
-  
 }

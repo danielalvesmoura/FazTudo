@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_application_1/models/subcategoria.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
 import 'package:path/path.dart';
@@ -59,6 +58,19 @@ class Conexao {
           )
         """);
 
+        await db.execute("""
+          CREATE TABLE avaliacoes(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nota REAL NOT NULL,
+            descricao TEXT NOT NULL,
+            data TEXT NOT NULL,
+            servico_id INTEGER NOT NULL,
+            usuario_id INTEGER NOT NULL,
+            FOREIGN KEY (servico_id) REFERENCES servicos(id)
+            FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+          )
+        """);
+
         await db.rawInsert("INSERT INTO usuarios (nome,email,telefone,senha) VALUES (?,?,?,?)",
         ['admin','admin@faztudo.com','00000000000','admin']);
 
@@ -71,6 +83,9 @@ class Conexao {
           "00000-000",
           1
         ]);
+
+        await db.rawInsert("INSERT INTO avaliacoes (nota,descricao,data,servico_id,usuario_id) VALUES (?,?,?,?,?)",
+        [2.2,'Muito ruim',DateTime.now().toIso8601String(),1,1]);
 
         final subcategorias = [
           {"nome": "Todos"},

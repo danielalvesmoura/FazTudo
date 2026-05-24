@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/service/regex.dart';
 import 'package:flutter_application_1/service/usuario_service.dart';
+import 'package:flutter_application_1/sessao.dart';
 import 'package:flutter_application_1/widgets/botao.dart';
 import 'package:flutter_application_1/widgets/campo.dart';
 import 'package:flutter_application_1/widgets/campo_senha.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_application_1/widgets/checkbox.dart';
 import 'package:flutter_application_1/widgets/logo.dart';
 import 'package:flutter_application_1/screens/rotas.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:flutter_application_1/service/sessao_service.dart';
 
 enum Tela { escolher, email }
 
@@ -284,6 +286,8 @@ class EmailState extends State<Email> {
 
   Regex regex = Regex();
 
+  SessaoService sessaoService = SessaoService();
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -453,12 +457,12 @@ class EmailState extends State<Email> {
             onPressed: () {
               bool valido = _formKey.currentState!.validate();
               if(valido) {
+                Sessao sessao = Sessao();
                 usuarioService.cadastrar(campoNome.text, campoEmail.text, campoTelefone.text, campoSenha.text);
+                sessaoService.atualizarUsuarioLogadoPorEmail(campoEmail.text);
                 Navigator.of(context).pushNamed(Rotas.home);
               }
-              
-              
-            ;},
+            },
             corTexto: Colors.white,
             corFundo: const Color.fromARGB(255, 36, 56, 155),
             borda: false

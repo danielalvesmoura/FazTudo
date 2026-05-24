@@ -5,6 +5,7 @@ import 'package:flutter_application_1/models/servico.dart';
 import 'package:flutter_application_1/models/subcategoria.dart';
 import 'package:flutter_application_1/models/usuario.dart';
 import 'package:flutter_application_1/screens/subcategoria/tela_lista_subcategorias.dart';
+import 'package:flutter_application_1/screens/tela_avaliacoes.dart';
 import 'package:flutter_application_1/service/servico_service.dart';
 import 'package:flutter_application_1/service/usuario_service.dart';
 import 'package:flutter_application_1/sessao.dart';
@@ -237,6 +238,11 @@ class TelaConsertosState extends State<TelaConsertos> {
                               preco: 'R\$ ${servico.preco} / hora', 
                               descricao: servico.descricao,
                               usuario: "Anônimo",
+                              botaoAvaliacao: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(builder: (_) => TelaAvaliacoes(servico: servico,))
+                                );
+                              },
                             ),
                             SizedBox(height: 60)
                           ],

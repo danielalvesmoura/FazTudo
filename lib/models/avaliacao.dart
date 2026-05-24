@@ -1,19 +1,39 @@
 class Avaliacao {
-  final String id;
-  final String servicoId;
-  final String clienteId;
-  final String prestadorId;
-  final int nota;
-  final String comentario;
-  final DateTime dataCriacao;
+  int? id;
+  double nota;
+  String descricao;
+  int servico_id;
+  int usuario_id;
+  String data;
 
   Avaliacao({
-    required this.id,
-    required this.servicoId,
-    required this.clienteId,
-    required this.prestadorId,
+    this.id,
     required this.nota,
-    required this.comentario,
-    required this.dataCriacao,
+    required this.descricao,
+    required this.servico_id,
+    required this.usuario_id,
+    required this.data
   });
+
+  factory Avaliacao.fromMap(Map<String, dynamic> map) {
+    return Avaliacao(
+      id: map["id"],
+      nota: map["nota"],
+      descricao: map["descricao"],
+      servico_id: map["servico_id"],
+      usuario_id: map["usuario_id"],
+      data: map["data"]
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      "id": id,
+      "nota": nota,
+      "descricao": descricao,
+      "servico_id": servico_id,
+      "usuario_id": usuario_id,
+      "data": data
+    };
+  }
 }
