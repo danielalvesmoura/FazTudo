@@ -347,27 +347,37 @@ class TelaAvaliacoesState extends State<TelaAvaliacoes> {
                                       ),
                                     ],
                                   ),
-                            
-                                for(Map<String, dynamic> avaliacao in avaliacoes)
-                                  Column(
-                                    children: [
-                                      CardAvaliacao(
-                                        data: DateTime.parse(avaliacao["data"]),
-                                        nota: avaliacao["nota"],
-                                        usuario: avaliacao["nome"],
-                                        descricao: avaliacao["descricao"],
-                                        autor: avaliacao["usuario_id"] == sessao.usuarioLogado!.id! ? true : false,
-                                        botaoDeletar: () {
-                                          avaliacaoService.deletar(avaliacao["id"]);
-                                          preencheLista();
-                                          _notaUsuario = 0;
-                                        },
-                                      ),
-                                      SizedBox(height: 40,),
-                                    ],
-                                  ),
 
-                                SizedBox(height: 100,),
+                                SizedBox(
+                                  height: 550,
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      children: [
+                                        for(Map<String, dynamic> avaliacao in avaliacoes)
+                                          Column(
+                                            children: [
+                                              CardAvaliacao(
+                                                data: DateTime.parse(avaliacao["data"]),
+                                                nota: avaliacao["nota"],
+                                                usuario: avaliacao["nome"],
+                                                descricao: avaliacao["descricao"],
+                                                autor: avaliacao["usuario_id"] == sessao.usuarioLogado!.id! ? true : false,
+                                                botaoDeletar: () {
+                                                  avaliacaoService.deletar(avaliacao["id"]);
+                                                  preencheLista();
+                                                  _notaUsuario = 0;
+                                                },
+                                                botaoEditar: () {
+                                                  
+                                                },
+                                              ),
+                                              SizedBox(height: 40,),
+                                            ],
+                                          ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           ),

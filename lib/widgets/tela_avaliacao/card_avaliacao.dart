@@ -9,6 +9,7 @@ class CardAvaliacao extends StatelessWidget {
   final String descricao;
   final bool autor;
   final Function() botaoDeletar;
+  final Function() botaoEditar;
 
   CardAvaliacao({
     required this.usuario,
@@ -16,7 +17,8 @@ class CardAvaliacao extends StatelessWidget {
     required this.data,
     required this.descricao,
     required this.autor,
-    required this.botaoDeletar
+    required this.botaoDeletar,
+    required this.botaoEditar,
   });
 
   @override
@@ -38,12 +40,23 @@ class CardAvaliacao extends StatelessWidget {
             ),
 
             if(autor)
-              IconButton(
-                onPressed: botaoDeletar, 
-                icon: Icon(
-                  Icons.delete_outlined, 
-                  color: Colors.red
-                )
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: botaoEditar, 
+                    icon: Icon(
+                      Icons.edit, 
+                      color: Color.fromARGB(255, 36, 56, 155)
+                    )
+                  ),
+                  IconButton(
+                    onPressed: botaoDeletar, 
+                    icon: Icon(
+                      Icons.delete_outlined, 
+                      color: Colors.red
+                    )
+                  ),
+                ],
               )
           ],
         ),

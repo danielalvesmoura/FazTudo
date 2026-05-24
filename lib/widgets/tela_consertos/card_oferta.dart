@@ -79,7 +79,7 @@ class CardOferta extends StatelessWidget {
                                 Icon(Icons.star, size: 30, color: Colors.amber[600],),
                                 SizedBox(width: 5),
                                 Text(
-                                  avaliacao.toString(),
+                                  avaliacao!.toStringAsFixed(1),
                                   style: TextStyle(
                                     fontSize: 18,
                                     color: const Color.fromARGB(255, 0, 0, 0),
