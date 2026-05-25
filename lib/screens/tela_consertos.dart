@@ -218,7 +218,7 @@ class TelaConsertosState extends State<TelaConsertos> {
                               preco: 'R\$ ${servico.preco} / hora', 
                               descricao: servico.descricao,
                               usuario: servico.nomeUsuario,
-                              avaliacao: servico.avaliacao,
+                              avaliacao: servico.avaliacao != null ? servico.avaliacao : 0,
                               botaoAvaliacao: () async {
                                 await Navigator.of(context).push(
                                   MaterialPageRoute(builder: (_) => TelaAvaliacoes(

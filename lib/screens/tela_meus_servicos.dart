@@ -149,7 +149,7 @@ class AbasServicosState extends State<AbasServicos> {
                         child: CardServico(
                           atualizaLista: atualizaTela,
                           servico: servico,
-                          url: servico.url,
+                          url: 'img/encanamento.png',
                           horario: 'Hoje às 19:40',
                           titulo: servico.titulo,
                           subtitulo: 'R\$ ${servico.preco} / hora'

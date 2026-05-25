@@ -1,5 +1,5 @@
 import 'package:flutter_application_1/dao/avaliacao_dao.dart';
-import 'package:flutter_application_1/dto/avaliacaoDTO.dart';
+import 'package:flutter_application_1/dto/avaliacao_dto.dart';
 import 'package:flutter_application_1/models/avaliacao.dart';
 import 'package:flutter_application_1/repository/avaliacao_repository.dart';
 

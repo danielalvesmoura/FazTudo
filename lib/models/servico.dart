@@ -1,6 +1,5 @@
 class Servico {
   int? id;
-  String url;
   String titulo;
   double preco;
   String descricao;
@@ -9,7 +8,6 @@ class Servico {
 
   Servico({
     required this.id,
-    required this.url,
     required this.titulo,
     required this.preco,
     required this.descricao,
@@ -20,7 +18,6 @@ class Servico {
   factory Servico.fromMap(Map<String, dynamic> map) {
     return Servico(
       id: map["id"],
-      url: map["url"], 
       titulo: map["titulo"], 
       preco: map["preco"], 
       descricao: map["descricao"], 
@@ -32,7 +29,6 @@ class Servico {
   Map<String, dynamic> toMap() {
     return {
       "id": id,
-      "url": url,
       "titulo": titulo,
       "preco": preco,
       "descricao": descricao,

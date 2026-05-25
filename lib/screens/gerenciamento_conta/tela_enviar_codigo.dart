@@ -74,19 +74,7 @@ class TelaEnviarCodigoState extends State<TelaEnviarCodigo> {
                       fontSize: 25,
                       fontWeight: FontWeight.w400,
                     ),
-                  ),
-
-                  SizedBox(height: 30,),
-
-                  Text(
-                    "\"0000\"",
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 73, 73, 73),
-                      decoration: TextDecoration.none,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
+                  ),  
         
                   SizedBox(height: 70,),
         

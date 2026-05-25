@@ -27,6 +27,9 @@ class Conexao {
     return await openDatabase(
       caminho,
       version: 1,
+      onConfigure: (db) async {
+        await db.execute("PRAGMA foreign_keys = ON");
+      },
       onCreate:(db, version) async {
         await db.execute("""
           CREATE TABLE usuarios(
@@ -53,7 +56,7 @@ class Conexao {
             descricao TEXT NOT NULL,
             cep TEXT NOT NULL,
             usuario_id INTEGER NOT NULL,
-            FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+            FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
           )
         """);
 
@@ -65,8 +68,8 @@ class Conexao {
             data TEXT NOT NULL,
             servico_id INTEGER NOT NULL,
             usuario_id INTEGER NOT NULL,
-            FOREIGN KEY (servico_id) REFERENCES servicos(id)
-            FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+            FOREIGN KEY (servico_id) REFERENCES servicos(id) ON DELETE CASCADE
+            FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
           )
         """);
 

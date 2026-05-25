@@ -3,7 +3,7 @@ class ServicoTelaConsertosDTO {
   String titulo;
   double preco;
   String descricao;
-  double avaliacao;
+  double? avaliacao;
   int usuario_id;
   String nomeUsuario;
 

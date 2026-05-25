@@ -22,7 +22,6 @@ class TelaCadastroServicoState extends State<TelaCadastroServico> {
   }
 
   Map<String, dynamic> servico = {
-    "url": 'img/encanamento.png',
     "titulo": null,
     "preco": null,
     "descricao": null,
@@ -54,12 +53,12 @@ class TelaCadastroServicoState extends State<TelaCadastroServico> {
     servico["preco"] = preco;
   }
 
-  ServicoRepository servicoService = ServicoRepository();
+  ServicoRepository servicoRepository = ServicoRepository();
 
   void finalizar() {
     Servico servicoObjeto = Servico.fromMap(servico);
 
-    servicoService.cadastrar(servicoObjeto);
+    servicoRepository.cadastrar(servicoObjeto);
 
     Navigator.of(context).pop(true);
   }

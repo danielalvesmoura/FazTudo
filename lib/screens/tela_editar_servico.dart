@@ -82,7 +82,7 @@ class TelaEditarServicoState extends State<TelaEditarServico> {
                 Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage(widget.servico.url),
+                      image: AssetImage('img/encanamento.png'),
                       fit: BoxFit.cover
                     )
                   ),
