@@ -1,8 +1,4 @@
-import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
-
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class TelaTeste extends StatefulWidget {
   @override
@@ -10,28 +6,10 @@ class TelaTeste extends StatefulWidget {
 }
 
 class TelaTesteState extends State<TelaTeste> {
-  ImagePicker picker = ImagePicker();
-  XFile? imagem;  
 
-  Future<void> pegarImagem() async {
-    XFile? arquivo = await picker.pickImage(source: ImageSource.gallery);
+  final _formKey = GlobalKey<FormState>();
 
-    if(arquivo != null) {
-      setState(() {
-        imagem = arquivo;
-      });
-    }
-  }
-
-  final formatter = CurrencyTextInputFormatter.currency(
-    locale: 'pt_BR',
-    symbol: 'R\$'
-  );
-
-  final formatter2 = MaskTextInputFormatter(
-    mask: '###.###.###-##',
-    filter: {'#': RegExp(r'[0-9]')}
-  );
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,21 +18,29 @@ class TelaTesteState extends State<TelaTeste> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          retornaImagem(imagem),
-          ElevatedButton(onPressed: pegarImagem, child: Text('selecionar imagem')),
-          TextField(
-            inputFormatters: [formatter2],
+          Form(
+            key: _formKey,
+            child: TextFormField(
+              controller: controller,
+              decoration: InputDecoration(
+                border: OutlineInputBorder()
+              ),
+              validator: (value) {
+                if(value == null || value.isEmpty) return null;
+
+                final regex = RegExp(r'(?=.+[a-zA-Z])(?=.*@)');
+
+                if(regex.hasMatch(value)) {
+                  return "válido";
+                } else {
+                  return "inválido";
+                }
+              },
+              autovalidateMode: AutovalidateMode.always,
+            )
           )
         ],
       ),
     );
-  }
-}
-
-Widget retornaImagem(imagem) {
-  if(imagem != null) {
-    return Image.network(imagem!.path);
-  } else {
-    return SizedBox();
   }
 }

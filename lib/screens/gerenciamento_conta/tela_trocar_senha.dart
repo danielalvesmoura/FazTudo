@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/repository/usuario_repository.dart';
+import 'package:flutter_application_1/service/regex.dart';
 import 'package:flutter_application_1/service/sessao_service.dart';
-import 'package:flutter_application_1/service/usuario_service.dart';
 import 'package:flutter_application_1/sessao.dart';
 import 'package:flutter_application_1/widgets/botao.dart';
-import 'package:flutter_application_1/widgets/botao_flutuante.dart';
 import 'package:flutter_application_1/widgets/botao_voltar.dart';
 import 'package:flutter_application_1/widgets/campo_senha.dart';
 
@@ -29,7 +29,9 @@ class TelaTrocarSenhaState extends State<TelaTrocarSenha> {
 
   Sessao sessao = Sessao();
   SessaoService sessaoService = SessaoService();
-  UsuarioService usuarioService = UsuarioService();
+  UsuarioRepository usuarioRepository = UsuarioRepository();
+
+  Regex regex = Regex();
 
 
   @override
@@ -123,11 +125,15 @@ class TelaTrocarSenhaState extends State<TelaTrocarSenha> {
                               if(campoConfirmarSenha.text != campoNovaSenha.text) {
                                 return "As senhas não batem";
                               }
+
+                              if(!regex.senhaRegex.hasMatch(value)) {
+                                return "Senha inválida";
+                              }
                                   
                               return null;
                             },
                           ),
-                      
+
                           SizedBox(height: 40,),
                       
                           CampoSenha(
@@ -146,6 +152,18 @@ class TelaTrocarSenhaState extends State<TelaTrocarSenha> {
                                   
                               return null;
                             },
+                          ),
+
+                          SizedBox(height: 30,),
+
+                          Text(
+                            'A senha deve conter pelo menos 8 caracteres, 1 número, 1 caractere especial e 1 letra maiúscula.',
+                            style: TextStyle(
+                              color: const Color.fromARGB(255, 105, 105, 105),
+                              decoration: TextDecoration.none,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500
+                            ),
                           ),
                         ],
                       ),
@@ -171,7 +189,7 @@ class TelaTrocarSenhaState extends State<TelaTrocarSenha> {
                   fontSize: 30,
                   onPressed: () async {
                     if(_formKey.currentState!.validate()) {
-                      usuarioService.trocaSenha(sessao.usuarioLogado!.id!, campoNovaSenha.text);
+                      usuarioRepository.trocaSenha(sessao.usuarioLogado!.id!, campoNovaSenha.text);
                       sessaoService.atualizarUsuarioLogadoPorId();
                       Navigator.of(context).pop();
                     }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/repository/usuario_repository.dart';
 import 'package:flutter_application_1/service/sessao_service.dart';
-import 'package:flutter_application_1/service/usuario_service.dart';
 import 'package:flutter_application_1/sessao.dart';
 import 'package:flutter_application_1/widgets/botao.dart';
 import 'package:flutter_application_1/widgets/botao_voltar.dart';
@@ -26,7 +26,7 @@ class TelaTrocarNomeState extends State<TelaTrocarNome> {
 
   Sessao sessao = Sessao();
   SessaoService sessaoService = SessaoService();
-  UsuarioService usuarioService = UsuarioService();
+  UsuarioRepository usuarioRepository = UsuarioRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +143,7 @@ class TelaTrocarNomeState extends State<TelaTrocarNome> {
                   fontSize: 30,
                   onPressed: () async {
                     if(_formKey.currentState!.validate()) {
-                      usuarioService.trocaNome(sessao.usuarioLogado!.id!, campoNovoNome.text);
+                      usuarioRepository.trocaNome(sessao.usuarioLogado!.id!, campoNovoNome.text);
                       sessaoService.atualizarUsuarioLogadoPorId();
                       Navigator.of(context).pop(true);
                     }

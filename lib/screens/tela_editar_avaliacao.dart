@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/avaliacao.dart';
-import 'package:flutter_application_1/service/avaliacao_service.dart';
+import 'package:flutter_application_1/repository/avaliacao_repository.dart';
 import 'package:flutter_application_1/widgets/botao.dart';
 import 'package:flutter_application_1/widgets/botao_voltar.dart';
 import 'package:flutter_application_1/widgets/campo.dart';
@@ -30,7 +30,7 @@ class TelaEditarAvaliacaoState extends State<TelaEditarAvaliacao> {
 
   String escolhaNota = "";
 
-  AvaliacaoService avaliacaoService = AvaliacaoService();
+  AvaliacaoRepository avaliacaoRepository = AvaliacaoRepository();
 
   late Avaliacao avaliacao;
 
@@ -176,7 +176,7 @@ class TelaEditarAvaliacaoState extends State<TelaEditarAvaliacao> {
                       avaliacao.nota = _notaUsuario;
                       avaliacao.descricao = campoDescricao.text;
 
-                      avaliacaoService.update(avaliacao.id!, avaliacao);
+                      avaliacaoRepository.update(avaliacao.id!, avaliacao);
                       Navigator.of(context).pop();
                     }
                   },

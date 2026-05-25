@@ -14,7 +14,7 @@ class ServicoDAO {
     List<Map<String,dynamic>> servicos = await db.rawQuery("""
       SELECT
         s.*,
-        usuarios.nome,
+        usuarios.nome As nomeUsuario, usuarios.id AS usuario_id,
 
         (
           SELECT AVG(a.nota)

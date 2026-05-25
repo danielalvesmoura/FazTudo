@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/subcategoria.dart';
-import 'package:flutter_application_1/service/subcategoria_service.dart';
+import 'package:flutter_application_1/repository/subcategoria_repository.dart';
 import 'package:flutter_application_1/widgets/tela_consertos/card_subcategoria.dart';
 
 class SubcategoriasConserto extends StatefulWidget {
@@ -17,10 +17,10 @@ class SubcategoriasState extends State<SubcategoriasConserto> {
 
   List<Subcategoria> subcategorias = [];
 
-  SubcategoriaService subcategoriaService = SubcategoriaService();
+  SubcategoriaRepository subcategoriaRepository = SubcategoriaRepository();
 
   preencheLista() {
-    final resultado = subcategoriaService.listaTodos();
+    final resultado = subcategoriaRepository.listaTodos();
 
     // if(resultado != null) subcategorias = resultado;
 

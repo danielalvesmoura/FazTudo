@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/servico.dart';
 import 'package:flutter_application_1/screens/cadastro_servico/tela_cadastro_servico.dart';
-import 'package:flutter_application_1/screens/rotas.dart';
 import 'package:flutter_application_1/screens/tela_editar_servico.dart';
-import 'package:flutter_application_1/service/servico_service.dart';
+import 'package:flutter_application_1/repository/servico_repository.dart';
 import 'package:flutter_application_1/sessao.dart';
 import 'package:flutter_application_1/widgets/botao.dart';
 import 'package:flutter_application_1/widgets/botao_flutuante.dart';
@@ -35,7 +34,7 @@ class AbasServicosState extends State<AbasServicos> {
 
   List<Servico> servicos = [];
 
-  ServicoService servicoService = ServicoService();
+  ServicoRepository servicoService = ServicoRepository();
 
   Sessao sessao = Sessao();
 
@@ -217,7 +216,7 @@ class CardServico extends StatelessWidget {
     required this.subtitulo
   });
 
-  ServicoService servicoService = ServicoService();
+  final ServicoRepository servicoService = ServicoRepository();
 
   @override
   Widget build(BuildContext context) {

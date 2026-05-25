@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/repository/usuario_repository.dart';
 import 'package:flutter_application_1/service/regex.dart';
 import 'package:flutter_application_1/service/usuario_service.dart';
 import 'package:flutter_application_1/sessao.dart';
@@ -283,6 +284,7 @@ class EmailState extends State<Email> {
   final _formKey = GlobalKey<FormState>();
 
   UsuarioService usuarioService = UsuarioService();
+  UsuarioRepository usuarioRepository = UsuarioRepository();
 
   Regex regex = Regex();
 
@@ -482,7 +484,7 @@ class EmailState extends State<Email> {
                 }
 
                 Sessao sessao = Sessao();
-                usuarioService.cadastrar(campoNome.text, campoEmail.text, campoTelefone.text, campoSenha.text);
+                usuarioRepository.cadastrar(campoNome.text, campoEmail.text, campoTelefone.text, campoSenha.text);
                 sessaoService.atualizarUsuarioLogadoPorEmail(campoEmail.text);
                 Navigator.of(context).pushNamed(Rotas.home);
               }

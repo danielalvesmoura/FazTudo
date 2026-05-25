@@ -1,6 +1,6 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/service/servico_service.dart';
+import 'package:flutter_application_1/repository/servico_repository.dart';
 import 'package:flutter_application_1/widgets/botao_flutuante.dart';
 import 'package:flutter_application_1/widgets/card_selecionavel.dart';
 
@@ -51,7 +51,7 @@ class TelaCadastroServicoPrecoState extends State<TelaCadastroServicoPreco> {
         .replaceAll(',', '.'); // troca vírgula por ponto
   }
 
-  ServicoService servicoService = ServicoService();
+  ServicoRepository servicoService = ServicoRepository();
 
   @override
   Widget build(BuildContext context) {

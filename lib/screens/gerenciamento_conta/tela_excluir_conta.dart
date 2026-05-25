@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/rotas.dart';
+import 'package:flutter_application_1/repository/usuario_repository.dart';
 import 'package:flutter_application_1/service/sessao_service.dart';
-import 'package:flutter_application_1/service/usuario_service.dart';
 import 'package:flutter_application_1/sessao.dart';
 import 'package:flutter_application_1/widgets/botao.dart';
 import 'package:flutter_application_1/widgets/botao_voltar.dart';
@@ -29,7 +28,7 @@ class TelaExcluirContaState extends State<TelaExcluirConta> {
   Sessao sessao = Sessao();
   SessaoService sessaoService = SessaoService();
 
-  UsuarioService usuarioService = UsuarioService();
+  UsuarioRepository usuarioRepository = UsuarioRepository();
 
   String mensagemErro = "";
 
@@ -160,7 +159,7 @@ class TelaExcluirContaState extends State<TelaExcluirConta> {
                   onPressed: () async {
                     if(_formKey.currentState!.validate()) {
                       if(campoEmail.text == sessao.usuarioLogado!.email && campoSenha.text == sessao.usuarioLogado!.senha) {
-                        usuarioService.deletar(sessao.usuarioLogado!.id!);
+                        usuarioRepository.deletar(sessao.usuarioLogado!.id!);
                         sessaoService.atualizarUsuarioLogadoPorId();
                         
                         Navigator.of(context).pop();

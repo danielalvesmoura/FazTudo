@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/dao/servico_dao.dart';
 import 'package:flutter_application_1/dao/subcategoria_dao.dart';
+import 'package:flutter_application_1/dto/servicos_tela_consertos_dto.dart';
 import 'package:flutter_application_1/models/servico.dart';
 import 'package:flutter_application_1/models/subcategoria.dart';
 import 'package:flutter_application_1/models/usuario.dart';
+import 'package:flutter_application_1/repository/usuario_repository.dart';
 import 'package:flutter_application_1/screens/subcategoria/tela_lista_subcategorias.dart';
 import 'package:flutter_application_1/screens/tela_avaliacoes.dart';
-import 'package:flutter_application_1/service/servico_service.dart';
-import 'package:flutter_application_1/service/usuario_service.dart';
+import 'package:flutter_application_1/repository/servico_repository.dart';
 import 'package:flutter_application_1/sessao.dart';
 import 'package:flutter_application_1/widgets/subcategorias/subcategorias_conserto.dart';
 import 'package:flutter_application_1/widgets/tela_consertos/card_oferta.dart';
@@ -20,17 +20,17 @@ class TelaConsertos extends StatefulWidget {
 class TelaConsertosState extends State<TelaConsertos> {
   Sessao sessao = Sessao();
 
-  List<Map<String,dynamic>> consertos = [];
+  List<ServicoTelaConsertosDTO> consertos = [];
 
   List<Subcategoria> subcategorias = [];
 
   SubcategoriaDAO subcategoriaDao = SubcategoriaDAO();
-  ServicoService servicoService = ServicoService();
-  UsuarioService usuarioService = UsuarioService();
+  ServicoRepository servicoRepository = ServicoRepository();
+  UsuarioRepository usuarioRepository = UsuarioRepository();
 
   Future<void> preencheLista() async {
     List<Subcategoria> resultadoSubcategorias = await subcategoriaDao.getSubcategorias();
-    List<Map<String,dynamic>> resultadoServicos = await servicoService.listaTodos();
+    List<ServicoTelaConsertosDTO> resultadoServicos = await servicoRepository.listaTodos();
 
     subcategorias = resultadoSubcategorias;
     consertos = resultadoServicos;
@@ -39,7 +39,7 @@ class TelaConsertosState extends State<TelaConsertos> {
   }
 
   Future<String> retornaUsuarioId(Servico servico) async {
-    Usuario usuario = await usuarioService.encontraPorId(servico.usuario_id);
+    Usuario usuario = await usuarioRepository.encontraPorId(servico.usuario_id);
 
     return usuario.nome;
   }
@@ -209,20 +209,20 @@ class TelaConsertosState extends State<TelaConsertos> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      for(Map<String,dynamic> servico in consertos)
+                      for(ServicoTelaConsertosDTO servico in consertos)
                         Column(
                           children: [
                             CardOferta(
-                              urlImagem: servico["url"],
-                              titulo: servico["titulo"],
-                              preco: 'R\$ ${servico["preco"]} / hora', 
-                              descricao: servico["descricao"],
-                              usuario: servico["nome"],
-                              avaliacao: servico["avaliacao"] ?? 0,
+                              urlImagem: 'img/encanamento.png',
+                              titulo: servico.titulo,
+                              preco: 'R\$ ${servico.preco} / hora', 
+                              descricao: servico.descricao,
+                              usuario: servico.nomeUsuario,
+                              avaliacao: servico.avaliacao,
                               botaoAvaliacao: () async {
                                 await Navigator.of(context).push(
                                   MaterialPageRoute(builder: (_) => TelaAvaliacoes(
-                                    servico: Servico.fromMap(servico),
+                                    servico: servico,
                                   ))
                                 );
 

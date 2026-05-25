@@ -50,15 +50,12 @@ class AvaliacaoDAO {
 
   }
 
-  Future<bool> buscaIdUsuario(int servico_id, int usuario_id) async {
+  Future<List<Map<String, dynamic>>> buscaIdUsuario(int servico_id, int usuario_id) async {
     final db = await Conexao.instancia.banco;
 
-    List<Map<String, dynamic>> resultado = await db.query("avaliacoes",
+    return await db.query("avaliacoes",
       where: "usuario_id = ? AND servico_id = ?",
       whereArgs: [usuario_id, servico_id,]
     );
-
-    if(!resultado.isEmpty) return true;
-    return false;
   }
 }

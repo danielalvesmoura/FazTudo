@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/dto/servicos_tela_consertos_dto.dart';
 import 'package:flutter_application_1/models/avaliacao.dart';
-import 'package:flutter_application_1/models/servico.dart';
 import 'package:flutter_application_1/screens/tela_editar_avaliacao.dart';
+import 'package:flutter_application_1/repository/avaliacao_repository.dart';
 import 'package:flutter_application_1/service/avaliacao_service.dart';
 import 'package:flutter_application_1/sessao.dart';
 import 'package:flutter_application_1/widgets/botao.dart';
@@ -12,7 +13,7 @@ import 'package:flutter_application_1/widgets/tela_config/separador.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class TelaAvaliacoes extends StatefulWidget {
-  Servico servico;
+  final ServicoTelaConsertosDTO servico;
 
   TelaAvaliacoes({required this.servico});
 
@@ -35,6 +36,7 @@ class TelaAvaliacoesState extends State<TelaAvaliacoes> {
 
   List<Map<String,dynamic>> avaliacoes = [];
 
+  AvaliacaoRepository avaliacaoRepository = AvaliacaoRepository();
   AvaliacaoService avaliacaoService = AvaliacaoService();
 
   bool usuarioJaAvaliou = true;
@@ -42,12 +44,12 @@ class TelaAvaliacoesState extends State<TelaAvaliacoes> {
   Sessao sessao = Sessao();
 
   Future<void> preencheLista() async {
-    List<Map<String,dynamic>>? resultado = await avaliacaoService.listaTodos(widget.servico.id!);
+    List<Map<String,dynamic>>? resultado = await avaliacaoRepository.listaTodos(widget.servico.id);
 
     print(resultado);
 
     if(resultado != null) avaliacoes = resultado;
-    usuarioJaAvaliou = await avaliacaoService.usuarioJaAvaliou(widget.servico.id!, sessao.usuarioLogado!.id!);
+    usuarioJaAvaliou = await avaliacaoService.usuarioJaAvaliou(widget.servico.id, sessao.usuarioLogado!.id!);
 
     setState(() {});
   }
@@ -93,7 +95,7 @@ class TelaAvaliacoesState extends State<TelaAvaliacoes> {
                   Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(widget.servico.url),
+                        image: AssetImage('img/encanamento.png'),
                         fit: BoxFit.cover
                       )
                     ),
@@ -302,10 +304,10 @@ class TelaAvaliacoesState extends State<TelaAvaliacoes> {
                               
                                                             Sessao sessao = Sessao();
                               
-                                                            avaliacaoService.cadastrar(
+                                                            avaliacaoRepository.cadastrar(
                                                               _notaUsuario, 
                                                               campoDescricao.text, 
-                                                              widget.servico.id!, 
+                                                              widget.servico.id, 
                                                               sessao.usuarioLogado!.id!,
                                                               DateTime.now()
                                                             );
@@ -374,7 +376,7 @@ class TelaAvaliacoesState extends State<TelaAvaliacoes> {
                                                       descricao: avaliacao["descricao"],
                                                       autor: avaliacao["usuario_id"] == sessao.usuarioLogado!.id! ? true : false,
                                                       botaoDeletar: () {
-                                                        avaliacaoService.deletar(avaliacao["id"]);
+                                                        avaliacaoRepository.deletar(avaliacao["id"]);
                                                         preencheLista();
                                                         _notaUsuario = 0;
                                                       },

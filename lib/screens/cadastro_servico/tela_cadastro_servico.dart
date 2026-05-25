@@ -4,7 +4,7 @@ import 'package:flutter_application_1/screens/cadastro_servico/tela_cadastro_ser
 import 'package:flutter_application_1/screens/cadastro_servico/tela_cadastro_servico_detalhes.dart';
 import 'package:flutter_application_1/screens/cadastro_servico/tela_cadastro_servico_foto.dart';
 import 'package:flutter_application_1/screens/cadastro_servico/tela_cadastro_servico_preco.dart';
-import 'package:flutter_application_1/service/servico_service.dart';
+import 'package:flutter_application_1/repository/servico_repository.dart';
 import 'package:flutter_application_1/sessao.dart';
 
 class TelaCadastroServico extends StatefulWidget {
@@ -54,7 +54,7 @@ class TelaCadastroServicoState extends State<TelaCadastroServico> {
     servico["preco"] = preco;
   }
 
-  ServicoService servicoService = ServicoService();
+  ServicoRepository servicoService = ServicoRepository();
 
   void finalizar() {
     Servico servicoObjeto = Servico.fromMap(servico);

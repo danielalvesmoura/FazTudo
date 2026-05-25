@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/gerenciamento_conta/tela_trocar_nome.dart';
 import 'package:flutter_application_1/screens/rotas.dart';
 import 'package:flutter_application_1/sessao.dart';
 import 'package:flutter_application_1/widgets/tela_config/opcao.dart';
@@ -100,7 +101,10 @@ class TelaConfigState extends State<TelaConfig> {
           Opcao(
             texto: "Trocar nome de usuário",
             onTap: () async {
-              await Navigator.of(context).pushNamed(Rotas.trocarNome);
+              await Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => TelaTrocarNome())
+              );
+              
               setState(() {});
             }
             

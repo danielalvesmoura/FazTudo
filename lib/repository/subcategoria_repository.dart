@@ -1,7 +1,7 @@
 import 'package:flutter_application_1/dao/subcategoria_dao.dart';
 import 'package:flutter_application_1/models/subcategoria.dart';
 
-class SubcategoriaService {
+class SubcategoriaRepository {
   SubcategoriaDAO subcategoriaDAO = SubcategoriaDAO();
 
   void cadastrar(String nome) {

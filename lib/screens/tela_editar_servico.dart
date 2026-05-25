@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/servico.dart';
-import 'package:flutter_application_1/service/servico_service.dart';
+import 'package:flutter_application_1/repository/servico_repository.dart';
 import 'package:flutter_application_1/widgets/botao_flutuante.dart';
 import 'package:flutter_application_1/widgets/botao_voltar.dart';
 import 'package:flutter_application_1/widgets/campo.dart';
-import 'package:flutter_application_1/widgets/subcategorias/subcategorias_conserto_cadastro.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 
@@ -53,7 +52,7 @@ class TelaEditarServicoState extends State<TelaEditarServico> {
     campoPreco.text = formatter.formatDouble(widget.servico.preco);
   }
 
-  ServicoService servicoService = ServicoService();
+  ServicoRepository servicoRepository = ServicoRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -208,7 +207,7 @@ class TelaEditarServicoState extends State<TelaEditarServico> {
             widget.servico.preco = formatter.getUnformattedValue().toDouble();
             widget.servico.cep = cepFormatter.getUnmaskedText();
 
-            servicoService.update(widget.servico);
+            servicoRepository.update(widget.servico);
 
             Navigator.of(context).pop();
           },
