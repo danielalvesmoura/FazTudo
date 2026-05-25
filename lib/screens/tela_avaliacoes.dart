@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/dto/avaliacao_dto.dart';
 import 'package:flutter_application_1/dto/servicos_tela_consertos_dto.dart';
 import 'package:flutter_application_1/models/avaliacao.dart';
 import 'package:flutter_application_1/screens/tela_editar_avaliacao.dart';
@@ -34,7 +35,7 @@ class TelaAvaliacoesState extends State<TelaAvaliacoes> {
 
   double _notaUsuario = 0;
 
-  List<Map<String,dynamic>> avaliacoes = [];
+  List<AvaliacaoDTO> avaliacoes = [];
 
   AvaliacaoRepository avaliacaoRepository = AvaliacaoRepository();
   AvaliacaoService avaliacaoService = AvaliacaoService();
@@ -44,7 +45,7 @@ class TelaAvaliacoesState extends State<TelaAvaliacoes> {
   Sessao sessao = Sessao();
 
   Future<void> preencheLista() async {
-    List<Map<String,dynamic>>? resultado = await avaliacaoRepository.listaTodos(widget.servico.id);
+    List<AvaliacaoDTO>? resultado = await avaliacaoRepository.listaTodos(widget.servico.id);
 
     print(resultado);
 
@@ -366,23 +367,23 @@ class TelaAvaliacoesState extends State<TelaAvaliacoes> {
                                         child: SingleChildScrollView(
                                           child: Column(
                                             children: [
-                                              for(Map<String, dynamic> avaliacao in avaliacoes)
+                                              for(AvaliacaoDTO avaliacao in avaliacoes)
                                                 Column(
                                                   children: [
                                                     CardAvaliacao(
-                                                      data: DateTime.parse(avaliacao["data"]),
-                                                      nota: avaliacao["nota"],
-                                                      usuario: avaliacao["nome"],
-                                                      descricao: avaliacao["descricao"],
-                                                      autor: avaliacao["usuario_id"] == sessao.usuarioLogado!.id! ? true : false,
+                                                      data: avaliacao.data,
+                                                      nota: avaliacao.nota,
+                                                      usuario: avaliacao.nome,
+                                                      descricao: avaliacao.descricao,
+                                                      autor: avaliacao.usuario_id == sessao.usuarioLogado!.id! ? true : false,
                                                       botaoDeletar: () {
-                                                        avaliacaoRepository.deletar(avaliacao["id"]);
+                                                        avaliacaoRepository.deletar(avaliacao.id);
                                                         preencheLista();
                                                         _notaUsuario = 0;
                                                       },
                                                       botaoEditar: () async {
                                                         await Navigator.of(context).push(
-                                                          MaterialPageRoute(builder: (_) => TelaEditarAvaliacao(avaliacao: Avaliacao.fromMap(avaliacao),))
+                                                          MaterialPageRoute(builder: (_) => TelaEditarAvaliacao(avaliacao: Avaliacao.fromDTO(avaliacao),))
                                                         );
 
                                                         preencheLista();

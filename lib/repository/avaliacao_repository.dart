@@ -10,7 +10,7 @@ class AvaliacaoRepository {
     avaliacaoDAO.insert(avaliacao);
   }
 
-  Future<List<Map<String, dynamic>>?> listaTodos(int servico_id) async {
+  Future<List<AvaliacaoDTO>?> listaTodos(int servico_id) async {
     return await avaliacaoDAO.getAvaliacoes(servico_id);
   }
 

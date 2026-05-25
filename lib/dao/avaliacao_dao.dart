@@ -1,4 +1,5 @@
 import 'package:flutter_application_1/database/conexao.dart';
+import 'package:flutter_application_1/dto/avaliacao_dto.dart';
 import 'package:flutter_application_1/models/avaliacao.dart';
 
 class AvaliacaoDAO {
@@ -8,7 +9,7 @@ class AvaliacaoDAO {
     await db.insert("avaliacoes",avaliacao.toMap());
   }
 
-  Future<List<Map<String, dynamic>>> getAvaliacoes(int servico_id) async {
+  Future<List<AvaliacaoDTO>> getAvaliacoes(int servico_id) async {
     final db = await Conexao.instancia.banco;
 
     List<Map<String,dynamic>> avaliacoes = await db.rawQuery("""
@@ -26,7 +27,7 @@ class AvaliacaoDAO {
     );
 
     if(avaliacoes.isEmpty) return [];
-    return avaliacoes; 
+    return avaliacoes.map((map) => AvaliacaoDTO.fromMap(map)).toList(); 
   }
 
   Future<void> update(int id, Avaliacao avaliacao) async {

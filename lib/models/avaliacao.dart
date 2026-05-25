@@ -1,3 +1,5 @@
+import 'package:flutter_application_1/dto/avaliacao_dto.dart';
+
 class Avaliacao {
   int? id;
   double nota;
@@ -23,6 +25,17 @@ class Avaliacao {
       servico_id: map["servico_id"],
       usuario_id: map["usuario_id"],
       data: map["data"]
+    );
+  }
+
+  factory Avaliacao.fromDTO(AvaliacaoDTO avaliacao) {
+    return Avaliacao(
+      id: avaliacao.id,
+      nota: avaliacao.nota,
+      descricao: avaliacao.descricao,
+      servico_id: avaliacao.servico_id,
+      usuario_id: avaliacao.usuario_id,
+      data: avaliacao.data.toIso8601String(),
     );
   }
 
